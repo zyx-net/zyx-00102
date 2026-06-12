@@ -1,0 +1,10 @@
+[
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:00:00.000Z", "temperature": 4.5},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:05:00.000Z", "temperature": 4.2},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:10:00.000Z", "temperature": 4.8},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:15:00.000Z", "temperature": 5.1},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:20:00.000Z", "temperature": 4.9},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T09:30:00.000Z", "temperature": 4.6},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T09:35:00.000Z", "temperature": 4.3},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T09:40:00.000Z", "temperature": 4.0}
+]

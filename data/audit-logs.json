@@ -1,0 +1,296 @@
+{
+  "BATCH-TEST-1781286182506": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:43:02.521Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 12 条",
+      "timestamp": "2026-06-12T17:43:02.526Z",
+      "detail": {
+        "logCount": 12,
+        "overTempCount": 0
+      }
+    },
+    {
+      "action": "quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "已复核，待质管确认",
+      "timestamp": "2026-06-12T17:43:02.530Z"
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质量合格，同意放行",
+      "timestamp": "2026-06-12T17:43:02.533Z"
+    }
+  ],
+  "BATCH-FAIL-1781286182545": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:43:02.548Z"
+    }
+  ],
+  "BATCH-TEST-1781286234204": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:43:54.222Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 12 条",
+      "timestamp": "2026-06-12T17:43:54.231Z",
+      "detail": {
+        "logCount": 12,
+        "overTempCount": 0
+      }
+    },
+    {
+      "action": "quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "已复核，待质管确认",
+      "timestamp": "2026-06-12T17:43:54.236Z"
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质量合格，同意放行",
+      "timestamp": "2026-06-12T17:43:54.241Z"
+    }
+  ],
+  "BATCH-FAIL-1781286234252": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:43:54.254Z"
+    }
+  ],
+  "BATCH-TEST-1781286283482": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:44:43.499Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 12 条",
+      "timestamp": "2026-06-12T17:44:43.509Z",
+      "detail": {
+        "logCount": 12,
+        "overTempCount": 0
+      }
+    },
+    {
+      "action": "quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "已复核，待质管确认",
+      "timestamp": "2026-06-12T17:44:43.514Z"
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质量合格，同意放行",
+      "timestamp": "2026-06-12T17:44:43.519Z"
+    }
+  ],
+  "BATCH-FAIL-1781286283529": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:44:43.530Z"
+    }
+  ],
+  "BATCH-CSV-1781286283539": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:44:43.542Z"
+    }
+  ],
+  "REV-OK-1781286816": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:53:37.085Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 4 条",
+      "timestamp": "2026-06-12T17:53:37.096Z",
+      "detail": {
+        "logCount": 4,
+        "overTempCount": 0
+      }
+    },
+    {
+      "action": "quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "reviewer success chain",
+      "timestamp": "2026-06-12T17:53:37.100Z"
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "reviewer success chain finalize",
+      "timestamp": "2026-06-12T17:53:37.104Z"
+    }
+  ],
+  "REV-UNAUTH-1781286816": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:53:37.130Z"
+    }
+  ],
+  "REV-BADTEMP-1781286816": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:53:37.368Z"
+    }
+  ],
+  "REV-TX-1781286816": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:53:37.379Z"
+    }
+  ],
+  "REV-OVER-1781286816": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-12T17:53:37.413Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 4 条",
+      "timestamp": "2026-06-12T17:53:37.418Z",
+      "detail": {
+        "logCount": 4,
+        "overTempCount": 1
+      }
+    }
+  ]
+}

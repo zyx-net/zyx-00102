@@ -1,0 +1,22 @@
+[
+  {
+    "batchNo": "BATCH-2024-001",
+    "drugName": "胰岛素注射液",
+    "manufacturer": "某制药有限公司",
+    "quantity": 500,
+    "unit": "盒",
+    "productionDate": "2024-01-15",
+    "expiryDate": "2026-01-14",
+    "arrivalDate": "2024-06-01T09:00:00.000Z"
+  },
+  {
+    "batchNo": "BATCH-2024-002",
+    "drugName": "人血白蛋白",
+    "manufacturer": "某生物制药有限公司",
+    "quantity": 200,
+    "unit": "瓶",
+    "productionDate": "2024-02-20",
+    "expiryDate": "2027-02-19",
+    "arrivalDate": "2024-06-01T10:30:00.000Z"
+  }
+]

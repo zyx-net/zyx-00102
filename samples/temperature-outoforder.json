@@ -1,0 +1,7 @@
+[
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:00:00.000Z", "temperature": 4.5},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:05:00.000Z", "temperature": 4.2},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:10:00.000Z", "temperature": 4.8},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:08:00.000Z", "temperature": 5.1},
+  {"batchNo": "BATCH-2024-001", "timestamp": "2024-06-01T08:15:00.000Z", "temperature": 4.9}
+]

@@ -1,0 +1,3 @@
+batchNo,drugName,manufacturer,quantity,unit,productionDate,expiryDate,arrivalDate
+BATCH-2024-001,胰岛素注射液,某制药有限公司,500,盒,2024-01-15,2026-01-14,2024-06-01T09:00:00.000Z
+BATCH-2024-002,人血白蛋白,某生物制药有限公司,200,瓶,2024-02-20,2027-02-19,2024-06-01T10:30:00.000Z
