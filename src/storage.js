@@ -5,7 +5,8 @@ const config = require('./config');
 const dataFiles = {
   batches: 'batches.json',
   temperatureLogs: 'temperature-logs.json',
-  auditLogs: 'audit-logs.json'
+  auditLogs: 'audit-logs.json',
+  dispositions: 'dispositions.json'
 };
 
 function ensureDataDir() {
@@ -94,6 +95,38 @@ function listBatches() {
   return Object.values(batches).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 }
 
+function getDispositions() {
+  return readData(dataFiles.dispositions, {});
+}
+
+function saveDispositions(dispositions) {
+  writeDataAtomic(dataFiles.dispositions, dispositions);
+}
+
+function getDisposition(dispositionId) {
+  const dispositions = getDispositions();
+  return dispositions[dispositionId] || null;
+}
+
+function saveDisposition(disposition) {
+  const dispositions = getDispositions();
+  dispositions[disposition.id] = disposition;
+  saveDispositions(dispositions);
+}
+
+function getBatchDispositions(batchNo) {
+  const dispositions = getDispositions();
+  return Object.values(dispositions)
+    .filter(d => d.batchNo === batchNo)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+function getActiveDisposition(batchNo) {
+  const dispositions = getBatchDispositions(batchNo);
+  const closedStatuses = ['closed'];
+  return dispositions.find(d => !closedStatuses.includes(d.status)) || null;
+}
+
 module.exports = {
   getBatches,
   saveBatches,
@@ -103,5 +136,11 @@ module.exports = {
   saveTemperatureLogs,
   getAuditLogs: getBatchAuditLogs,
   addAuditLog,
-  listBatches
+  listBatches,
+  getDispositions,
+  saveDispositions,
+  getDisposition,
+  saveDisposition,
+  getBatchDispositions,
+  getActiveDisposition
 };

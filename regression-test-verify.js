@@ -197,11 +197,110 @@ async function main() {
   allPass &= printTest('文件中审计记录数与 API 一致',
     fileAudit.length === (overTempDetail.auditLogs?.length || 0));
 
+  console.log('\n--- 8. 放行处置单重启后一致性 ---\n');
+
+  if (preState.dispBatchNo) {
+    const dispDetail = await getBatchDetail(preState.dispBatchNo);
+    allPass &= printTest('[放行] 批次状态一致',
+      dispDetail.batch.status === preState.dispBatchStatus,
+      `重启前: ${preState.dispBatchStatus}, 重启后: ${dispDetail.batch.status}`);
+    allPass &= printTest('[放行] 批次 dispositionId 存在',
+      dispDetail.batch.dispositionId === preState.dispDispositionId,
+      `期望: ${preState.dispDispositionId}, 实际: ${dispDetail.batch.dispositionId}`);
+    allPass &= printTest('[放行] 批次 dispositionDecision 正确',
+      dispDetail.batch.dispositionDecision === preState.dispFinalDecision);
+
+    const dispFile = JSON.parse(fs.readFileSync(path.join(dataDir, 'dispositions.json'), 'utf-8'));
+    const fileDisp = dispFile[preState.dispDispositionId];
+    allPass &= printTest('[放行] 处置单文件存在', !!fileDisp);
+    if (fileDisp) {
+      allPass &= printTest('[放行] 处置单状态 closed', fileDisp.status === 'closed');
+      allPass &= printTest('[放行] 处置单 finalDecision 正确', fileDisp.finalDecision === preState.dispFinalDecision);
+      allPass &= printTest('[放行] 处置单 approvedBy 存在', !!fileDisp.approvedBy);
+      allPass &= printTest('[放行] 处置单 approvalReason 存在', !!fileDisp.approvalReason);
+    }
+
+    allPass &= printTest('[放行] 处置单列表与 API 一致',
+      Array.isArray(dispDetail.dispositions) && dispDetail.dispositions.length >= 1);
+    const apiDisp = (dispDetail.dispositions || []).find(d => d.id === preState.dispDispositionId);
+    allPass &= printTest('[放行] API 返回处置单数据正确',
+      !!apiDisp && apiDisp.status === 'closed' && apiDisp.finalDecision === preState.dispFinalDecision);
+
+    const dispAudit = dispDetail.auditLogs || [];
+    allPass &= printTest('[放行] 审计含 disposition_create', dispAudit.some(l => l.action === 'disposition_create'));
+    allPass &= printTest('[放行] 审计含 disposition_approve_release', dispAudit.some(l => l.action === 'disposition_approve_release'));
+    allPass &= printTest('[放行] 审计含 release 动作', dispAudit.some(l => l.action === 'release'));
+
+    const dispExportJson = await getExportJson(preState.dispBatchNo);
+    allPass &= printTest('[放行] JSON 导出含 dispositionId', !!dispExportJson.batch.dispositionId);
+    allPass &= printTest('[放行] JSON 导出含 dispositionDecision',
+      dispExportJson.batch.dispositionDecision === preState.dispFinalDecision);
+    allPass &= printTest('[放行] JSON 导出含处置单列表', Array.isArray(dispExportJson.dispositions));
+
+    const dispExportCsv = await getExportCsv(preState.dispBatchNo);
+    const dispCsvStr = typeof dispExportCsv === 'string' ? dispExportCsv : JSON.stringify(dispExportCsv);
+    allPass &= printTest('[放行] CSV 导出含处置单段', dispCsvStr.includes('# 温控偏差处置单'));
+    allPass &= printTest('[放行] CSV 导出含处置单ID', dispCsvStr.includes(preState.dispDispositionId));
+    allPass &= printTest('[放行] CSV 导出含结论 release', dispCsvStr.includes(preState.dispFinalDecision));
+  }
+
+  console.log('\n--- 9. 拒收处置单重启后一致性 ---\n');
+
+  if (preState.rejectBatchNo) {
+    const rejectDetail = await getBatchDetail(preState.rejectBatchNo);
+    allPass &= printTest('[拒收] 批次状态一致',
+      rejectDetail.batch.status === preState.rejectBatchStatus,
+      `重启前: ${preState.rejectBatchStatus}, 重启后: ${rejectDetail.batch.status}`);
+    allPass &= printTest('[拒收] 批次 dispositionDecision 正确',
+      rejectDetail.batch.dispositionDecision === preState.rejectFinalDecision);
+
+    const dispFile = JSON.parse(fs.readFileSync(path.join(dataDir, 'dispositions.json'), 'utf-8'));
+    const fileRejectDisp = dispFile[preState.rejectDispositionId];
+    allPass &= printTest('[拒收] 处置单文件存在', !!fileRejectDisp);
+    if (fileRejectDisp) {
+      allPass &= printTest('[拒收] 处置单 finalDecision = reject', fileRejectDisp.finalDecision === 'reject');
+      allPass &= printTest('[拒收] 处置单 deviationLevel = major', fileRejectDisp.deviationLevel === 'major');
+    }
+
+    const rejectAudit = rejectDetail.auditLogs || [];
+    allPass &= printTest('[拒收] 审计含 disposition_approve_reject', rejectAudit.some(l => l.action === 'disposition_approve_reject'));
+    allPass &= printTest('[拒收] 审计含 reject 动作', rejectAudit.some(l => l.action === 'reject'));
+  }
+
+  console.log('\n--- 10. 处置单列表与查询接口 ---\n');
+
+  if (preState.dispDispositionId) {
+    const dispListRes = await request({
+      ...baseOptions,
+      path: '/api/batches/dispositions',
+      method: 'GET'
+    });
+    allPass &= printTest('处置单列表接口可用',
+      dispListRes.statusCode === 200 && Array.isArray(dispListRes.body?.dispositions));
+    allPass &= printTest('处置单列表包含放行处置单',
+      (dispListRes.body?.dispositions || []).some(d => d.id === preState.dispDispositionId));
+    if (preState.rejectDispositionId) {
+      allPass &= printTest('处置单列表包含拒收处置单',
+        (dispListRes.body?.dispositions || []).some(d => d.id === preState.rejectDispositionId));
+    }
+
+    const singleDispRes = await request({
+      ...baseOptions,
+      path: `/api/batches/dispositions/${preState.dispDispositionId}`,
+      method: 'GET'
+    });
+    allPass &= printTest('单处置单查询接口可用', singleDispRes.statusCode === 200);
+    allPass &= printTest('单处置单查询数据正确',
+      singleDispRes.body?.disposition?.id === preState.dispDispositionId &&
+      singleDispRes.body?.disposition?.finalDecision === 'release');
+  }
+
   console.log('\n========================================');
   if (allPass) {
     console.log('✓ 全部一致性验证通过！');
     console.log('✓ 服务重启后所有数据保持一致');
     console.log('✓ 查询接口、JSON/CSV 导出、文件存储三者一致');
+    console.log('✓ 温控偏差处置单（放行/拒收）数据完整持久化');
   } else {
     console.log('✗ 部分验证失败！');
   }

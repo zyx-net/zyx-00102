@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const batchService = require('../services/batchService');
+const dispositionService = require('../services/dispositionService');
 const importExportService = require('../services/importExportService');
 
 function requireOperator(req, res, next) {
@@ -19,22 +20,6 @@ function requireOperator(req, res, next) {
 router.get('/', requireOperator, (req, res) => {
   const batches = batchService.listAllBatches();
   res.json({ batches });
-});
-
-router.get('/:batchNo', requireOperator, (req, res) => {
-  const detail = batchService.getBatchDetail(req.params.batchNo);
-  if (!detail) {
-    return res.status(404).json({ error: '批次不存在' });
-  }
-  res.json(detail);
-});
-
-router.get('/:batchNo/audit', requireOperator, (req, res) => {
-  const detail = batchService.getBatchDetail(req.params.batchNo);
-  if (!detail) {
-    return res.status(404).json({ error: '批次不存在' });
-  }
-  res.json({ auditLogs: detail.auditLogs });
 });
 
 router.post('/import', requireOperator, (req, res) => {
@@ -63,6 +48,97 @@ router.post('/import', requireOperator, (req, res) => {
   } catch (err) {
     res.status(400).json({ error: '解析失败: ' + err.message });
   }
+});
+
+router.get('/dispositions', requireOperator, (req, res) => {
+  const dispositions = dispositionService.listAllDispositions();
+  res.json({ dispositions });
+});
+
+router.get('/dispositions/:dispositionId', requireOperator, (req, res) => {
+  const disposition = dispositionService.getDispositionDetail(req.params.dispositionId);
+  if (!disposition) {
+    return res.status(404).json({ error: '处置单不存在' });
+  }
+  res.json({ disposition });
+});
+
+router.put('/dispositions/:dispositionId', requireOperator, (req, res) => {
+  const expectedVersion = req.body.expectedVersion;
+  const updateData = { ...req.body };
+  delete updateData.expectedVersion;
+  const result = dispositionService.updateDisposition(
+    req.params.dispositionId,
+    updateData,
+    req.operator.id,
+    expectedVersion
+  );
+  if (!result.success) {
+    const status = result.conflict ? 409 : 400;
+    return res.status(status).json({ success: false, error: result.error, ...result });
+  }
+  res.json({ success: true, disposition: result.disposition });
+});
+
+router.post('/dispositions/:dispositionId/submit', requireOperator, (req, res) => {
+  const expectedVersion = req.body?.expectedVersion;
+  const result = dispositionService.submitForApproval(
+    req.params.dispositionId,
+    req.operator.id,
+    expectedVersion
+  );
+  if (!result.success) {
+    const status = result.conflict ? 409 : 400;
+    return res.status(status).json({ success: false, error: result.error, ...result });
+  }
+  res.json({ success: true, disposition: result.disposition });
+});
+
+router.post('/dispositions/:dispositionId/approve', requireOperator, (req, res) => {
+  const { decision, reason, expectedVersion } = req.body || {};
+  const result = dispositionService.approveDisposition(
+    req.params.dispositionId,
+    decision,
+    reason,
+    req.operator.id,
+    expectedVersion
+  );
+  if (!result.success) {
+    const status = result.conflict ? 409 : 400;
+    return res.status(status).json({ success: false, error: result.error, ...result });
+  }
+  res.json({ success: true, disposition: result.disposition, batch: result.batch });
+});
+
+router.post('/dispositions/:dispositionId/return', requireOperator, (req, res) => {
+  const { returnReason, expectedVersion } = req.body || {};
+  const result = dispositionService.returnForSupplement(
+    req.params.dispositionId,
+    returnReason,
+    req.operator.id,
+    expectedVersion
+  );
+  if (!result.success) {
+    const status = result.conflict ? 409 : 400;
+    return res.status(status).json({ success: false, error: result.error, ...result });
+  }
+  res.json({ success: true, disposition: result.disposition });
+});
+
+router.get('/:batchNo', requireOperator, (req, res) => {
+  const detail = batchService.getBatchDetail(req.params.batchNo);
+  if (!detail) {
+    return res.status(404).json({ error: '批次不存在' });
+  }
+  res.json(detail);
+});
+
+router.get('/:batchNo/audit', requireOperator, (req, res) => {
+  const detail = batchService.getBatchDetail(req.params.batchNo);
+  if (!detail) {
+    return res.status(404).json({ error: '批次不存在' });
+  }
+  res.json({ auditLogs: detail.auditLogs });
 });
 
 router.post('/:batchNo/temperature/import', requireOperator, (req, res) => {
@@ -129,6 +205,31 @@ router.get('/:batchNo/export', requireOperator, (req, res) => {
     res.setHeader('Content-Disposition', `attachment; filename="${req.params.batchNo}.json"`);
     res.send(json);
   }
+});
+
+router.get('/:batchNo/dispositions', requireOperator, (req, res) => {
+  const dispositions = dispositionService.getBatchDispositions(req.params.batchNo);
+  res.json({ dispositions });
+});
+
+router.get('/:batchNo/dispositions/active', requireOperator, (req, res) => {
+  const disposition = dispositionService.getActiveDisposition(req.params.batchNo);
+  if (!disposition) {
+    return res.status(404).json({ error: '该批次没有进行中的处置单' });
+  }
+  res.json({ disposition });
+});
+
+router.post('/:batchNo/dispositions', requireOperator, (req, res) => {
+  const result = dispositionService.createDisposition(
+    { ...req.body, batchNo: req.params.batchNo },
+    req.operator.id
+  );
+  if (!result.success) {
+    const status = result.conflict ? 409 : 400;
+    return res.status(status).json({ success: false, error: result.error, ...result });
+  }
+  res.status(201).json({ success: true, disposition: result.disposition });
 });
 
 module.exports = router;

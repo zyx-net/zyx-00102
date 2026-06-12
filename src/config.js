@@ -20,6 +20,24 @@ module.exports = {
     REJECTED: 'rejected',
     VOIDED: 'voided'
   },
+  dispositionStatus: {
+    DRAFT: 'draft',
+    PENDING_APPROVAL: 'pending_approval',
+    RETURNED_FOR_SUPPLEMENT: 'returned_for_supplement',
+    APPROVED: 'approved',
+    CLOSED: 'closed'
+  },
+  deviationLevel: {
+    MINOR: 'minor',
+    MODERATE: 'moderate',
+    MAJOR: 'major',
+    CRITICAL: 'critical'
+  },
+  dispositionDecision: {
+    RELEASE: 'release',
+    REJECT: 'reject',
+    RETURN_FOR_SUPPLEMENT: 'return_for_supplement'
+  },
   users: [
     { id: 'receiver01', name: '张收货', role: 'receiver' },
     { id: 'pharmacist01', name: '李药师', role: 'pharmacist' },

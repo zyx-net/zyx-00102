@@ -1,13 +1,22 @@
 {
-  "overTempBatchNo": "OT-1781305941182-01",
+  "overTempBatchNo": "OT-1781308178485-01",
   "releasedStatus": "released",
   "releasedTempCount": 5,
   "releasedAuditCount": 4,
-  "normalBatchNo": "NRM-1781305941182-01",
+  "normalBatchNo": "NRM-1781308178485-01",
   "normalStatus": "pending_review",
   "normalTempCount": 10,
-  "failBatchNo": "FAIL-1781305941182-01",
+  "failBatchNo": "FAIL-1781308178485-01",
   "failStatus": "pending_review",
   "failTempCount": 0,
-  "batchCount": 4
+  "batchCount": 28,
+  "dispBatchNo": "DISP-1781308178485-01",
+  "dispDispositionId": "DISP-20260612-8NMG",
+  "dispBatchStatus": "released",
+  "dispFinalDecision": "release",
+  "dispVersion": 4,
+  "rejectBatchNo": "DISP-1781308178485-02",
+  "rejectDispositionId": "DISP-20260612-VTEF",
+  "rejectBatchStatus": "rejected",
+  "rejectFinalDecision": "reject"
 }

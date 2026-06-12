@@ -86,6 +86,7 @@ function exportBatchToCSV(batchDetail) {
   const batch = batchDetail.batch;
   const logs = batchDetail.temperatureLogs || [];
   const audits = batchDetail.auditLogs || [];
+  const dispositions = batchDetail.dispositions || [];
 
   const batchCSV = toCSV([{
     batchNo: batch.batchNo,
@@ -98,13 +99,40 @@ function exportBatchToCSV(batchDetail) {
     arrivalDate: batch.arrivalDate,
     status: batch.status,
     temperatureValid: batch.temperatureValid,
-    overTempCount: (batch.overTempRanges || []).length
-  }], ['batchNo', 'drugName', 'manufacturer', 'quantity', 'unit', 'productionDate', 'expiryDate', 'arrivalDate', 'status', 'temperatureValid', 'overTempCount']);
+    overTempCount: (batch.overTempRanges || []).length,
+    dispositionId: batch.dispositionId || '',
+    dispositionDecision: batch.dispositionDecision || '',
+    finalReason: batch.finalReason || ''
+  }], ['batchNo', 'drugName', 'manufacturer', 'quantity', 'unit', 'productionDate', 'expiryDate', 'arrivalDate', 'status', 'temperatureValid', 'overTempCount', 'dispositionId', 'dispositionDecision', 'finalReason']);
 
   const tempCSV = toCSV(logs, ['batchNo', 'timestamp', 'temperature']);
   const auditCSV = toCSV(audits, ['action', 'fromStatus', 'toStatus', 'operatorId', 'operatorName', 'operatorRole', 'reason', 'timestamp']);
 
-  return `# 批次信息\n${batchCSV}\n\n# 温度日志\n${tempCSV}\n\n# 审计历史\n${auditCSV}`;
+  let dispCSV = '';
+  if (dispositions.length > 0) {
+    const dispRows = dispositions.map(d => ({
+      id: d.id,
+      status: d.status,
+      deviationLevel: d.deviationLevel || '',
+      cause: d.cause || '',
+      suggestedAction: d.suggestedAction || '',
+      attachmentSummary: d.attachmentSummary || '',
+      createdBy: d.createdByName || d.createdBy || '',
+      createdAt: d.createdAt || '',
+      finalDecision: d.finalDecision || '',
+      approvedBy: d.approvedByName || d.approvedBy || '',
+      approvedAt: d.approvedAt || '',
+      approvalReason: d.approvalReason || '',
+      returnReason: d.returnReason || ''
+    }));
+    dispCSV = toCSV(dispRows, ['id', 'status', 'deviationLevel', 'cause', 'suggestedAction', 'attachmentSummary', 'createdBy', 'createdAt', 'finalDecision', 'approvedBy', 'approvedAt', 'approvalReason', 'returnReason']);
+  }
+
+  let result = `# 批次信息\n${batchCSV}\n\n# 温度日志\n${tempCSV}\n\n# 审计历史\n${auditCSV}`;
+  if (dispCSV) {
+    result += `\n\n# 温控偏差处置单\n${dispCSV}`;
+  }
+  return result;
 }
 
 module.exports = {
