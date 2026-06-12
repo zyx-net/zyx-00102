@@ -33,6 +33,25 @@ function findUser(userId) {
   return config.users.find(u => u.id === userId) || null;
 }
 
+function validateBatch(batchData, existingBatchNos) {
+  const errors = [];
+  if (!batchData.batchNo) {
+    errors.push('缺少批号');
+  }
+  if (!batchData.drugName) {
+    errors.push('缺少药品名称');
+  }
+  if (batchData.quantity === undefined || batchData.quantity === null) {
+    errors.push('缺少数量');
+  } else if (typeof batchData.quantity !== 'number' && isNaN(parseInt(batchData.quantity, 10))) {
+    errors.push('数量必须是数字');
+  }
+  if (batchData.batchNo && existingBatchNos.has(batchData.batchNo)) {
+    errors.push(`批号 ${batchData.batchNo} 已存在`);
+  }
+  return { valid: errors.length === 0, errors };
+}
+
 function createBatch(batchData, operatorId) {
   const operator = findUser(operatorId);
   if (!operator) {
@@ -80,6 +99,55 @@ function createBatch(batchData, operatorId) {
   return { success: true, batch };
 }
 
+function createBatches(batchDataList, operatorId) {
+  const operator = findUser(operatorId);
+  if (!operator) {
+    return { success: false, error: '操作员不存在', results: [] };
+  }
+  if (!hasPermission(operator.role, 'import')) {
+    return { success: false, error: '无权限导入批次', results: [] };
+  }
+
+  const results = [];
+  const existingBatches = storage.getBatches();
+  const existingBatchNos = new Set(Object.keys(existingBatches));
+  const currentBatchNos = new Set();
+
+  for (const batchData of batchDataList) {
+    const validation = validateBatch(batchData, existingBatchNos);
+    if (batchData.batchNo) {
+      if (currentBatchNos.has(batchData.batchNo)) {
+        validation.valid = false;
+        validation.errors.push(`批号 ${batchData.batchNo} 在本次导入中重复`);
+      }
+      currentBatchNos.add(batchData.batchNo);
+    }
+    results.push({
+      batchNo: batchData.batchNo || null,
+      success: validation.valid,
+      errors: validation.errors
+    });
+  }
+
+  const allValid = results.every(r => r.success);
+  if (!allValid) {
+    return { success: false, error: '预校验失败，整批回滚', results, allSuccess: false };
+  }
+
+  const createdBatches = [];
+  for (let i = 0; i < batchDataList.length; i++) {
+    const batchData = batchDataList[i];
+    const result = createBatch(batchData, operatorId);
+    results[i].success = result.success;
+    results[i].error = result.error || null;
+    if (result.success) {
+      createdBatches.push(result.batch);
+    }
+  }
+
+  return { success: true, results, allSuccess: true, batches: createdBatches };
+}
+
 function importTemperatureLogs(batchNo, logs, operatorId) {
   const operator = findUser(operatorId);
   if (!operator) {
@@ -111,11 +179,17 @@ function importTemperatureLogs(batchNo, logs, operatorId) {
   batch.overTempRanges = validation.overTempRanges;
   batch.temperatureErrors = validation.errors;
   batch.temperatureWarnings = validation.warnings;
+
+  const fromStatus = batch.status;
+  const hasOverTemp = validation.overTempRanges.length > 0;
+  if (hasOverTemp && batch.status === STATUS.PENDING_REVIEW) {
+    batch.status = STATUS.QUARANTINED;
+  }
   storage.saveBatch(batch);
 
   storage.addAuditLog(batchNo, {
     action: 'import_temperature',
-    fromStatus: batch.status,
+    fromStatus,
     toStatus: batch.status,
     operatorId,
     operatorName: operator.name,
@@ -128,10 +202,27 @@ function importTemperatureLogs(batchNo, logs, operatorId) {
     }
   });
 
+  if (hasOverTemp && fromStatus === STATUS.PENDING_REVIEW) {
+    storage.addAuditLog(batchNo, {
+      action: 'auto_quarantine',
+      fromStatus: STATUS.PENDING_REVIEW,
+      toStatus: STATUS.QUARANTINED,
+      operatorId,
+      operatorName: operator.name,
+      operatorRole: operator.role,
+      reason: `检测到 ${validation.overTempRanges.length} 个超温区间，系统自动隔离`,
+      timestamp: new Date().toISOString(),
+      detail: {
+        overTempRanges: validation.overTempRanges
+      }
+    });
+  }
+
   return {
     success: true,
     batch,
-    overTempRanges: validation.overTempRanges
+    overTempRanges: validation.overTempRanges,
+    autoQuarantined: hasOverTemp && fromStatus === STATUS.PENDING_REVIEW
   };
 }
 
@@ -270,6 +361,8 @@ function listAllBatches() {
 
 module.exports = {
   createBatch,
+  createBatches,
+  validateBatch,
   importTemperatureLogs,
   reviewBatch,
   finalizeBatch,

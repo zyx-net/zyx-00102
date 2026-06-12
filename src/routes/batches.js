@@ -43,23 +43,23 @@ router.post('/import', requireOperator, (req, res) => {
 
   try {
     const batches = importExportService.parseBatchImport(data, format);
-    const results = [];
+    const result = batchService.createBatches(batches, req.operator.id);
 
-    for (const batchData of batches) {
-      if (!batchData.batchNo) {
-        results.push({ batchNo: null, success: false, error: '缺少批号' });
-        continue;
-      }
-      const result = batchService.createBatch(batchData, req.operator.id);
-      results.push({
-        batchNo: batchData.batchNo,
-        success: result.success,
-        error: result.error || null
+    if (!result.success) {
+      return res.status(400).json({
+        success: false,
+        error: result.error,
+        results: result.results,
+        allSuccess: false
       });
     }
 
-    const allSuccess = results.every(r => r.success);
-    res.status(allSuccess ? 200 : 400).json({ results, allSuccess });
+    res.json({
+      success: true,
+      results: result.results,
+      allSuccess: true,
+      batches: result.batches
+    });
   } catch (err) {
     res.status(400).json({ error: '解析失败: ' + err.message });
   }
@@ -85,7 +85,8 @@ router.post('/:batchNo/temperature/import', requireOperator, (req, res) => {
     res.json({
       success: true,
       batch: result.batch,
-      overTempRanges: result.overTempRanges
+      overTempRanges: result.overTempRanges,
+      autoQuarantined: result.autoQuarantined
     });
   } catch (err) {
     res.status(400).json({ error: '解析失败: ' + err.message });
