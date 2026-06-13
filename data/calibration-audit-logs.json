@@ -1,0 +1,330 @@
+{
+  "CAL-20260613-VUEU": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T02:52:21.309Z",
+      "detail": {
+        "deviceNo": "DEV-T1-1781319141259",
+        "certificateNo": "CERT-T1-1781319141259",
+        "validUntil": "2027-06-13"
+      }
+    },
+    {
+      "action": "calibration_update",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "更新校准记录",
+      "timestamp": "2026-06-13T02:52:21.339Z",
+      "detail": {
+        "before": {
+          "certificateNo": "CERT-T1-1781319141259",
+          "validUntil": "2027-06-13"
+        },
+        "after": {
+          "certificateNo": "CERT-UPDATED-1781319141259",
+          "validUntil": "2027-06-13"
+        },
+        "version": 2
+      }
+    },
+    {
+      "action": "calibration_change_expiry",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "延长校准有效期，因延期送检",
+      "timestamp": "2026-06-13T02:52:21.345Z",
+      "detail": {
+        "oldValidUntil": "2027-06-13",
+        "newValidUntil": "2028-06-12",
+        "version": 3
+      }
+    }
+  ],
+  "CAL-20260613-1H3I": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T02:52:21.322Z",
+      "detail": {
+        "deviceNo": "DEV-T2-1781319141259",
+        "certificateNo": "CERT-DUP1-1781319141259",
+        "validUntil": "2027-06-01"
+      }
+    },
+    {
+      "action": "calibration_void",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "校准证书遗失，设备已送检",
+      "timestamp": "2026-06-13T02:52:21.332Z",
+      "detail": {
+        "fromStatus": "active",
+        "toStatus": "voided",
+        "version": 2
+      }
+    }
+  ],
+  "CAL-20260613-INHF": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T02:52:21.328Z",
+      "detail": {
+        "deviceNo": "DEV-T2-1781319141259",
+        "certificateNo": "CERT-DUP3-1781319141259",
+        "validUntil": "2027-12-01"
+      }
+    }
+  ],
+  "CAL-20260613-OAFV": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T02:52:21.351Z",
+      "detail": {
+        "deviceNo": "DEV-EXP-1781319141259",
+        "certificateNo": "CERT-EXP-1781319141259",
+        "validUntil": "2025-06-13"
+      }
+    }
+  ],
+  "CAL-20260613-C1UB": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T02:52:21.355Z",
+      "detail": {
+        "deviceNo": "DEV-CALREF-1781319141259",
+        "certificateNo": "CERT-REF-1781319141259",
+        "validUntil": "2027-06-13"
+      }
+    }
+  ],
+  "CAL-20260613-4GSR": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T02:52:21.457Z",
+      "detail": {
+        "deviceNo": "DEV-IMP1-1781319141259",
+        "certificateNo": "CERT-IMP1-1781319141259",
+        "validUntil": "2027-06-13"
+      }
+    }
+  ],
+  "CAL-20260613-TXRW": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T02:52:21.459Z",
+      "detail": {
+        "deviceNo": "DEV-IMP2-1781319141259",
+        "certificateNo": "CERT-IMP2-1781319141259",
+        "validUntil": "2027-06-13"
+      }
+    }
+  ],
+  "CAL-20260613-7WXG": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T03:06:58.108Z",
+      "detail": {
+        "deviceNo": "DEV-T1-1781320018058",
+        "certificateNo": "CERT-T1-1781320018058",
+        "validUntil": "2027-06-13"
+      }
+    },
+    {
+      "action": "calibration_update",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "更新校准记录",
+      "timestamp": "2026-06-13T03:06:58.137Z",
+      "detail": {
+        "before": {
+          "certificateNo": "CERT-T1-1781320018058",
+          "validUntil": "2027-06-13"
+        },
+        "after": {
+          "certificateNo": "CERT-UPDATED-1781320018058",
+          "validUntil": "2027-06-13"
+        },
+        "version": 2
+      }
+    },
+    {
+      "action": "calibration_change_expiry",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "延长校准有效期，因延期送检",
+      "timestamp": "2026-06-13T03:06:58.142Z",
+      "detail": {
+        "oldValidUntil": "2027-06-13",
+        "newValidUntil": "2028-06-12",
+        "version": 3
+      }
+    }
+  ],
+  "CAL-20260613-48YG": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T03:06:58.122Z",
+      "detail": {
+        "deviceNo": "DEV-T2-1781320018058",
+        "certificateNo": "CERT-DUP1-1781320018058",
+        "validUntil": "2027-06-01"
+      }
+    },
+    {
+      "action": "calibration_void",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "校准证书遗失，设备已送检",
+      "timestamp": "2026-06-13T03:06:58.132Z",
+      "detail": {
+        "fromStatus": "active",
+        "toStatus": "voided",
+        "version": 2
+      }
+    }
+  ],
+  "CAL-20260613-E0SP": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T03:06:58.128Z",
+      "detail": {
+        "deviceNo": "DEV-T2-1781320018058",
+        "certificateNo": "CERT-DUP3-1781320018058",
+        "validUntil": "2027-12-01"
+      }
+    }
+  ],
+  "CAL-20260613-VYRU": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T03:06:58.146Z",
+      "detail": {
+        "deviceNo": "DEV-VOIDONLY-1781320018058",
+        "certificateNo": "CERT-VOIDONLY-1781320018058",
+        "validUntil": "2027-06-13"
+      }
+    },
+    {
+      "action": "calibration_void",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "设备已报废",
+      "timestamp": "2026-06-13T03:06:58.149Z",
+      "detail": {
+        "fromStatus": "active",
+        "toStatus": "voided",
+        "version": 2
+      }
+    }
+  ],
+  "CAL-20260613-FM79": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T03:06:58.154Z",
+      "detail": {
+        "deviceNo": "DEV-EXP-1781320018058",
+        "certificateNo": "CERT-EXP-1781320018058",
+        "validUntil": "2025-06-13"
+      }
+    }
+  ],
+  "CAL-20260613-VCE6": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T03:06:58.158Z",
+      "detail": {
+        "deviceNo": "DEV-CALREF-1781320018058",
+        "certificateNo": "CERT-REF-1781320018058",
+        "validUntil": "2027-06-13"
+      }
+    }
+  ],
+  "CAL-20260613-LU1T": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T03:06:58.218Z",
+      "detail": {
+        "deviceNo": "DEV-IMP1-1781320018058",
+        "certificateNo": "CERT-IMP1-1781320018058",
+        "validUntil": "2027-06-13"
+      }
+    }
+  ],
+  "CAL-20260613-LI22": [
+    {
+      "action": "calibration_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建校准记录",
+      "timestamp": "2026-06-13T03:06:58.221Z",
+      "detail": {
+        "deviceNo": "DEV-IMP2-1781320018058",
+        "certificateNo": "CERT-IMP2-1781320018058",
+        "validUntil": "2027-06-13"
+      }
+    }
+  ]
+}

@@ -1786,5 +1786,90 @@
       "timestamp": "2026-01-01T00:10:00.000Z",
       "temperature": 5
     }
+  ],
+  "REF-1781319141259-01": [
+    {
+      "index": 1,
+      "batchNo": "REF-1781319141259-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "REF-1781319141259-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.8
+    },
+    {
+      "index": 3,
+      "batchNo": "REF-1781319141259-01",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 5
+    }
+  ],
+  "VOIDDEV-1781319141259-01": [
+    {
+      "index": 1,
+      "batchNo": "VOIDDEV-1781319141259-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "VOIDDEV-1781319141259-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.8
+    }
+  ],
+  "EXPDEV-1781319141259-01": [
+    {
+      "index": 1,
+      "batchNo": "EXPDEV-1781319141259-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "EXPDEV-1781319141259-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.8
+    }
+  ],
+  "NOREC-1781319141259-01": [
+    {
+      "index": 1,
+      "batchNo": "NOREC-1781319141259-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "NOREC-1781319141259-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.8
+    }
+  ],
+  "REF-1781320018058-01": [
+    {
+      "index": 1,
+      "batchNo": "REF-1781320018058-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5,
+      "deviceNo": "DEV-CALREF-1781320018058"
+    },
+    {
+      "index": 2,
+      "batchNo": "REF-1781320018058-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.8,
+      "deviceNo": "DEV-CALREF-1781320018058"
+    },
+    {
+      "index": 3,
+      "batchNo": "REF-1781320018058-01",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 5,
+      "deviceNo": "DEV-CALREF-1781320018058"
+    }
   ]
 }

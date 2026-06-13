@@ -42,6 +42,19 @@ module.exports = {
     PENDING: 'pending',
     SUBMITTED: 'submitted'
   },
+  calibrationStatus: {
+    ACTIVE: 'active',
+    VOIDED: 'voided'
+  },
+  deviceType: {
+    THERMOMETER: 'thermometer',
+    DATA_LOGGER: 'data_logger'
+  },
+  calibrationPermissions: {
+    RECEIVER: ['view', 'reference'],
+    PHARMACIST: ['view', 'reference'],
+    QUALITY_MANAGER: ['view', 'reference', 'create', 'update', 'void', 'change_expiry']
+  },
   users: [
     { id: 'receiver01', name: '张收货', role: 'receiver' },
     { id: 'pharmacist01', name: '李药师', role: 'pharmacist' },

@@ -7,7 +7,9 @@ const dataFiles = {
   temperatureLogs: 'temperature-logs.json',
   auditLogs: 'audit-logs.json',
   dispositions: 'dispositions.json',
-  supplements: 'supplements.json'
+  supplements: 'supplements.json',
+  calibrations: 'calibrations.json',
+  calibrationAuditLogs: 'calibration-audit-logs.json'
 };
 
 function ensureDataDir() {
@@ -166,6 +168,57 @@ function getPendingSupplementForDisposition(dispositionId) {
   return supplements.find(s => s.status === 'pending') || null;
 }
 
+function getCalibrations() {
+  return readData(dataFiles.calibrations, {});
+}
+
+function saveCalibrations(calibrations) {
+  writeDataAtomic(dataFiles.calibrations, calibrations);
+}
+
+function getCalibration(calibrationId) {
+  const calibrations = getCalibrations();
+  return calibrations[calibrationId] || null;
+}
+
+function saveCalibration(calibration) {
+  const calibrations = getCalibrations();
+  calibrations[calibration.id] = calibration;
+  saveCalibrations(calibrations);
+}
+
+function listCalibrations() {
+  const calibrations = getCalibrations();
+  return Object.values(calibrations).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+function getCalibrationsByDevice(deviceNo) {
+  return listCalibrations().filter(c => c.deviceNo === deviceNo);
+}
+
+function getActiveCalibrationForDevice(deviceNo) {
+  const records = getCalibrationsByDevice(deviceNo);
+  const now = new Date();
+  return records.find(c =>
+    c.status === config.calibrationStatus.ACTIVE &&
+    new Date(c.validUntil) > now
+  ) || null;
+}
+
+function getCalibrationAuditLogs(calibrationId) {
+  const allLogs = readData(dataFiles.calibrationAuditLogs, {});
+  return (allLogs[calibrationId] || []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+}
+
+function addCalibrationAuditLog(calibrationId, entry) {
+  const allLogs = readData(dataFiles.calibrationAuditLogs, {});
+  if (!allLogs[calibrationId]) {
+    allLogs[calibrationId] = [];
+  }
+  allLogs[calibrationId].push(entry);
+  writeDataAtomic(dataFiles.calibrationAuditLogs, allLogs);
+}
+
 module.exports = {
   getBatches,
   saveBatches,
@@ -188,5 +241,14 @@ module.exports = {
   saveSupplement,
   getSupplementsForDisposition,
   getSupplementsForBatch,
-  getPendingSupplementForDisposition
+  getPendingSupplementForDisposition,
+  getCalibrations,
+  saveCalibrations,
+  getCalibration,
+  saveCalibration,
+  listCalibrations,
+  getCalibrationsByDevice,
+  getActiveCalibrationForDevice,
+  getCalibrationAuditLogs,
+  addCalibrationAuditLog
 };

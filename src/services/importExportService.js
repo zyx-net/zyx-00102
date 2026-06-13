@@ -74,7 +74,8 @@ function parseTemperatureImport(data, format) {
     index: idx + 1,
     batchNo: r.batchNo || r.batch_no || r['批号'] || '',
     timestamp: r.timestamp || r.time || r['时间'] || '',
-    temperature: r.temperature !== undefined ? r.temperature : (r['温度'] !== undefined ? r['温度'] : '')
+    temperature: r.temperature !== undefined ? r.temperature : (r['温度'] !== undefined ? r['温度'] : ''),
+    deviceNo: r.deviceNo || r.device_no || r['设备编号'] || r['设备号'] || ''
   }));
 }
 
@@ -157,7 +158,28 @@ function exportBatchToCSV(batchDetail) {
   if (suppCSV) {
     result += `\n\n# 补证包\n${suppCSV}`;
   }
+  const deviceNos = batch.deviceNos || [];
+  if (deviceNos.length > 0) {
+    result += `\n\n# 关联设备\n${deviceNos.join(',')}`;
+  }
   return result;
+}
+
+function exportCalibrationsToCSV(calibrations) {
+  const rows = calibrations.map(c => ({
+    id: c.id,
+    deviceNo: c.deviceNo,
+    deviceType: c.deviceType,
+    certificateNo: c.certificateNo,
+    calibratedAt: c.calibratedAt,
+    validUntil: c.validUntil,
+    calibrationUnit: c.calibrationUnit || '',
+    remark: c.remark || '',
+    status: c.status,
+    createdBy: c.createdByName || c.createdBy || '',
+    createdAt: c.createdAt || ''
+  }));
+  return toCSV(rows, ['id', 'deviceNo', 'deviceType', 'certificateNo', 'calibratedAt', 'validUntil', 'calibrationUnit', 'remark', 'status', 'createdBy', 'createdAt']);
 }
 
 module.exports = {
@@ -166,5 +188,6 @@ module.exports = {
   parseBatchImport,
   parseTemperatureImport,
   exportBatchToJSON,
-  exportBatchToCSV
+  exportBatchToCSV,
+  exportCalibrationsToCSV
 };

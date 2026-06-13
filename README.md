@@ -493,11 +493,13 @@ curl -X POST http://localhost:3000/api/batches/BATCH-2024-001/temperature/import
 
 | 文件 | 内容 |
 |------|------|
-| `batches.json` | 批次信息（含质管备注 `qualityRemark`） |
+| `batches.json` | 批次信息（含质管备注 `qualityRemark`、关联设备 `deviceNos`） |
 | `temperature-logs.json` | 温度日志 |
 | `audit-logs.json` | 审计历史（含补证包审计动作） |
 | `dispositions.json` | 处置单（含退回原因、退回人） |
 | `supplements.json` | 补证包（含提交人、提交时间、关联温度区间、附件清单） |
+| `calibrations.json` | 校准记录（含设备编号、证书编号、有效期） |
+| `calibration-audit-logs.json` | 校准记录审计日志 |
 
 服务重启后数据保持一致。
 
@@ -516,6 +518,181 @@ curl -X POST http://localhost:3000/api/batches/BATCH-2024-001/temperature/import
 **JSON 导出**：`supplements` 数组，每个元素包含完整补证包对象。
 
 **CSV 导出**：`# 补证包` 段，列包含 `id, dispositionId, status, returnReason, supplementDescription, attachmentList, submittedBy, submittedAt, returnedBy, returnedAt`。
+
+## 13. 冷链温度设备校准记录
+
+收货前对温度计、记录仪的校准证书和有效期进行管理，确保引用的设备处于有效校准状态。
+
+**创建校准记录：**
+
+```bash
+curl -X POST http://localhost:3000/api/calibrations \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{
+    "deviceNo": "TEMP-001",
+    "deviceType": "thermometer",
+    "certificateNo": "CERT-2026-001",
+    "calibratedAt": "2026-01-15",
+    "validUntil": "2027-01-15",
+    "calibrationUnit": "℃",
+    "remark": "年度校准"
+  }'
+```
+
+**查询校准记录：**
+
+```bash
+# 全部校准记录
+curl http://localhost:3000/api/calibrations \
+  -H "X-Operator-Id: receiver01"
+
+# 按设备编号过滤
+curl "http://localhost:3000/api/calibrations?deviceNo=TEMP-001" \
+  -H "X-Operator-Id: receiver01"
+
+# 按状态过滤
+curl "http://localhost:3000/api/calibrations?status=active" \
+  -H "X-Operator-Id: receiver01"
+
+# 单条详情
+curl http://localhost:3000/api/calibrations/CAL-XXXXXXXX-XXXX \
+  -H "X-Operator-Id: receiver01"
+```
+
+**校验设备校准状态：**
+
+```bash
+# 单设备校验
+curl "http://localhost:3000/api/calibrations/validate?deviceNo=TEMP-001" \
+  -H "X-Operator-Id: receiver01"
+
+# 批量设备校验
+curl "http://localhost:3000/api/calibrations/validate-batch?deviceNos=TEMP-001,LOG-001" \
+  -H "X-Operator-Id: receiver01"
+```
+
+**更新校准记录：**
+
+```bash
+curl -X PUT http://localhost:3000/api/calibrations/CAL-XXXXXXXX-XXXX \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{"certificateNo":"CERT-2026-001-V2","remark":"更新证书编号"}'
+```
+
+**更改校准有效期（仅质管负责人）：**
+
+```bash
+curl -X PUT http://localhost:3000/api/calibrations/CAL-XXXXXXXX-XXXX/expiry \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{"validUntil":"2027-06-30","reason":"延期送检，延长有效期"}'
+```
+
+**作废校准记录（仅质管负责人）：**
+
+```bash
+curl -X POST http://localhost:3000/api/calibrations/CAL-XXXXXXXX-XXXX/void \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{"reason":"校准证书遗失，设备已送检"}'
+```
+
+**导入校准记录：**
+
+```bash
+curl -X POST http://localhost:3000/api/calibrations/import \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '[{"deviceNo":"TEMP-002","deviceType":"thermometer","certificateNo":"CERT-002","calibratedAt":"2026-01-01","validUntil":"2027-01-01"}]'
+```
+
+**导出校准记录：**
+
+```bash
+# JSON 格式
+curl http://localhost:3000/api/calibrations/export/all?format=json \
+  -H "X-Operator-Id: quality01"
+
+# CSV 格式
+curl http://localhost:3000/api/calibrations/export/all?format=csv \
+  -H "X-Operator-Id: quality01"
+```
+
+**查看校准审计日志：**
+
+```bash
+curl http://localhost:3000/api/calibrations/CAL-XXXXXXXX-XXXX/audit \
+  -H "X-Operator-Id: quality01"
+```
+
+### 校准记录权限
+
+| 操作 | 收货员 | 药师 | 质管负责人 |
+|------|--------|------|-----------|
+| 查看校准记录 | ✓ | ✓ | ✓ |
+| 引用设备校验 | ✓ | ✓ | ✓ |
+| 创建校准记录 | ✗ | ✗ | ✓ |
+| 更新校准记录 | ✗ | ✗ | ✓ |
+| 更改有效期 | ✗ | ✗ | ✓ |
+| 作废校准记录 | ✗ | ✗ | ✓ |
+
+### 温度日志导入时的设备校验
+
+温度日志中如果包含 `deviceNo` 字段，导入时会自动校验设备的校准状态：
+
+- **证书过期**：拦截导入，返回 `设备 XXX 的校准证书已过期`
+- **设备被作废**：拦截导入，返回 `设备 XXX 的校准记录已全部作废`
+- **无校准记录**：拦截导入，返回 `设备 XXX 无校准记录`
+
+### 批次复核时的设备校验
+
+复核批次时，如果该批次关联了设备编号（通过温度日志导入时记录），会再次校验设备校准状态，校准异常则拦截复核。
+
+### 冲突校验
+
+- 同一设备编号 + 同一有效期至，不允许重复录入，返回 **409 Conflict**
+- 更新/改有效期时同样检查重复冲突
+- 版本冲突：更新时指定 `expectedVersion` 与当前版本不一致，返回 **409 Conflict**
+
+### 校准记录审计动作
+
+| 动作 | 触发时机 |
+|------|---------|
+| `calibration_create` | 质管创建校准记录 |
+| `calibration_update` | 质管更新校准记录 |
+| `calibration_change_expiry` | 质管更改校准有效期 |
+| `calibration_void` | 质管作废校准记录 |
+
+### 校准记录字段示例
+
+```json
+{
+  "id": "CAL-20260613-A1B2",
+  "deviceNo": "TEMP-001",
+  "deviceType": "thermometer",
+  "certificateNo": "CERT-2026-001",
+  "calibratedAt": "2026-01-15",
+  "validUntil": "2027-01-15",
+  "calibrationUnit": "℃",
+  "remark": "年度校准",
+  "status": "active",
+  "createdBy": "quality01",
+  "createdByName": "王质管",
+  "createdAt": "2026-06-13T08:00:00.000Z",
+  "updatedAt": "2026-06-13T08:00:00.000Z",
+  "version": 1
+}
+```
+
+### 校准记录导出字段
+
+**JSON 导出**：`calibrations` 数组，每个元素包含完整校准记录对象。
+
+**CSV 导出**：列包含 `id, deviceNo, deviceType, certificateNo, calibratedAt, validUntil, calibrationUnit, remark, status, createdBy, createdAt`。
+
+**批次 CSV 导出**：新增 `# 关联设备` 段，列出该批次温度日志引用的设备编号。
 
 ## 配置说明
 
@@ -536,6 +713,8 @@ curl -X POST http://localhost:3000/api/batches/BATCH-2024-001/temperature/import
 ├── regression-test.js     # 主回归测试
 ├── regression-test-verify.js  # 重启一致性验证
 ├── supplement-test.js     # 退回补证包专项测试
+├── calibration-test.js    # 校准记录回归测试
+├── calibration-test-verify.js  # 校准记录跨重启验证
 ├── src/
 │   ├── config.js          # 配置
 │   ├── storage.js         # 数据持久化
@@ -544,9 +723,11 @@ curl -X POST http://localhost:3000/api/batches/BATCH-2024-001/temperature/import
 │   │   ├── temperatureService.js # 温度校验
 │   │   ├── dispositionService.js # 处置单业务逻辑
 │   │   ├── supplementService.js  # 补证包业务逻辑
+│   │   ├── calibrationService.js # 校准记录业务逻辑
 │   │   └── importExportService.js # 导入导出
 │   └── routes/
-│       └── batches.js     # 批次路由
+│       ├── batches.js     # 批次路由
+│       └── calibration.js # 校准记录路由
 ├── samples/               # 样例数据
 └── data/                  # 数据存储（运行时生成）
 ```

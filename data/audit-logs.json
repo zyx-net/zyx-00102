@@ -6122,5 +6122,171 @@
         "dispositionId": "DISP-20260613-LMDK"
       }
     }
+  ],
+  "REF-1781319141259-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:52:21.363Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 3 条",
+      "timestamp": "2026-06-13T02:52:21.375Z",
+      "detail": {
+        "logCount": 3,
+        "overTempCount": 0
+      }
+    }
+  ],
+  "VOIDDEV-1781319141259-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:52:21.389Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 2 条",
+      "timestamp": "2026-06-13T02:52:21.401Z",
+      "detail": {
+        "logCount": 2,
+        "overTempCount": 0
+      }
+    }
+  ],
+  "EXPDEV-1781319141259-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:52:21.411Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 2 条",
+      "timestamp": "2026-06-13T02:52:21.420Z",
+      "detail": {
+        "logCount": 2,
+        "overTempCount": 0
+      }
+    }
+  ],
+  "NOREC-1781319141259-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:52:21.431Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 2 条",
+      "timestamp": "2026-06-13T02:52:21.445Z",
+      "detail": {
+        "logCount": 2,
+        "overTempCount": 0
+      }
+    }
+  ],
+  "REF-1781320018058-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T03:06:58.167Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 3 条",
+      "timestamp": "2026-06-13T03:06:58.177Z",
+      "detail": {
+        "logCount": 3,
+        "overTempCount": 0
+      }
+    }
+  ],
+  "VOIDDEV-1781320018058-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T03:06:58.186Z"
+    }
+  ],
+  "EXPDEV-1781320018058-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T03:06:58.195Z"
+    }
+  ],
+  "NOREC-1781320018058-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T03:06:58.206Z"
+    }
   ]
 }

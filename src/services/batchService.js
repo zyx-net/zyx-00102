@@ -1,6 +1,7 @@
 const storage = require('../storage');
 const config = require('../config');
 const { validateTemperatureLogs } = require('./temperatureService');
+const calibrationService = require('./calibrationService');
 
 const STATUS = config.status;
 const ROLES = config.roles;
@@ -162,6 +163,23 @@ function importTemperatureLogs(batchNo, logs, operatorId) {
     return { success: false, error: `批号 ${batchNo} 不存在` };
   }
 
+  const deviceNos = [...new Set(logs.map(l => l.deviceNo).filter(Boolean))];
+  if (deviceNos.length > 0) {
+    const deviceValidation = calibrationService.validateDevicesForReference(deviceNos);
+    if (!deviceValidation.valid) {
+      return {
+        success: false,
+        error: '设备校准校验失败',
+        errors: deviceValidation.errors.map(e => e.error),
+        calibrationErrors: deviceValidation.errors
+      };
+    }
+    batch.deviceNos = deviceNos;
+    if (deviceValidation.warnings.length > 0) {
+      batch.calibrationWarnings = deviceValidation.warnings;
+    }
+  }
+
   const validation = validateTemperatureLogs(logs, batchNo);
 
   if (!validation.valid) {
@@ -258,6 +276,18 @@ function reviewBatch(batchNo, operatorId, decision, reason) {
 
   if (!canTransition(batch.status, targetStatus)) {
     return { success: false, error: `不能从 ${batch.status} 状态转换到 ${targetStatus}` };
+  }
+
+  const deviceNos = batch.deviceNos || [];
+  if (deviceNos.length > 0) {
+    const deviceValidation = calibrationService.validateDevicesForReference(deviceNos);
+    if (!deviceValidation.valid) {
+      return {
+        success: false,
+        error: '设备校准校验失败，无法复核',
+        calibrationErrors: deviceValidation.errors
+      };
+    }
   }
 
   const fromStatus = batch.status;
