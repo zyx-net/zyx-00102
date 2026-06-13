@@ -1,20 +1,20 @@
 {
-  "calId1": "CAL-20260613-7WXG",
-  "calId1DeviceNo": "DEV-T1-1781320018058",
-  "calId1CertificateNo": "CERT-UPDATED-1781320018058",
+  "calId1": "CAL-20260613-2896",
+  "calId1DeviceNo": "DEV-T1-1781321409176",
+  "calId1CertificateNo": "CERT-UPDATED-1781321409176",
   "calId1Status": "active",
   "calId1Version": 3,
   "calId1ValidUntil": "2028-06-12",
-  "calId2": "CAL-20260613-48YG",
+  "calId2": "CAL-20260613-LIHM",
   "calId2Status": "voided",
   "calId2VoidReason": "校准证书遗失，设备已送检",
-  "calId3": "CAL-20260613-E0SP",
-  "calId3DeviceNo": "DEV-T2-1781320018058",
-  "expiredDevNo": "DEV-EXP-1781320018058",
-  "calDevNo": "DEV-CALREF-1781320018058",
-  "refBatchNo": "REF-1781320018058-01",
+  "calId3": "CAL-20260613-25HF",
+  "calId3DeviceNo": "DEV-T2-1781321409176",
+  "expiredDevNo": "DEV-EXP-1781321409176",
+  "calDevNo": "DEV-CALREF-1781321409176",
+  "refBatchNo": "REF-1781321409176-01",
   "refBatchDeviceNos": [
-    "DEV-CALREF-1781320018058"
+    "DEV-CALREF-1781321409176"
   ],
-  "calibrationCount": 15
+  "calibrationCount": 263
 }

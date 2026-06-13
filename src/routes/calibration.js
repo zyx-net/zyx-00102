@@ -130,6 +130,14 @@ router.post('/import', requireOperator, (req, res) => {
   }
 
   const result = calibrationService.importCalibrations(records, req.operator.id);
+  if (!result.success) {
+    return res.status(400).json({
+      success: false,
+      error: result.error,
+      results: result.results || [],
+      allSuccess: false
+    });
+  }
   res.json({ success: true, results: result.results, allSuccess: result.allSuccess });
 });
 
