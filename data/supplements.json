@@ -1,0 +1,118 @@
+{
+  "SUPP-20260613-HYM1": {
+    "id": "SUPP-20260613-HYM1",
+    "dispositionId": "DISP-20260613-XPKA",
+    "batchNo": "DISP-1781311213527-01",
+    "status": "submitted",
+    "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T00:40:13.744Z",
+    "supplementDescription": "已补充断电时间段的仓库环境温度记录，同批次其他箱子温度均在正常范围内",
+    "relatedTempRangeIndices": [
+      0
+    ],
+    "relatedTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "attachmentList": "仓库环境温度记录.xlsx、同批次其他箱子温度监测报告.pdf",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T00:40:13.767Z",
+    "createdAt": "2026-06-13T00:40:13.744Z",
+    "updatedAt": "2026-06-13T00:40:13.767Z",
+    "version": 2
+  },
+  "SUPP-20260613-HRM5": {
+    "id": "SUPP-20260613-HRM5",
+    "dispositionId": "DISP-20260613-TUAV",
+    "batchNo": "DISP-1781311325806-01",
+    "status": "submitted",
+    "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T00:42:06.035Z",
+    "supplementDescription": "已补充断电时间段的仓库环境温度记录，同批次其他箱子温度均在正常范围内",
+    "relatedTempRangeIndices": [
+      0
+    ],
+    "relatedTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "attachmentList": "仓库环境温度记录.xlsx、同批次其他箱子温度监测报告.pdf",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T00:42:06.057Z",
+    "createdAt": "2026-06-13T00:42:06.035Z",
+    "updatedAt": "2026-06-13T00:42:06.057Z",
+    "version": 2
+  },
+  "SUPP-20260613-GXXL": {
+    "id": "SUPP-20260613-GXXL",
+    "dispositionId": "DISP-20260613-D9F1",
+    "batchNo": "RVW-SUPP-1781314097401",
+    "status": "submitted",
+    "returnReason": "Need excursion explanation and signed attachment list",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T01:28:17.589Z",
+    "supplementDescription": "Reviewed excursion root cause and carrier corrective action",
+    "relatedTempRangeIndices": [
+      0
+    ],
+    "relatedTempRanges": [
+      {
+        "start": "2026-06-13T08:05:00.000Z",
+        "end": "2026-06-13T08:10:00.000Z",
+        "minTemp": 9.4,
+        "maxTemp": 9.7
+      }
+    ],
+    "attachmentList": "temp-curve.pdf,carrier-letter.pdf",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T01:28:17.649Z",
+    "createdAt": "2026-06-13T01:28:17.589Z",
+    "updatedAt": "2026-06-13T01:28:17.649Z",
+    "version": 2
+  },
+  "SUPP-20260613-SRVI": {
+    "id": "SUPP-20260613-SRVI",
+    "dispositionId": "DISP-20260613-FCJX",
+    "batchNo": "RVW2-SUPP-1781314240560",
+    "status": "submitted",
+    "returnReason": "Need excursion explanation and signed attachment list",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T01:30:40.609Z",
+    "supplementDescription": "Reviewed excursion root cause and carrier corrective action",
+    "relatedTempRangeIndices": [
+      0
+    ],
+    "relatedTempRanges": [
+      {
+        "start": "2026-06-13T08:05:00.000Z",
+        "end": "2026-06-13T08:10:00.000Z",
+        "minTemp": 9.4,
+        "maxTemp": 9.7
+      }
+    ],
+    "attachmentList": "temp-curve.pdf,carrier-letter.pdf",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T01:30:40.621Z",
+    "createdAt": "2026-06-13T01:30:40.609Z",
+    "updatedAt": "2026-06-13T01:30:40.621Z",
+    "version": 2
+  }
+}

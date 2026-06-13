@@ -415,12 +415,14 @@ function getBatchDetail(batchNo) {
   const auditLogs = storage.getAuditLogs(batchNo);
   const dispositions = storage.getBatchDispositions(batchNo);
   const activeDisposition = storage.getActiveDisposition(batchNo);
+  const supplements = storage.getSupplementsForBatch(batchNo);
   return {
     batch,
     temperatureLogs,
     auditLogs: auditLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)),
     dispositions,
-    activeDisposition
+    activeDisposition,
+    supplements
   };
 }
 

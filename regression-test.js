@@ -500,6 +500,11 @@ async function main() {
     returnRes.body.disposition.status === 'returned_for_supplement');
   allPass &= printTest('退回原因已记录',
     returnRes.body.disposition.returnReason?.includes('仓库环境温度'));
+  allPass &= printTest('退回时自动创建补证包',
+    !!returnRes.body.supplement, `补证包: ${returnRes.body.supplement?.id || '无'}`);
+  const supplementId = returnRes.body.supplement?.id;
+  allPass &= printTest('补证包 ID 格式正确', supplementId?.startsWith('SUPP-'));
+  allPass &= printTest('补证包初始状态为 pending', returnRes.body.supplement?.status === 'pending');
 
   const updateNoPerm = await request({
     ...baseOptions,
@@ -532,15 +537,104 @@ async function main() {
   }, { expectedVersion: 1, cause: '旧版本冲突测试' });
   allPass &= printTest('版本冲突返回 409', updateConflict.statusCode === 409);
 
-  const resubmitRes = await request({
+  const blockedSubmit = await request({
     ...baseOptions,
     path: `/api/batches/dispositions/${dispositionId}/submit`,
     method: 'POST',
     headers: { ...baseOptions.headers, 'X-Operator-Id': 'pharmacist01' }
   });
-  allPass &= printTest('补充后重新提交成功', resubmitRes.statusCode === 200);
-  allPass &= printTest('重新提交后状态为 pending_approval',
-    resubmitRes.body.disposition.status === 'pending_approval');
+  allPass &= printTest('有未提交补证包时旧提交路由被阻断', blockedSubmit.statusCode === 409,
+    `实际: ${blockedSubmit.statusCode}, 错误: ${blockedSubmit.body?.error}`);
+
+  const suppSubmitNoPerm = await request({
+    ...baseOptions,
+    path: `/api/batches/dispositions/${dispositionId}/supplement/submit`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, {
+    supplementDescription: '越权提交补证',
+    attachmentList: '无'
+  });
+  allPass &= printTest('质管越权提交补证包被拒', suppSubmitNoPerm.statusCode === 400);
+
+  const suppSubmitNoPerm2 = await request({
+    ...baseOptions,
+    path: `/api/batches/dispositions/${dispositionId}/supplement/submit`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'receiver01' }
+  }, {
+    supplementDescription: '收货员越权提交补证',
+    attachmentList: '无'
+  });
+  allPass &= printTest('收货员越权提交补证包被拒', suppSubmitNoPerm2.statusCode === 400);
+
+  const suppEmptyDesc = await request({
+    ...baseOptions,
+    path: `/api/batches/dispositions/${dispositionId}/supplement/submit`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'pharmacist01' }
+  }, {
+    supplementDescription: '',
+    attachmentList: '仓库环境温度记录.xlsx'
+  });
+  allPass &= printTest('补证包补充说明为空被拒', suppEmptyDesc.statusCode === 400);
+
+  const suppEmptyAttach = await request({
+    ...baseOptions,
+    path: `/api/batches/dispositions/${dispositionId}/supplement/submit`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'pharmacist01' }
+  }, {
+    supplementDescription: '已补充仓库环境温度记录',
+    attachmentList: ''
+  });
+  allPass &= printTest('补证包附件清单为空被拒', suppEmptyAttach.statusCode === 400);
+
+  const suppSubmitRes = await request({
+    ...baseOptions,
+    path: `/api/batches/dispositions/${dispositionId}/supplement/submit`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'pharmacist01' }
+  }, {
+    supplementDescription: '已补充断电时间段的仓库环境温度记录，同批次其他箱子温度均在正常范围内',
+    relatedTempRangeIndices: [0],
+    attachmentList: '仓库环境温度记录.xlsx、同批次其他箱子温度监测报告.pdf'
+  });
+  allPass &= printTest('药师提交补证包成功', suppSubmitRes.statusCode === 200,
+    `实际: ${suppSubmitRes.statusCode}, 错误: ${suppSubmitRes.body?.error}`);
+  allPass &= printTest('补证包状态变为 submitted',
+    suppSubmitRes.body.supplement?.status === 'submitted');
+  allPass &= printTest('补证包含补充说明',
+    suppSubmitRes.body.supplement?.supplementDescription?.includes('仓库环境温度'));
+  allPass &= printTest('补证包含附件清单',
+    suppSubmitRes.body.supplement?.attachmentList?.includes('仓库环境温度记录'));
+  allPass &= printTest('补证包含关联温度区间',
+    (suppSubmitRes.body.supplement?.relatedTempRanges?.length || 0) > 0);
+  allPass &= printTest('补证包提交人正确', suppSubmitRes.body.supplement?.submittedByName === '李药师');
+  allPass &= printTest('补证包提交时间存在', !!suppSubmitRes.body.supplement?.submittedAt);
+
+  const suppDupSubmit = await request({
+    ...baseOptions,
+    path: `/api/batches/dispositions/${dispositionId}/supplement/submit`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'pharmacist01' }
+  }, {
+    supplementDescription: '重复提交',
+    attachmentList: '无'
+  });
+  allPass &= printTest('补证包重复提交返回冲突', suppDupSubmit.statusCode === 409);
+
+  const detailAfterSupp = await getBatchDetail(dispBatchNo, 'pharmacist01');
+  allPass &= printTest('补证提交后处置单自动回到 pending_approval',
+    detailAfterSupp.activeDisposition?.status === 'pending_approval');
+
+  const suppViewRes = await request({
+    ...baseOptions,
+    path: `/api/batches/dispositions/${dispositionId}/supplement`,
+    method: 'GET',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'receiver01' }
+  });
+  allPass &= printTest('收货员可查看补证包（只读）', suppViewRes.statusCode === 200);
 
   console.log('\n--- 测试组 8: 温控偏差处置单 - 最终审批与状态联动 ---\n');
 
@@ -916,6 +1010,14 @@ async function main() {
     dispBatchStatus: detailFinal.batch.status,
     dispFinalDecision: 'release',
     dispVersion: versionAfterUpdate,
+    supplementId,
+    supplementStatus: suppSubmitRes.body.supplement?.status,
+    supplementDescription: suppSubmitRes.body.supplement?.supplementDescription,
+    supplementAttachmentList: suppSubmitRes.body.supplement?.attachmentList,
+    supplementSubmittedBy: suppSubmitRes.body.supplement?.submittedBy,
+    supplementSubmittedByName: suppSubmitRes.body.supplement?.submittedByName,
+    supplementSubmittedAt: suppSubmitRes.body.supplement?.submittedAt,
+    supplementRelatedTempRangeCount: (suppSubmitRes.body.supplement?.relatedTempRanges?.length || 0),
     rejectBatchNo,
     rejectDispositionId,
     rejectBatchStatus: approveRejectRes.body.batch.status,
@@ -941,6 +1043,7 @@ async function main() {
   console.log(`  ${normalBatchNo}: ${stateToVerify.normalStatus}, 温度日志: ${stateToVerify.normalTempCount}`);
   console.log(`  ${failBatchNo}: ${stateToVerify.failStatus}, 温度日志: ${stateToVerify.failTempCount}`);
   console.log(`  [放行处置单] ${dispBatchNo}: 处置单=${dispositionId}, 批次状态=${stateToVerify.dispBatchStatus}, 结论=${stateToVerify.dispFinalDecision}`);
+  console.log(`  [补证包] ${supplementId}: 状态=${stateToVerify.supplementStatus}, 提交人=${stateToVerify.supplementSubmittedByName}`);
   console.log(`  [拒收处置单] ${rejectBatchNo}: 处置单=${rejectDispositionId}, 批次状态=${stateToVerify.rejectBatchStatus}, 结论=${stateToVerify.rejectFinalDecision}`);
   console.log(`  [放行备注] ${remarkBatchNo}: 备注版本=${stateToVerify.remarkVersion}, 填写人=${stateToVerify.remarkUpdatedBy}`);
   console.log(`  [拒收备注] ${remarkRejectBatchNo}: 备注版本=${stateToVerify.remarkRejectVersion}`);

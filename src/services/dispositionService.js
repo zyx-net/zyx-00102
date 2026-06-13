@@ -294,6 +294,19 @@ function submitForApproval(dispositionId, operatorId, expectedVersion) {
     return { success: false, error: `当前状态 ${disposition.status} 不允许提交` };
   }
 
+  if (disposition.status === DISP_STATUS.RETURNED_FOR_SUPPLEMENT) {
+    const supplementService = require('./supplementService');
+    const pendingSupp = supplementService.getPendingSupplementForDisposition(dispositionId);
+    if (pendingSupp) {
+      return {
+        success: false,
+        error: `当前为退回补充状态，存在未提交的补证包 ${pendingSupp.id}，请先提交补证包`,
+        conflict: true,
+        pendingSupplementId: pendingSupp.id
+      };
+    }
+  }
+
   if (expectedVersion !== undefined && disposition.version !== expectedVersion) {
     return {
       success: false,
@@ -520,7 +533,15 @@ function returnForSupplement(dispositionId, returnReason, operatorId, expectedVe
     detail: { dispositionId, returnReason }
   });
 
-  return { success: true, disposition: updated };
+  const supplementService = require('./supplementService');
+  const suppResult = supplementService.createSupplementPackage(dispositionId, returnReason, operatorId);
+
+  const result = { success: true, disposition: updated };
+  if (suppResult.success) {
+    result.supplement = suppResult.supplement;
+  }
+
+  return result;
 }
 
 function getDispositionDetail(dispositionId) {

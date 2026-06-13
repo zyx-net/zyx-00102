@@ -998,5 +998,373 @@
       "timestamp": "2024-06-01T08:20:00.000Z",
       "temperature": 5
     }
+  ],
+  "OT-1781311213527-01": [
+    {
+      "index": 1,
+      "batchNo": "OT-1781311213527-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "OT-1781311213527-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.2
+    },
+    {
+      "index": 3,
+      "batchNo": "OT-1781311213527-01",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 9.5
+    },
+    {
+      "index": 4,
+      "batchNo": "OT-1781311213527-01",
+      "timestamp": "2024-06-01T08:15:00.000Z",
+      "temperature": 10.2
+    },
+    {
+      "index": 5,
+      "batchNo": "OT-1781311213527-01",
+      "timestamp": "2024-06-01T08:20:00.000Z",
+      "temperature": 5
+    }
+  ],
+  "NRM-1781311213527-01": [
+    {
+      "index": 1,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.938448869409103
+    },
+    {
+      "index": 2,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.120850109482825
+    },
+    {
+      "index": 3,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 4.879838950909178
+    },
+    {
+      "index": 4,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:15:00.000Z",
+      "temperature": 4.834530134886478
+    },
+    {
+      "index": 5,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:20:00.000Z",
+      "temperature": 4.531683532758672
+    },
+    {
+      "index": 6,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:25:00.000Z",
+      "temperature": 5.4960631296316755
+    },
+    {
+      "index": 7,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:30:00.000Z",
+      "temperature": 5.3925893988376945
+    },
+    {
+      "index": 8,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:35:00.000Z",
+      "temperature": 4.139518049447776
+    },
+    {
+      "index": 9,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:40:00.000Z",
+      "temperature": 4.261403920995155
+    },
+    {
+      "index": 10,
+      "batchNo": "NRM-1781311213527-01",
+      "timestamp": "2024-06-01T08:45:00.000Z",
+      "temperature": 5.4264954386505115
+    }
+  ],
+  "DISP-1781311213527-01": [
+    {
+      "index": 1,
+      "batchNo": "DISP-1781311213527-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "DISP-1781311213527-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.2
+    },
+    {
+      "index": 3,
+      "batchNo": "DISP-1781311213527-01",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 9.5
+    },
+    {
+      "index": 4,
+      "batchNo": "DISP-1781311213527-01",
+      "timestamp": "2024-06-01T08:15:00.000Z",
+      "temperature": 10.2
+    },
+    {
+      "index": 5,
+      "batchNo": "DISP-1781311213527-01",
+      "timestamp": "2024-06-01T08:20:00.000Z",
+      "temperature": 5
+    }
+  ],
+  "DISP-1781311213527-02": [
+    {
+      "index": 1,
+      "batchNo": "DISP-1781311213527-02",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "DISP-1781311213527-02",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.2
+    },
+    {
+      "index": 3,
+      "batchNo": "DISP-1781311213527-02",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 9.5
+    },
+    {
+      "index": 4,
+      "batchNo": "DISP-1781311213527-02",
+      "timestamp": "2024-06-01T08:15:00.000Z",
+      "temperature": 10.2
+    },
+    {
+      "index": 5,
+      "batchNo": "DISP-1781311213527-02",
+      "timestamp": "2024-06-01T08:20:00.000Z",
+      "temperature": 5
+    }
+  ],
+  "OT-1781311325806-01": [
+    {
+      "index": 1,
+      "batchNo": "OT-1781311325806-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "OT-1781311325806-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.2
+    },
+    {
+      "index": 3,
+      "batchNo": "OT-1781311325806-01",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 9.5
+    },
+    {
+      "index": 4,
+      "batchNo": "OT-1781311325806-01",
+      "timestamp": "2024-06-01T08:15:00.000Z",
+      "temperature": 10.2
+    },
+    {
+      "index": 5,
+      "batchNo": "OT-1781311325806-01",
+      "timestamp": "2024-06-01T08:20:00.000Z",
+      "temperature": 5
+    }
+  ],
+  "NRM-1781311325806-01": [
+    {
+      "index": 1,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.1016902732764695
+    },
+    {
+      "index": 2,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 5.105037118057604
+    },
+    {
+      "index": 3,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 4.409550596121613
+    },
+    {
+      "index": 4,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:15:00.000Z",
+      "temperature": 5.855319340155723
+    },
+    {
+      "index": 5,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:20:00.000Z",
+      "temperature": 4.440209360151452
+    },
+    {
+      "index": 6,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:25:00.000Z",
+      "temperature": 5.018493495409663
+    },
+    {
+      "index": 7,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:30:00.000Z",
+      "temperature": 4.593234049077917
+    },
+    {
+      "index": 8,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:35:00.000Z",
+      "temperature": 5.72716381086948
+    },
+    {
+      "index": 9,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:40:00.000Z",
+      "temperature": 5.752882591108977
+    },
+    {
+      "index": 10,
+      "batchNo": "NRM-1781311325806-01",
+      "timestamp": "2024-06-01T08:45:00.000Z",
+      "temperature": 5.761814561494218
+    }
+  ],
+  "DISP-1781311325806-01": [
+    {
+      "index": 1,
+      "batchNo": "DISP-1781311325806-01",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "DISP-1781311325806-01",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.2
+    },
+    {
+      "index": 3,
+      "batchNo": "DISP-1781311325806-01",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 9.5
+    },
+    {
+      "index": 4,
+      "batchNo": "DISP-1781311325806-01",
+      "timestamp": "2024-06-01T08:15:00.000Z",
+      "temperature": 10.2
+    },
+    {
+      "index": 5,
+      "batchNo": "DISP-1781311325806-01",
+      "timestamp": "2024-06-01T08:20:00.000Z",
+      "temperature": 5
+    }
+  ],
+  "DISP-1781311325806-02": [
+    {
+      "index": 1,
+      "batchNo": "DISP-1781311325806-02",
+      "timestamp": "2024-06-01T08:00:00.000Z",
+      "temperature": 4.5
+    },
+    {
+      "index": 2,
+      "batchNo": "DISP-1781311325806-02",
+      "timestamp": "2024-06-01T08:05:00.000Z",
+      "temperature": 4.2
+    },
+    {
+      "index": 3,
+      "batchNo": "DISP-1781311325806-02",
+      "timestamp": "2024-06-01T08:10:00.000Z",
+      "temperature": 9.5
+    },
+    {
+      "index": 4,
+      "batchNo": "DISP-1781311325806-02",
+      "timestamp": "2024-06-01T08:15:00.000Z",
+      "temperature": 10.2
+    },
+    {
+      "index": 5,
+      "batchNo": "DISP-1781311325806-02",
+      "timestamp": "2024-06-01T08:20:00.000Z",
+      "temperature": 5
+    }
+  ],
+  "RVW-SUPP-1781314097401": [
+    {
+      "index": 1,
+      "batchNo": "RVW-SUPP-1781314097401",
+      "timestamp": "2026-06-13T08:00:00.000Z",
+      "temperature": 4.2
+    },
+    {
+      "index": 2,
+      "batchNo": "RVW-SUPP-1781314097401",
+      "timestamp": "2026-06-13T08:05:00.000Z",
+      "temperature": 9.4
+    },
+    {
+      "index": 3,
+      "batchNo": "RVW-SUPP-1781314097401",
+      "timestamp": "2026-06-13T08:10:00.000Z",
+      "temperature": 9.7
+    },
+    {
+      "index": 4,
+      "batchNo": "RVW-SUPP-1781314097401",
+      "timestamp": "2026-06-13T08:15:00.000Z",
+      "temperature": 5.1
+    }
+  ],
+  "RVW2-SUPP-1781314240560": [
+    {
+      "index": 1,
+      "batchNo": "RVW2-SUPP-1781314240560",
+      "timestamp": "2026-06-13T08:00:00.000Z",
+      "temperature": 4.2
+    },
+    {
+      "index": 2,
+      "batchNo": "RVW2-SUPP-1781314240560",
+      "timestamp": "2026-06-13T08:05:00.000Z",
+      "temperature": 9.4
+    },
+    {
+      "index": 3,
+      "batchNo": "RVW2-SUPP-1781314240560",
+      "timestamp": "2026-06-13T08:10:00.000Z",
+      "temperature": 9.7
+    },
+    {
+      "index": 4,
+      "batchNo": "RVW2-SUPP-1781314240560",
+      "timestamp": "2026-06-13T08:15:00.000Z",
+      "temperature": 5.1
+    }
   ]
 }

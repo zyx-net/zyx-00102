@@ -346,7 +346,104 @@ async function main() {
     }
   }
 
-  console.log('\n--- 11. 处置单列表与查询接口 ---\n');
+  console.log('\n--- 11. 补证包重启后一致性 ---\n');
+
+  if (preState.supplementId) {
+    const suppListRes = await request({
+      ...baseOptions,
+      path: `/api/batches/${preState.dispBatchNo}/supplements`,
+      method: 'GET'
+    });
+    allPass &= printTest('补证包列表接口可用',
+      suppListRes.statusCode === 200 && Array.isArray(suppListRes.body?.supplements));
+
+    const suppList = suppListRes.body?.supplements || [];
+    const foundSupp = suppList.find(s => s.id === preState.supplementId);
+    allPass &= printTest('补证包列表包含目标补证包', !!foundSupp);
+
+    const dispSuppRes = await request({
+      ...baseOptions,
+      path: `/api/batches/dispositions/${preState.dispDispositionId}/supplement`,
+      method: 'GET'
+    });
+    allPass &= printTest('按处置单查询补证包可用', dispSuppRes.statusCode === 200);
+    const dispSupps = dispSuppRes.body?.supplements || [];
+    const dispFound = dispSupps.find(s => s.id === preState.supplementId);
+    allPass &= printTest('按处置单查询包含目标补证包', !!dispFound);
+
+    if (foundSupp || dispFound) {
+      const supp = foundSupp || dispFound;
+      allPass &= printTest('补证包状态一致',
+        supp.status === preState.supplementStatus,
+        `重启前: ${preState.supplementStatus}, 重启后: ${supp.status}`);
+      allPass &= printTest('补证包补充说明一致',
+        supp.supplementDescription === preState.supplementDescription);
+      allPass &= printTest('补证包附件清单一致',
+        supp.attachmentList === preState.supplementAttachmentList);
+      allPass &= printTest('补证包提交人一致',
+        supp.submittedBy === preState.supplementSubmittedBy);
+      allPass &= printTest('补证包提交人名一致',
+        supp.submittedByName === preState.supplementSubmittedByName);
+      allPass &= printTest('补证包提交时间一致',
+        supp.submittedAt === preState.supplementSubmittedAt);
+      allPass &= printTest('补证包关联温度区间数一致',
+        (supp.relatedTempRanges?.length || 0) === preState.supplementRelatedTempRangeCount);
+    }
+
+    const suppFile = JSON.parse(fs.readFileSync(path.join(dataDir, 'supplements.json'), 'utf-8'));
+    const fileSupp = suppFile[preState.supplementId];
+    allPass &= printTest('补证包文件存在', !!fileSupp);
+    if (fileSupp) {
+      allPass &= printTest('文件中补证包状态与 API 一致',
+        fileSupp.status === preState.supplementStatus);
+      allPass &= printTest('文件中补证包补充说明与 API 一致',
+        fileSupp.supplementDescription === preState.supplementDescription);
+      allPass &= printTest('文件中补证包提交人与 API 一致',
+        fileSupp.submittedBy === preState.supplementSubmittedBy);
+    }
+
+    const dispDetail = await getBatchDetail(preState.dispBatchNo);
+    const suppAuditLogs = dispDetail.auditLogs || [];
+    allPass &= printTest('审计含 supplement_create',
+      suppAuditLogs.some(l => l.action === 'supplement_create'));
+    allPass &= printTest('审计含 supplement_submit',
+      suppAuditLogs.some(l => l.action === 'supplement_submit'));
+    allPass &= printTest('审计含 disposition_resubmit_after_supplement',
+      suppAuditLogs.some(l => l.action === 'disposition_resubmit_after_supplement'));
+
+    const suppExportJson = await getExportJson(preState.dispBatchNo);
+    allPass &= printTest('JSON 导出含 supplements 字段',
+      Array.isArray(suppExportJson.supplements));
+    if (suppExportJson.supplements?.length > 0) {
+      const exportedSupp = suppExportJson.supplements.find(s => s.id === preState.supplementId);
+      allPass &= printTest('JSON 导出补证包 ID 正确', !!exportedSupp);
+      allPass &= printTest('JSON 导出补证包状态正确',
+        exportedSupp?.status === preState.supplementStatus);
+      allPass &= printTest('JSON 导出补证包含补充说明',
+        !!exportedSupp?.supplementDescription);
+      allPass &= printTest('JSON 导出补证包含附件清单',
+        !!exportedSupp?.attachmentList);
+      allPass &= printTest('JSON 导出补证包含提交人',
+        !!exportedSupp?.submittedByName);
+      allPass &= printTest('JSON 导出补证包含提交时间',
+        !!exportedSupp?.submittedAt);
+    }
+
+    const suppExportCsv = await getExportCsv(preState.dispBatchNo);
+    const suppCsvStr = typeof suppExportCsv === 'string' ? suppExportCsv : JSON.stringify(suppExportCsv);
+    allPass &= printTest('CSV 导出含补证包段', suppCsvStr.includes('# 补证包'));
+    allPass &= printTest('CSV 导出含补证包 ID', suppCsvStr.includes(preState.supplementId));
+    allPass &= printTest('CSV 导出含 supplementDescription 列',
+      suppCsvStr.includes('supplementDescription'));
+    allPass &= printTest('CSV 导出含 attachmentList 列',
+      suppCsvStr.includes('attachmentList'));
+    allPass &= printTest('CSV 导出含 submittedBy 列',
+      suppCsvStr.includes('submittedBy'));
+    allPass &= printTest('CSV 导出含 submittedAt 列',
+      suppCsvStr.includes('submittedAt'));
+  }
+
+  console.log('\n--- 12. 处置单列表与查询接口 ---\n');
 
   if (preState.dispDispositionId) {
     const dispListRes = await request({
@@ -380,6 +477,7 @@ async function main() {
     console.log('✓ 服务重启后所有数据保持一致');
     console.log('✓ 查询接口、JSON/CSV 导出、文件存储三者一致');
     console.log('✓ 温控偏差处置单（放行/拒收）数据完整持久化');
+    console.log('✓ 补证包数据完整持久化（含提交人、提交时间、状态）');
     console.log('✓ 质管导出备注（放行/拒收批次）数据完整持久化');
   } else {
     console.log('✗ 部分验证失败！');

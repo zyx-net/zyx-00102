@@ -38,6 +38,10 @@ module.exports = {
     REJECT: 'reject',
     RETURN_FOR_SUPPLEMENT: 'return_for_supplement'
   },
+  supplementStatus: {
+    PENDING: 'pending',
+    SUBMITTED: 'submitted'
+  },
   users: [
     { id: 'receiver01', name: '张收货', role: 'receiver' },
     { id: 'pharmacist01', name: '李药师', role: 'pharmacist' },

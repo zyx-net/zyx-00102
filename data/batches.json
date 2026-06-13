@@ -1002,5 +1002,433 @@
       "updatedAt": "2026-06-13T00:10:32.612Z",
       "version": 1
     }
+  },
+  "NEW-1781311213527-01": {
+    "batchNo": "NEW-1781311213527-01",
+    "drugName": "新药",
+    "manufacturer": "药厂A",
+    "quantity": 100,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:40:13.594Z",
+    "status": "pending_review",
+    "createdAt": "2026-06-13T00:40:13.594Z",
+    "createdBy": "receiver01",
+    "temperatureValid": null,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": []
+  },
+  "OT-1781311213527-01": {
+    "batchNo": "OT-1781311213527-01",
+    "drugName": "超温测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 100,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:40:13.611Z",
+    "status": "released",
+    "createdAt": "2026-06-13T00:40:13.611Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "temperatureErrors": [],
+    "temperatureWarnings": [
+      "发现 1 个超温区间"
+    ],
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:40:13.641Z",
+    "finalReason": "超温时间短，评估后放行"
+  },
+  "FAIL-1781311213527-01": {
+    "batchNo": "FAIL-1781311213527-01",
+    "drugName": "失败测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 50,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:40:13.650Z",
+    "status": "pending_review",
+    "createdAt": "2026-06-13T00:40:13.650Z",
+    "createdBy": "receiver01",
+    "temperatureValid": null,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": []
+  },
+  "NRM-1781311213527-01": {
+    "batchNo": "NRM-1781311213527-01",
+    "drugName": "常温药",
+    "manufacturer": "测试药厂",
+    "quantity": 200,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:40:13.673Z",
+    "status": "pending_review",
+    "createdAt": "2026-06-13T00:40:13.673Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": []
+  },
+  "DISP-1781311213527-01": {
+    "batchNo": "DISP-1781311213527-01",
+    "drugName": "处置单测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 150,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:40:13.688Z",
+    "status": "released",
+    "createdAt": "2026-06-13T00:40:13.688Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "temperatureErrors": [],
+    "temperatureWarnings": [
+      "发现 1 个超温区间"
+    ],
+    "dispositionId": "DISP-20260613-XPKA",
+    "dispositionDecision": "release",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:40:13.789Z",
+    "finalReason": "超温时间短，影响有限，同意放行"
+  },
+  "DISP-1781311213527-02": {
+    "batchNo": "DISP-1781311213527-02",
+    "drugName": "拒收处置单测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 80,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:40:13.809Z",
+    "status": "rejected",
+    "createdAt": "2026-06-13T00:40:13.809Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "temperatureErrors": [],
+    "temperatureWarnings": [
+      "发现 1 个超温区间"
+    ],
+    "dispositionId": "DISP-20260613-S52D",
+    "dispositionDecision": "reject",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:40:13.840Z",
+    "finalReason": "全程超标，药品质量无法保证，予以拒收"
+  },
+  "RMK-1781311213527-01": {
+    "batchNo": "RMK-1781311213527-01",
+    "drugName": "备注测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 120,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:40:13.863Z",
+    "status": "released",
+    "createdAt": "2026-06-13T00:40:13.863Z",
+    "createdBy": "receiver01",
+    "temperatureValid": null,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": [],
+    "reviewedBy": "pharmacist01",
+    "reviewedAt": "2026-06-13T00:40:13.871Z",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:40:13.876Z",
+    "finalReason": "正常放行",
+    "qualityRemark": {
+      "content": "更新备注 v3：风险说明：超温时间短影响有限；供应商沟通：已签署质量协议；后续抽检：连续3批加严。",
+      "updatedBy": "quality01",
+      "updatedByName": "王质管",
+      "updatedAt": "2026-06-13T00:40:13.918Z",
+      "version": 3
+    }
+  },
+  "RMK-1781311213527-02": {
+    "batchNo": "RMK-1781311213527-02",
+    "drugName": "拒收备注测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 60,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:40:13.935Z",
+    "status": "rejected",
+    "createdAt": "2026-06-13T00:40:13.935Z",
+    "createdBy": "receiver01",
+    "temperatureValid": null,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": [],
+    "reviewedBy": "pharmacist01",
+    "reviewedAt": "2026-06-13T00:40:13.940Z",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:40:13.945Z",
+    "finalReason": "质量不合格",
+    "qualityRemark": {
+      "content": "拒收原因：供应商冷链运输不达标，已纳入重点监控名单，下批到货前需提供整改报告。",
+      "updatedBy": "quality01",
+      "updatedByName": "王质管",
+      "updatedAt": "2026-06-13T00:40:13.950Z",
+      "version": 1
+    }
+  },
+  "NEW-1781311325806-01": {
+    "batchNo": "NEW-1781311325806-01",
+    "drugName": "新药",
+    "manufacturer": "药厂A",
+    "quantity": 100,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:42:05.871Z",
+    "status": "pending_review",
+    "createdAt": "2026-06-13T00:42:05.871Z",
+    "createdBy": "receiver01",
+    "temperatureValid": null,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": []
+  },
+  "OT-1781311325806-01": {
+    "batchNo": "OT-1781311325806-01",
+    "drugName": "超温测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 100,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:42:05.885Z",
+    "status": "released",
+    "createdAt": "2026-06-13T00:42:05.885Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "temperatureErrors": [],
+    "temperatureWarnings": [
+      "发现 1 个超温区间"
+    ],
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:42:05.920Z",
+    "finalReason": "超温时间短，评估后放行"
+  },
+  "FAIL-1781311325806-01": {
+    "batchNo": "FAIL-1781311325806-01",
+    "drugName": "失败测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 50,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:42:05.929Z",
+    "status": "pending_review",
+    "createdAt": "2026-06-13T00:42:05.929Z",
+    "createdBy": "receiver01",
+    "temperatureValid": null,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": []
+  },
+  "NRM-1781311325806-01": {
+    "batchNo": "NRM-1781311325806-01",
+    "drugName": "常温药",
+    "manufacturer": "测试药厂",
+    "quantity": 200,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:42:05.951Z",
+    "status": "pending_review",
+    "createdAt": "2026-06-13T00:42:05.951Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": []
+  },
+  "DISP-1781311325806-01": {
+    "batchNo": "DISP-1781311325806-01",
+    "drugName": "处置单测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 150,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:42:05.972Z",
+    "status": "released",
+    "createdAt": "2026-06-13T00:42:05.972Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "temperatureErrors": [],
+    "temperatureWarnings": [
+      "发现 1 个超温区间"
+    ],
+    "dispositionId": "DISP-20260613-TUAV",
+    "dispositionDecision": "release",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:42:06.076Z",
+    "finalReason": "超温时间短，影响有限，同意放行"
+  },
+  "DISP-1781311325806-02": {
+    "batchNo": "DISP-1781311325806-02",
+    "drugName": "拒收处置单测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 80,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:42:06.096Z",
+    "status": "rejected",
+    "createdAt": "2026-06-13T00:42:06.096Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "temperatureErrors": [],
+    "temperatureWarnings": [
+      "发现 1 个超温区间"
+    ],
+    "dispositionId": "DISP-20260613-AWA7",
+    "dispositionDecision": "reject",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:42:06.141Z",
+    "finalReason": "全程超标，药品质量无法保证，予以拒收"
+  },
+  "RMK-1781311325806-01": {
+    "batchNo": "RMK-1781311325806-01",
+    "drugName": "备注测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 120,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:42:06.173Z",
+    "status": "released",
+    "createdAt": "2026-06-13T00:42:06.173Z",
+    "createdBy": "receiver01",
+    "temperatureValid": null,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": [],
+    "reviewedBy": "pharmacist01",
+    "reviewedAt": "2026-06-13T00:42:06.184Z",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:42:06.195Z",
+    "finalReason": "正常放行",
+    "qualityRemark": {
+      "content": "更新备注 v3：风险说明：超温时间短影响有限；供应商沟通：已签署质量协议；后续抽检：连续3批加严。",
+      "updatedBy": "quality01",
+      "updatedByName": "王质管",
+      "updatedAt": "2026-06-13T00:42:06.236Z",
+      "version": 3
+    }
+  },
+  "RMK-1781311325806-02": {
+    "batchNo": "RMK-1781311325806-02",
+    "drugName": "拒收备注测试药",
+    "manufacturer": "测试药厂",
+    "quantity": 60,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T00:42:06.254Z",
+    "status": "rejected",
+    "createdAt": "2026-06-13T00:42:06.254Z",
+    "createdBy": "receiver01",
+    "temperatureValid": null,
+    "overTempRanges": [],
+    "temperatureErrors": [],
+    "temperatureWarnings": [],
+    "reviewedBy": "pharmacist01",
+    "reviewedAt": "2026-06-13T00:42:06.259Z",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T00:42:06.264Z",
+    "finalReason": "质量不合格",
+    "qualityRemark": {
+      "content": "拒收原因：供应商冷链运输不达标，已纳入重点监控名单，下批到货前需提供整改报告。",
+      "updatedBy": "quality01",
+      "updatedByName": "王质管",
+      "updatedAt": "2026-06-13T00:42:06.269Z",
+      "version": 1
+    }
+  },
+  "RVW-SUPP-1781314097401": {
+    "batchNo": "RVW-SUPP-1781314097401",
+    "drugName": "Reviewer cold-chain drug",
+    "manufacturer": "Reviewer factory",
+    "quantity": 7,
+    "unit": "box",
+    "productionDate": "2026-01-01",
+    "expiryDate": "2028-01-01",
+    "arrivalDate": "2026-06-13T01:28:17.440Z",
+    "status": "released",
+    "createdAt": "2026-06-13T01:28:17.440Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [
+      {
+        "start": "2026-06-13T08:05:00.000Z",
+        "end": "2026-06-13T08:10:00.000Z",
+        "minTemp": 9.4,
+        "maxTemp": 9.7
+      }
+    ],
+    "temperatureErrors": [],
+    "temperatureWarnings": [
+      "发现 1 个超温区间"
+    ],
+    "dispositionId": "DISP-20260613-D9F1",
+    "dispositionDecision": "release",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T01:28:17.734Z",
+    "finalReason": "Supplement accepted; release through original quality decision"
+  },
+  "RVW2-SUPP-1781314240560": {
+    "batchNo": "RVW2-SUPP-1781314240560",
+    "drugName": "Reviewer supplement drug",
+    "manufacturer": "Reviewer factory",
+    "quantity": 8,
+    "unit": "盒",
+    "arrivalDate": "2026-06-13T01:30:40.572Z",
+    "status": "released",
+    "createdAt": "2026-06-13T01:30:40.572Z",
+    "createdBy": "receiver01",
+    "temperatureValid": true,
+    "overTempRanges": [
+      {
+        "start": "2026-06-13T08:05:00.000Z",
+        "end": "2026-06-13T08:10:00.000Z",
+        "minTemp": 9.4,
+        "maxTemp": 9.7
+      }
+    ],
+    "temperatureErrors": [],
+    "temperatureWarnings": [
+      "发现 1 个超温区间"
+    ],
+    "dispositionId": "DISP-20260613-FCJX",
+    "dispositionDecision": "release",
+    "finalizedBy": "quality01",
+    "finalizedAt": "2026-06-13T01:30:40.638Z",
+    "finalReason": "Supplement accepted; release through original quality decision"
   }
 }

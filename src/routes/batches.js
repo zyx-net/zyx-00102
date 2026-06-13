@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const batchService = require('../services/batchService');
 const dispositionService = require('../services/dispositionService');
+const supplementService = require('../services/supplementService');
 const importExportService = require('../services/importExportService');
 
 function requireOperator(req, res, next) {
@@ -122,7 +123,25 @@ router.post('/dispositions/:dispositionId/return', requireOperator, (req, res) =
     const status = result.conflict ? 409 : 400;
     return res.status(status).json({ success: false, error: result.error, ...result });
   }
-  res.json({ success: true, disposition: result.disposition });
+  res.json({ success: true, disposition: result.disposition, supplement: result.supplement });
+});
+
+router.get('/dispositions/:dispositionId/supplement', requireOperator, (req, res) => {
+  const supplements = supplementService.getSupplementsForDisposition(req.params.dispositionId);
+  res.json({ supplements });
+});
+
+router.post('/dispositions/:dispositionId/supplement/submit', requireOperator, (req, res) => {
+  const result = supplementService.submitSupplementPackage(
+    req.params.dispositionId,
+    req.body,
+    req.operator.id
+  );
+  if (!result.success) {
+    const status = result.conflict ? 409 : 400;
+    return res.status(status).json({ success: false, error: result.error, ...result });
+  }
+  res.json({ success: true, supplement: result.supplement });
 });
 
 router.get('/:batchNo', requireOperator, (req, res) => {
@@ -245,6 +264,11 @@ router.post('/:batchNo/dispositions', requireOperator, (req, res) => {
     return res.status(status).json({ success: false, error: result.error, ...result });
   }
   res.status(201).json({ success: true, disposition: result.disposition });
+});
+
+router.get('/:batchNo/supplements', requireOperator, (req, res) => {
+  const supplements = supplementService.listBatchSupplements(req.params.batchNo);
+  res.json({ supplements });
 });
 
 module.exports = router;

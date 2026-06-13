@@ -6,7 +6,8 @@ const dataFiles = {
   batches: 'batches.json',
   temperatureLogs: 'temperature-logs.json',
   auditLogs: 'audit-logs.json',
-  dispositions: 'dispositions.json'
+  dispositions: 'dispositions.json',
+  supplements: 'supplements.json'
 };
 
 function ensureDataDir() {
@@ -127,6 +128,44 @@ function getActiveDisposition(batchNo) {
   return dispositions.find(d => !closedStatuses.includes(d.status)) || null;
 }
 
+function getSupplements() {
+  return readData(dataFiles.supplements, {});
+}
+
+function saveSupplements(supplements) {
+  writeDataAtomic(dataFiles.supplements, supplements);
+}
+
+function getSupplement(suppId) {
+  const supplements = getSupplements();
+  return supplements[suppId] || null;
+}
+
+function saveSupplement(supplement) {
+  const supplements = getSupplements();
+  supplements[supplement.id] = supplement;
+  saveSupplements(supplements);
+}
+
+function getSupplementsForDisposition(dispositionId) {
+  const supplements = getSupplements();
+  return Object.values(supplements)
+    .filter(s => s.dispositionId === dispositionId)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+function getSupplementsForBatch(batchNo) {
+  const supplements = getSupplements();
+  return Object.values(supplements)
+    .filter(s => s.batchNo === batchNo)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+function getPendingSupplementForDisposition(dispositionId) {
+  const supplements = getSupplementsForDisposition(dispositionId);
+  return supplements.find(s => s.status === 'pending') || null;
+}
+
 module.exports = {
   getBatches,
   saveBatches,
@@ -142,5 +181,12 @@ module.exports = {
   getDisposition,
   saveDisposition,
   getBatchDispositions,
-  getActiveDisposition
+  getActiveDisposition,
+  getSupplements,
+  saveSupplements,
+  getSupplement,
+  saveSupplement,
+  getSupplementsForDisposition,
+  getSupplementsForBatch,
+  getPendingSupplementForDisposition
 };

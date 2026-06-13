@@ -87,6 +87,7 @@ function exportBatchToCSV(batchDetail) {
   const logs = batchDetail.temperatureLogs || [];
   const audits = batchDetail.auditLogs || [];
   const dispositions = batchDetail.dispositions || [];
+  const supplements = batchDetail.supplements || [];
 
   const batchCSV = toCSV([{
     batchNo: batch.batchNo,
@@ -132,9 +133,29 @@ function exportBatchToCSV(batchDetail) {
     dispCSV = toCSV(dispRows, ['id', 'status', 'deviationLevel', 'cause', 'suggestedAction', 'attachmentSummary', 'createdBy', 'createdAt', 'finalDecision', 'approvedBy', 'approvedAt', 'approvalReason', 'returnReason']);
   }
 
+  let suppCSV = '';
+  if (supplements.length > 0) {
+    const suppRows = supplements.map(s => ({
+      id: s.id,
+      dispositionId: s.dispositionId,
+      status: s.status,
+      returnReason: s.returnReason || '',
+      supplementDescription: s.supplementDescription || '',
+      attachmentList: s.attachmentList || '',
+      submittedBy: s.submittedByName || s.submittedBy || '',
+      submittedAt: s.submittedAt || '',
+      returnedBy: s.returnedByName || s.returnedBy || '',
+      returnedAt: s.returnedAt || ''
+    }));
+    suppCSV = toCSV(suppRows, ['id', 'dispositionId', 'status', 'returnReason', 'supplementDescription', 'attachmentList', 'submittedBy', 'submittedAt', 'returnedBy', 'returnedAt']);
+  }
+
   let result = `# 批次信息\n${batchCSV}\n\n# 温度日志\n${tempCSV}\n\n# 审计历史\n${auditCSV}`;
   if (dispCSV) {
     result += `\n\n# 温控偏差处置单\n${dispCSV}`;
+  }
+  if (suppCSV) {
+    result += `\n\n# 补证包\n${suppCSV}`;
   }
   return result;
 }
