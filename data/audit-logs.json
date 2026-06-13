@@ -717,6 +717,227 @@
       "detail": {
         "dispositionId": "DISP-20260613-FCJX"
       }
+    },
+    {
+      "action": "disposition_return_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "越权退回处置单 DISP-20260613-CZ1M",
+      "timestamp": "2026-06-13T01:42:59.221Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M"
+      }
+    },
+    {
+      "action": "supplement_submit_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "越权提交补证包，处置单 DISP-20260613-CZ1M",
+      "timestamp": "2026-06-13T01:42:59.257Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M"
+      }
+    },
+    {
+      "action": "supplement_submit_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "越权提交补证包，处置单 DISP-20260613-CZ1M",
+      "timestamp": "2026-06-13T01:42:59.263Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M"
+      }
+    },
+    {
+      "action": "disposition_approve_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "越权审批处置单 DISP-20260613-CZ1M",
+      "timestamp": "2026-06-13T01:42:59.303Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M"
+      }
+    },
+    {
+      "action": "disposition_return_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "越权退回处置单 DISP-20260613-4CJJ",
+      "timestamp": "2026-06-13T01:55:41.321Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-4CJJ"
+      }
+    },
+    {
+      "action": "disposition_return_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "越权退回处置单 DISP-20260613-4CJJ",
+      "timestamp": "2026-06-13T01:55:41.326Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-4CJJ"
+      }
+    },
+    {
+      "action": "supplement_submit_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "越权提交补证包，处置单 DISP-20260613-4CJJ",
+      "timestamp": "2026-06-13T01:55:41.349Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-4CJJ"
+      }
+    },
+    {
+      "action": "supplement_submit_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "越权提交补证包，处置单 DISP-20260613-4CJJ",
+      "timestamp": "2026-06-13T01:55:41.356Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-4CJJ"
+      }
+    },
+    {
+      "action": "disposition_return_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "越权退回处置单 DISP-20260613-APOK",
+      "timestamp": "2026-06-13T02:01:03.430Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-APOK"
+      }
+    },
+    {
+      "action": "disposition_return_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "越权退回处置单 DISP-20260613-APOK",
+      "timestamp": "2026-06-13T02:01:03.437Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-APOK"
+      }
+    },
+    {
+      "action": "supplement_submit_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "越权提交补证包，处置单 DISP-20260613-APOK",
+      "timestamp": "2026-06-13T02:01:03.464Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-APOK"
+      }
+    },
+    {
+      "action": "supplement_submit_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "越权提交补证包，处置单 DISP-20260613-APOK",
+      "timestamp": "2026-06-13T02:01:03.472Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-APOK"
+      }
+    },
+    {
+      "action": "disposition_return_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "越权退回处置单 DISP-20260613-3ZDS",
+      "timestamp": "2026-06-13T02:03:32.526Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS"
+      }
+    },
+    {
+      "action": "supplement_submit_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "越权提交补证包，处置单 DISP-20260613-3ZDS",
+      "timestamp": "2026-06-13T02:03:32.564Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS"
+      }
+    },
+    {
+      "action": "supplement_submit_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "越权提交补证包，处置单 DISP-20260613-3ZDS",
+      "timestamp": "2026-06-13T02:03:32.568Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS"
+      }
+    },
+    {
+      "action": "disposition_approve_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "越权审批处置单 DISP-20260613-3ZDS",
+      "timestamp": "2026-06-13T02:03:32.598Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS"
+      }
+    },
+    {
+      "action": "supplement_submit_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "越权提交补证包，处置单 DISP-20260613-LMDK",
+      "timestamp": "2026-06-13T02:12:48.817Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LMDK"
+      }
     }
   ],
   "DISP-1781306841352-02": [
@@ -4313,6 +4534,1592 @@
       "timestamp": "2026-06-13T01:30:40.638Z",
       "detail": {
         "dispositionId": "DISP-20260613-FCJX"
+      }
+    }
+  ],
+  "NEW-1781314978917-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T01:42:58.999Z"
+    }
+  ],
+  "OT-1781314978917-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T01:42:59.019Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 5 条",
+      "timestamp": "2026-06-13T01:42:59.035Z",
+      "detail": {
+        "logCount": 5,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T01:42:59.038Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2024-06-01T08:10:00.000Z",
+            "end": "2024-06-01T08:15:00.000Z",
+            "minTemp": 9.5,
+            "maxTemp": 10.2
+          }
+        ]
+      }
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "超温时间短，评估后放行",
+      "timestamp": "2026-06-13T01:42:59.062Z"
+    }
+  ],
+  "FAIL-1781314978917-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T01:42:59.076Z"
+    }
+  ],
+  "NRM-1781314978917-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T01:42:59.108Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 10 条",
+      "timestamp": "2026-06-13T01:42:59.118Z",
+      "detail": {
+        "logCount": 10,
+        "overTempCount": 0
+      }
+    }
+  ],
+  "DISP-1781314978917-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T01:42:59.133Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 5 条",
+      "timestamp": "2026-06-13T01:42:59.141Z",
+      "detail": {
+        "logCount": 5,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T01:42:59.145Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2024-06-01T08:10:00.000Z",
+            "end": "2024-06-01T08:15:00.000Z",
+            "minTemp": 9.5,
+            "maxTemp": 10.2
+          }
+        ]
+      }
+    },
+    {
+      "action": "disposition_create_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "越权创建处置单",
+      "timestamp": "2026-06-13T01:42:59.157Z"
+    },
+    {
+      "action": "disposition_create_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "越权创建处置单",
+      "timestamp": "2026-06-13T01:42:59.163Z"
+    },
+    {
+      "action": "disposition_create",
+      "fromStatus": null,
+      "toStatus": "draft",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师创建温控偏差处置单 DISP-20260613-CZ1M",
+      "timestamp": "2026-06-13T01:42:59.176Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M",
+        "selectedOverTempRanges": 1
+      }
+    },
+    {
+      "action": "disposition_submit",
+      "fromStatus": "draft",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交处置单 DISP-20260613-CZ1M 等待审批",
+      "timestamp": "2026-06-13T01:42:59.205Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M",
+        "version": 2
+      }
+    },
+    {
+      "action": "disposition_return_supplement",
+      "fromStatus": "pending_approval",
+      "toStatus": "returned_for_supplement",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-CZ1M 补充材料: 请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据",
+      "timestamp": "2026-06-13T01:42:59.227Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M",
+        "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据"
+      }
+    },
+    {
+      "action": "supplement_create",
+      "fromStatus": null,
+      "toStatus": "pending",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-CZ1M，创建补证包 SUPP-20260613-QXM4",
+      "timestamp": "2026-06-13T01:42:59.232Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-QXM4",
+        "dispositionId": "DISP-20260613-CZ1M",
+        "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据"
+      }
+    },
+    {
+      "action": "disposition_update",
+      "fromStatus": "returned_for_supplement",
+      "toStatus": "returned_for_supplement",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师更新处置单 DISP-20260613-CZ1M",
+      "timestamp": "2026-06-13T01:42:59.242Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M",
+        "version": 4
+      }
+    },
+    {
+      "action": "disposition_resubmit_after_supplement",
+      "fromStatus": "returned_for_supplement",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-QXM4 后处置单 DISP-20260613-CZ1M 自动重新提交审批",
+      "timestamp": "2026-06-13T01:42:59.274Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M",
+        "supplementId": "SUPP-20260613-QXM4",
+        "dispositionVersion": 5
+      }
+    },
+    {
+      "action": "supplement_submit",
+      "fromStatus": "pending",
+      "toStatus": "submitted",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-QXM4",
+      "timestamp": "2026-06-13T01:42:59.274Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-QXM4",
+        "dispositionId": "DISP-20260613-CZ1M",
+        "supplementDescription": "已补充断电时间段的仓库环境温度记录，同批次其他箱子温度均在正常范围内",
+        "attachmentList": "仓库环境温度记录.xlsx、同批次其他箱子温度监测报告.pdf"
+      }
+    },
+    {
+      "action": "disposition_approve_release",
+      "fromStatus": "pending_approval",
+      "toStatus": "closed",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管审批处置单 DISP-20260613-CZ1M，结论: 放行 - 超温时间短，影响有限，同意放行",
+      "timestamp": "2026-06-13T01:42:59.315Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M",
+        "batchStatusFrom": "quarantined",
+        "batchStatusTo": "released",
+        "finalDecision": "release"
+      }
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "超温时间短，影响有限，同意放行",
+      "timestamp": "2026-06-13T01:42:59.315Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-CZ1M"
+      }
+    }
+  ],
+  "DISP-1781314978917-02": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T01:42:59.345Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 5 条",
+      "timestamp": "2026-06-13T01:42:59.353Z",
+      "detail": {
+        "logCount": 5,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T01:42:59.357Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2024-06-01T08:10:00.000Z",
+            "end": "2024-06-01T08:15:00.000Z",
+            "minTemp": 9.5,
+            "maxTemp": 10.2
+          }
+        ]
+      }
+    },
+    {
+      "action": "disposition_create",
+      "fromStatus": null,
+      "toStatus": "draft",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师创建温控偏差处置单 DISP-20260613-LSET",
+      "timestamp": "2026-06-13T01:42:59.362Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LSET",
+        "selectedOverTempRanges": 1
+      }
+    },
+    {
+      "action": "disposition_submit",
+      "fromStatus": "draft",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交处置单 DISP-20260613-LSET 等待审批",
+      "timestamp": "2026-06-13T01:42:59.368Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LSET",
+        "version": 2
+      }
+    },
+    {
+      "action": "disposition_approve_reject",
+      "fromStatus": "pending_approval",
+      "toStatus": "closed",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管审批处置单 DISP-20260613-LSET，结论: 拒收 - 全程超标，药品质量无法保证，予以拒收",
+      "timestamp": "2026-06-13T01:42:59.374Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LSET",
+        "batchStatusFrom": "quarantined",
+        "batchStatusTo": "rejected",
+        "finalDecision": "reject"
+      }
+    },
+    {
+      "action": "reject",
+      "fromStatus": "quarantined",
+      "toStatus": "rejected",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "全程超标，药品质量无法保证，予以拒收",
+      "timestamp": "2026-06-13T01:42:59.374Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LSET"
+      }
+    }
+  ],
+  "RMK-1781314978917-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T01:42:59.408Z"
+    },
+    {
+      "action": "review_pass",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "复核通过",
+      "timestamp": "2026-06-13T01:42:59.417Z"
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "正常放行",
+      "timestamp": "2026-06-13T01:42:59.425Z"
+    },
+    {
+      "action": "quality_remark_create",
+      "fromStatus": "released",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "新增质管导出备注",
+      "timestamp": "2026-06-13T01:42:59.437Z",
+      "detail": {
+        "remarkVersion": 1,
+        "remarkContent": "风险说明：该批次超温时间短，供应商已提供环境温度证明，后续抽检安排：下一批到货加严抽检。"
+      }
+    },
+    {
+      "action": "quality_remark_update",
+      "fromStatus": "released",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "更新质管导出备注",
+      "timestamp": "2026-06-13T01:42:59.453Z",
+      "detail": {
+        "remarkVersion": 2,
+        "remarkContent": "更新备注：供应商沟通结果良好，已签署整改协议。"
+      }
+    },
+    {
+      "action": "quality_remark_update",
+      "fromStatus": "released",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "更新质管导出备注",
+      "timestamp": "2026-06-13T01:42:59.465Z",
+      "detail": {
+        "remarkVersion": 3,
+        "remarkContent": "更新备注 v3：风险说明：超温时间短影响有限；供应商沟通：已签署质量协议；后续抽检：连续3批加严。"
+      }
+    }
+  ],
+  "RMK-1781314978917-02": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T01:42:59.501Z"
+    },
+    {
+      "action": "review_pass",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "复核通过",
+      "timestamp": "2026-06-13T01:42:59.507Z"
+    },
+    {
+      "action": "reject",
+      "fromStatus": "quarantined",
+      "toStatus": "rejected",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质量不合格",
+      "timestamp": "2026-06-13T01:42:59.514Z"
+    },
+    {
+      "action": "quality_remark_create",
+      "fromStatus": "rejected",
+      "toStatus": "rejected",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "新增质管导出备注",
+      "timestamp": "2026-06-13T01:42:59.519Z",
+      "detail": {
+        "remarkVersion": 1,
+        "remarkContent": "拒收原因：供应商冷链运输不达标，已纳入重点监控名单，下批到货前需提供整改报告。"
+      }
+    }
+  ],
+  "SUPP-TEST-1781315741232": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T01:55:41.279Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 5 条",
+      "timestamp": "2026-06-13T01:55:41.297Z",
+      "detail": {
+        "logCount": 5,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T01:55:41.300Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2024-06-01T08:10:00.000Z",
+            "end": "2024-06-01T08:15:00.000Z",
+            "minTemp": 9.5,
+            "maxTemp": 10.2
+          }
+        ]
+      }
+    },
+    {
+      "action": "disposition_create",
+      "fromStatus": null,
+      "toStatus": "draft",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师创建温控偏差处置单 DISP-20260613-4CJJ",
+      "timestamp": "2026-06-13T01:55:41.307Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-4CJJ",
+        "selectedOverTempRanges": 1
+      }
+    },
+    {
+      "action": "disposition_submit",
+      "fromStatus": "draft",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交处置单 DISP-20260613-4CJJ 等待审批",
+      "timestamp": "2026-06-13T01:55:41.314Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-4CJJ",
+        "version": 2
+      }
+    },
+    {
+      "action": "disposition_return_supplement",
+      "fromStatus": "pending_approval",
+      "toStatus": "returned_for_supplement",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-4CJJ 补充材料: 请补充仓库环境温度记录",
+      "timestamp": "2026-06-13T01:55:41.332Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-4CJJ",
+        "returnReason": "请补充仓库环境温度记录"
+      }
+    },
+    {
+      "action": "supplement_create",
+      "fromStatus": null,
+      "toStatus": "pending",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-4CJJ，创建补证包 SUPP-20260613-ZR4H",
+      "timestamp": "2026-06-13T01:55:41.338Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-ZR4H",
+        "dispositionId": "DISP-20260613-4CJJ",
+        "returnReason": "请补充仓库环境温度记录"
+      }
+    },
+    {
+      "action": "disposition_resubmit_after_supplement",
+      "fromStatus": "returned_for_supplement",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-ZR4H 后处置单 DISP-20260613-4CJJ 自动重新提交审批",
+      "timestamp": "2026-06-13T01:55:41.363Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-4CJJ",
+        "supplementId": "SUPP-20260613-ZR4H",
+        "dispositionVersion": 4
+      }
+    },
+    {
+      "action": "supplement_submit",
+      "fromStatus": "pending",
+      "toStatus": "submitted",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-ZR4H",
+      "timestamp": "2026-06-13T01:55:41.363Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-ZR4H",
+        "dispositionId": "DISP-20260613-4CJJ",
+        "supplementDescription": "已补充仓库环境温度记录，同批次其他箱子温度正常",
+        "attachmentList": "仓库环境温度记录.xlsx、同批次温度监测报告.pdf"
+      }
+    }
+  ],
+  "SUPP-TEST-1781316063307": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:01:03.370Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 5 条",
+      "timestamp": "2026-06-13T02:01:03.387Z",
+      "detail": {
+        "logCount": 5,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T02:01:03.391Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2024-06-01T08:10:00.000Z",
+            "end": "2024-06-01T08:15:00.000Z",
+            "minTemp": 9.5,
+            "maxTemp": 10.2
+          }
+        ]
+      }
+    },
+    {
+      "action": "disposition_create",
+      "fromStatus": null,
+      "toStatus": "draft",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师创建温控偏差处置单 DISP-20260613-APOK",
+      "timestamp": "2026-06-13T02:01:03.403Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-APOK",
+        "selectedOverTempRanges": 1
+      }
+    },
+    {
+      "action": "disposition_submit",
+      "fromStatus": "draft",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交处置单 DISP-20260613-APOK 等待审批",
+      "timestamp": "2026-06-13T02:01:03.419Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-APOK",
+        "version": 2
+      }
+    },
+    {
+      "action": "disposition_return_supplement",
+      "fromStatus": "pending_approval",
+      "toStatus": "returned_for_supplement",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-APOK 补充材料: 请补充仓库环境温度记录",
+      "timestamp": "2026-06-13T02:01:03.443Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-APOK",
+        "returnReason": "请补充仓库环境温度记录"
+      }
+    },
+    {
+      "action": "supplement_create",
+      "fromStatus": null,
+      "toStatus": "pending",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-APOK，创建补证包 SUPP-20260613-YYZU",
+      "timestamp": "2026-06-13T02:01:03.449Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-YYZU",
+        "dispositionId": "DISP-20260613-APOK",
+        "returnReason": "请补充仓库环境温度记录"
+      }
+    },
+    {
+      "action": "disposition_resubmit_after_supplement",
+      "fromStatus": "returned_for_supplement",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-YYZU 后处置单 DISP-20260613-APOK 自动重新提交审批",
+      "timestamp": "2026-06-13T02:01:03.485Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-APOK",
+        "supplementId": "SUPP-20260613-YYZU",
+        "dispositionVersion": 4
+      }
+    },
+    {
+      "action": "supplement_submit",
+      "fromStatus": "pending",
+      "toStatus": "submitted",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-YYZU",
+      "timestamp": "2026-06-13T02:01:03.485Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-YYZU",
+        "dispositionId": "DISP-20260613-APOK",
+        "supplementDescription": "已补充仓库环境温度记录，同批次其他箱子温度正常",
+        "attachmentList": "仓库环境温度记录.xlsx、同批次温度监测报告.pdf"
+      }
+    }
+  ],
+  "NEW-1781316212243-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:03:32.324Z"
+    }
+  ],
+  "OT-1781316212243-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:03:32.342Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 5 条",
+      "timestamp": "2026-06-13T02:03:32.362Z",
+      "detail": {
+        "logCount": 5,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T02:03:32.365Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2024-06-01T08:10:00.000Z",
+            "end": "2024-06-01T08:15:00.000Z",
+            "minTemp": 9.5,
+            "maxTemp": 10.2
+          }
+        ]
+      }
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "超温时间短，评估后放行",
+      "timestamp": "2026-06-13T02:03:32.389Z"
+    }
+  ],
+  "FAIL-1781316212243-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:03:32.402Z"
+    }
+  ],
+  "NRM-1781316212243-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:03:32.433Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 10 条",
+      "timestamp": "2026-06-13T02:03:32.442Z",
+      "detail": {
+        "logCount": 10,
+        "overTempCount": 0
+      }
+    }
+  ],
+  "DISP-1781316212243-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:03:32.456Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 5 条",
+      "timestamp": "2026-06-13T02:03:32.465Z",
+      "detail": {
+        "logCount": 5,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T02:03:32.470Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2024-06-01T08:10:00.000Z",
+            "end": "2024-06-01T08:15:00.000Z",
+            "minTemp": 9.5,
+            "maxTemp": 10.2
+          }
+        ]
+      }
+    },
+    {
+      "action": "disposition_create_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "越权创建处置单",
+      "timestamp": "2026-06-13T02:03:32.483Z"
+    },
+    {
+      "action": "disposition_create_denied",
+      "fromStatus": null,
+      "toStatus": null,
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "越权创建处置单",
+      "timestamp": "2026-06-13T02:03:32.488Z"
+    },
+    {
+      "action": "disposition_create",
+      "fromStatus": null,
+      "toStatus": "draft",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师创建温控偏差处置单 DISP-20260613-3ZDS",
+      "timestamp": "2026-06-13T02:03:32.495Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS",
+        "selectedOverTempRanges": 1
+      }
+    },
+    {
+      "action": "disposition_submit",
+      "fromStatus": "draft",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交处置单 DISP-20260613-3ZDS 等待审批",
+      "timestamp": "2026-06-13T02:03:32.506Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS",
+        "version": 2
+      }
+    },
+    {
+      "action": "disposition_return_supplement",
+      "fromStatus": "pending_approval",
+      "toStatus": "returned_for_supplement",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-3ZDS 补充材料: 请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据",
+      "timestamp": "2026-06-13T02:03:32.535Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS",
+        "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据"
+      }
+    },
+    {
+      "action": "supplement_create",
+      "fromStatus": null,
+      "toStatus": "pending",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-3ZDS，创建补证包 SUPP-20260613-99U3",
+      "timestamp": "2026-06-13T02:03:32.541Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-99U3",
+        "dispositionId": "DISP-20260613-3ZDS",
+        "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据"
+      }
+    },
+    {
+      "action": "disposition_update",
+      "fromStatus": "returned_for_supplement",
+      "toStatus": "returned_for_supplement",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师更新处置单 DISP-20260613-3ZDS",
+      "timestamp": "2026-06-13T02:03:32.551Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS",
+        "version": 4
+      }
+    },
+    {
+      "action": "disposition_resubmit_after_supplement",
+      "fromStatus": "returned_for_supplement",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-99U3 后处置单 DISP-20260613-3ZDS 自动重新提交审批",
+      "timestamp": "2026-06-13T02:03:32.577Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS",
+        "supplementId": "SUPP-20260613-99U3",
+        "dispositionVersion": 5
+      }
+    },
+    {
+      "action": "supplement_submit",
+      "fromStatus": "pending",
+      "toStatus": "submitted",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-99U3",
+      "timestamp": "2026-06-13T02:03:32.577Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-99U3",
+        "dispositionId": "DISP-20260613-3ZDS",
+        "supplementDescription": "已补充断电时间段的仓库环境温度记录，同批次其他箱子温度均在正常范围内",
+        "attachmentList": "仓库环境温度记录.xlsx、同批次其他箱子温度监测报告.pdf"
+      }
+    },
+    {
+      "action": "disposition_approve_release",
+      "fromStatus": "pending_approval",
+      "toStatus": "closed",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管审批处置单 DISP-20260613-3ZDS，结论: 放行 - 超温时间短，影响有限，同意放行",
+      "timestamp": "2026-06-13T02:03:32.606Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS",
+        "batchStatusFrom": "quarantined",
+        "batchStatusTo": "released",
+        "finalDecision": "release"
+      }
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "超温时间短，影响有限，同意放行",
+      "timestamp": "2026-06-13T02:03:32.606Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-3ZDS"
+      }
+    }
+  ],
+  "DISP-1781316212243-02": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:03:32.629Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 5 条",
+      "timestamp": "2026-06-13T02:03:32.638Z",
+      "detail": {
+        "logCount": 5,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T02:03:32.641Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2024-06-01T08:10:00.000Z",
+            "end": "2024-06-01T08:15:00.000Z",
+            "minTemp": 9.5,
+            "maxTemp": 10.2
+          }
+        ]
+      }
+    },
+    {
+      "action": "disposition_create",
+      "fromStatus": null,
+      "toStatus": "draft",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师创建温控偏差处置单 DISP-20260613-2USD",
+      "timestamp": "2026-06-13T02:03:32.647Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-2USD",
+        "selectedOverTempRanges": 1
+      }
+    },
+    {
+      "action": "disposition_submit",
+      "fromStatus": "draft",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交处置单 DISP-20260613-2USD 等待审批",
+      "timestamp": "2026-06-13T02:03:32.657Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-2USD",
+        "version": 2
+      }
+    },
+    {
+      "action": "disposition_approve_reject",
+      "fromStatus": "pending_approval",
+      "toStatus": "closed",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管审批处置单 DISP-20260613-2USD，结论: 拒收 - 全程超标，药品质量无法保证，予以拒收",
+      "timestamp": "2026-06-13T02:03:32.664Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-2USD",
+        "batchStatusFrom": "quarantined",
+        "batchStatusTo": "rejected",
+        "finalDecision": "reject"
+      }
+    },
+    {
+      "action": "reject",
+      "fromStatus": "quarantined",
+      "toStatus": "rejected",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "全程超标，药品质量无法保证，予以拒收",
+      "timestamp": "2026-06-13T02:03:32.664Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-2USD"
+      }
+    }
+  ],
+  "RMK-1781316212243-01": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:03:32.695Z"
+    },
+    {
+      "action": "review_pass",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "复核通过",
+      "timestamp": "2026-06-13T02:03:32.706Z"
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "正常放行",
+      "timestamp": "2026-06-13T02:03:32.713Z"
+    },
+    {
+      "action": "quality_remark_create",
+      "fromStatus": "released",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "新增质管导出备注",
+      "timestamp": "2026-06-13T02:03:32.726Z",
+      "detail": {
+        "remarkVersion": 1,
+        "remarkContent": "风险说明：该批次超温时间短，供应商已提供环境温度证明，后续抽检安排：下一批到货加严抽检。"
+      }
+    },
+    {
+      "action": "quality_remark_update",
+      "fromStatus": "released",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "更新质管导出备注",
+      "timestamp": "2026-06-13T02:03:32.743Z",
+      "detail": {
+        "remarkVersion": 2,
+        "remarkContent": "更新备注：供应商沟通结果良好，已签署整改协议。"
+      }
+    },
+    {
+      "action": "quality_remark_update",
+      "fromStatus": "released",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "更新质管导出备注",
+      "timestamp": "2026-06-13T02:03:32.750Z",
+      "detail": {
+        "remarkVersion": 3,
+        "remarkContent": "更新备注 v3：风险说明：超温时间短影响有限；供应商沟通：已签署质量协议；后续抽检：连续3批加严。"
+      }
+    }
+  ],
+  "RMK-1781316212243-02": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:03:32.775Z"
+    },
+    {
+      "action": "review_pass",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "复核通过",
+      "timestamp": "2026-06-13T02:03:32.783Z"
+    },
+    {
+      "action": "reject",
+      "fromStatus": "quarantined",
+      "toStatus": "rejected",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质量不合格",
+      "timestamp": "2026-06-13T02:03:32.789Z"
+    },
+    {
+      "action": "quality_remark_create",
+      "fromStatus": "rejected",
+      "toStatus": "rejected",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "新增质管导出备注",
+      "timestamp": "2026-06-13T02:03:32.796Z",
+      "detail": {
+        "remarkVersion": 1,
+        "remarkContent": "拒收原因：供应商冷链运输不达标，已纳入重点监控名单，下批到货前需提供整改报告。"
+      }
+    }
+  ],
+  "RVW-A02-20260613101106": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:11:06.957Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 3 条",
+      "timestamp": "2026-06-13T02:11:07.016Z",
+      "detail": {
+        "logCount": 3,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T02:11:07.020Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2026-01-01T00:05:00.000Z",
+            "end": "2026-01-01T00:05:00.000Z",
+            "minTemp": 9.8,
+            "maxTemp": 9.8
+          }
+        ]
+      }
+    },
+    {
+      "action": "disposition_create",
+      "fromStatus": null,
+      "toStatus": "draft",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师创建温控偏差处置单 DISP-20260613-PTYY",
+      "timestamp": "2026-06-13T02:11:07.066Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-PTYY",
+        "selectedOverTempRanges": 1
+      }
+    },
+    {
+      "action": "disposition_submit",
+      "fromStatus": "draft",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交处置单 DISP-20260613-PTYY 等待审批",
+      "timestamp": "2026-06-13T02:11:07.093Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-PTYY",
+        "version": 2
+      }
+    },
+    {
+      "action": "disposition_return_supplement",
+      "fromStatus": "pending_approval",
+      "toStatus": "returned_for_supplement",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-PTYY 补充材料: need warehouse temperature evidence",
+      "timestamp": "2026-06-13T02:11:07.121Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-PTYY",
+        "returnReason": "need warehouse temperature evidence"
+      }
+    },
+    {
+      "action": "supplement_create",
+      "fromStatus": null,
+      "toStatus": "pending",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-PTYY，创建补证包 SUPP-20260613-64X8",
+      "timestamp": "2026-06-13T02:11:07.127Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-64X8",
+        "dispositionId": "DISP-20260613-PTYY",
+        "returnReason": "need warehouse temperature evidence"
+      }
+    }
+  ],
+  "RVW-NODE-1781316768733": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T02:12:48.763Z"
+    },
+    {
+      "action": "import_temperature",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "导入温度日志 3 条",
+      "timestamp": "2026-06-13T02:12:48.776Z",
+      "detail": {
+        "logCount": 3,
+        "overTempCount": 1
+      }
+    },
+    {
+      "action": "auto_quarantine",
+      "fromStatus": "pending_review",
+      "toStatus": "quarantined",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "检测到 1 个超温区间，系统自动隔离",
+      "timestamp": "2026-06-13T02:12:48.780Z",
+      "detail": {
+        "overTempRanges": [
+          {
+            "start": "2026-01-01T00:05:00.000Z",
+            "end": "2026-01-01T00:05:00.000Z",
+            "minTemp": 9.8,
+            "maxTemp": 9.8
+          }
+        ]
+      }
+    },
+    {
+      "action": "disposition_create",
+      "fromStatus": null,
+      "toStatus": "draft",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师创建温控偏差处置单 DISP-20260613-LMDK",
+      "timestamp": "2026-06-13T02:12:48.788Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LMDK",
+        "selectedOverTempRanges": 1
+      }
+    },
+    {
+      "action": "disposition_submit",
+      "fromStatus": "draft",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交处置单 DISP-20260613-LMDK 等待审批",
+      "timestamp": "2026-06-13T02:12:48.795Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LMDK",
+        "version": 2
+      }
+    },
+    {
+      "action": "disposition_return_supplement",
+      "fromStatus": "pending_approval",
+      "toStatus": "returned_for_supplement",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-LMDK 补充材料: need warehouse temperature evidence",
+      "timestamp": "2026-06-13T02:12:48.801Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LMDK",
+        "returnReason": "need warehouse temperature evidence"
+      }
+    },
+    {
+      "action": "supplement_create",
+      "fromStatus": null,
+      "toStatus": "pending",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管退回处置单 DISP-20260613-LMDK，创建补证包 SUPP-20260613-890N",
+      "timestamp": "2026-06-13T02:12:48.808Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-890N",
+        "dispositionId": "DISP-20260613-LMDK",
+        "returnReason": "need warehouse temperature evidence"
+      }
+    },
+    {
+      "action": "disposition_resubmit_after_supplement",
+      "fromStatus": "returned_for_supplement",
+      "toStatus": "pending_approval",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-890N 后处置单 DISP-20260613-LMDK 自动重新提交审批",
+      "timestamp": "2026-06-13T02:12:48.824Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LMDK",
+        "supplementId": "SUPP-20260613-890N",
+        "dispositionVersion": 4
+      }
+    },
+    {
+      "action": "supplement_submit",
+      "fromStatus": "pending",
+      "toStatus": "submitted",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "药师提交补证包 SUPP-20260613-890N",
+      "timestamp": "2026-06-13T02:12:48.824Z",
+      "detail": {
+        "supplementId": "SUPP-20260613-890N",
+        "dispositionId": "DISP-20260613-LMDK",
+        "supplementDescription": "reviewer supplied warehouse temperature evidence",
+        "attachmentList": "warehouse-temp-review.xlsx"
+      }
+    },
+    {
+      "action": "disposition_approve_release",
+      "fromStatus": "pending_approval",
+      "toStatus": "closed",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "质管审批处置单 DISP-20260613-LMDK，结论: 放行 - supplement accepted",
+      "timestamp": "2026-06-13T02:12:48.846Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LMDK",
+        "batchStatusFrom": "quarantined",
+        "batchStatusTo": "released",
+        "finalDecision": "release"
+      }
+    },
+    {
+      "action": "release",
+      "fromStatus": "quarantined",
+      "toStatus": "released",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "supplement accepted",
+      "timestamp": "2026-06-13T02:12:48.846Z",
+      "detail": {
+        "dispositionId": "DISP-20260613-LMDK"
       }
     }
   ]

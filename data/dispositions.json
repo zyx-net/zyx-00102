@@ -682,5 +682,293 @@
     "returnedByName": "王质管",
     "closedAt": "2026-06-13T01:30:40.638Z",
     "version": 5
+  },
+  "DISP-20260613-CZ1M": {
+    "id": "DISP-20260613-CZ1M",
+    "batchNo": "DISP-1781314978917-01",
+    "status": "closed",
+    "deviationLevel": "moderate",
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "overTempRangeIndices": [
+      0
+    ],
+    "cause": "冷链箱中途断电10分钟导致温度超标，仓库同期温度记录显示环境温度正常",
+    "suggestedAction": "评估影响范围后可放行，已补充仓库温度记录",
+    "attachmentSummary": "冷链箱断电记录.pdf、温度曲线截图.png、仓库环境温度记录.xlsx",
+    "createdBy": "pharmacist01",
+    "createdByName": "李药师",
+    "createdAt": "2026-06-13T01:42:59.176Z",
+    "updatedAt": "2026-06-13T01:42:59.315Z",
+    "submittedAt": "2026-06-13T01:42:59.274Z",
+    "approvedAt": "2026-06-13T01:42:59.315Z",
+    "approvedBy": "quality01",
+    "approvedByName": "王质管",
+    "finalDecision": "release",
+    "approvalReason": "超温时间短，影响有限，同意放行",
+    "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据",
+    "returnedAt": "2026-06-13T01:42:59.227Z",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "closedAt": "2026-06-13T01:42:59.315Z",
+    "version": 6
+  },
+  "DISP-20260613-LSET": {
+    "id": "DISP-20260613-LSET",
+    "batchNo": "DISP-1781314978917-02",
+    "status": "closed",
+    "deviationLevel": "major",
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "overTempRangeIndices": [
+      0
+    ],
+    "cause": "冷链运输全程温度超标超过2小时",
+    "suggestedAction": "拒收",
+    "attachmentSummary": "全程温度超标报告.pdf",
+    "createdBy": "pharmacist01",
+    "createdByName": "李药师",
+    "createdAt": "2026-06-13T01:42:59.362Z",
+    "updatedAt": "2026-06-13T01:42:59.374Z",
+    "submittedAt": "2026-06-13T01:42:59.368Z",
+    "approvedAt": "2026-06-13T01:42:59.374Z",
+    "approvedBy": "quality01",
+    "approvedByName": "王质管",
+    "finalDecision": "reject",
+    "approvalReason": "全程超标，药品质量无法保证，予以拒收",
+    "returnReason": null,
+    "returnedAt": null,
+    "returnedBy": null,
+    "returnedByName": null,
+    "closedAt": "2026-06-13T01:42:59.374Z",
+    "version": 3
+  },
+  "DISP-20260613-4CJJ": {
+    "id": "DISP-20260613-4CJJ",
+    "batchNo": "SUPP-TEST-1781315741232",
+    "status": "pending_approval",
+    "deviationLevel": "moderate",
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "overTempRangeIndices": [
+      0
+    ],
+    "cause": "冷链箱断电10分钟",
+    "suggestedAction": "评估后可放行",
+    "attachmentSummary": "断电记录.pdf",
+    "createdBy": "pharmacist01",
+    "createdByName": "李药师",
+    "createdAt": "2026-06-13T01:55:41.307Z",
+    "updatedAt": "2026-06-13T01:55:41.363Z",
+    "submittedAt": "2026-06-13T01:55:41.363Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "approvedByName": null,
+    "finalDecision": null,
+    "approvalReason": null,
+    "returnReason": "请补充仓库环境温度记录",
+    "returnedAt": "2026-06-13T01:55:41.332Z",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "closedAt": null,
+    "version": 4
+  },
+  "DISP-20260613-APOK": {
+    "id": "DISP-20260613-APOK",
+    "batchNo": "SUPP-TEST-1781316063307",
+    "status": "pending_approval",
+    "deviationLevel": "moderate",
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "overTempRangeIndices": [
+      0
+    ],
+    "cause": "冷链箱断电10分钟",
+    "suggestedAction": "评估后可放行",
+    "attachmentSummary": "断电记录.pdf",
+    "createdBy": "pharmacist01",
+    "createdByName": "李药师",
+    "createdAt": "2026-06-13T02:01:03.403Z",
+    "updatedAt": "2026-06-13T02:01:03.485Z",
+    "submittedAt": "2026-06-13T02:01:03.485Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "approvedByName": null,
+    "finalDecision": null,
+    "approvalReason": null,
+    "returnReason": "请补充仓库环境温度记录",
+    "returnedAt": "2026-06-13T02:01:03.443Z",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "closedAt": null,
+    "version": 4
+  },
+  "DISP-20260613-3ZDS": {
+    "id": "DISP-20260613-3ZDS",
+    "batchNo": "DISP-1781316212243-01",
+    "status": "closed",
+    "deviationLevel": "moderate",
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "overTempRangeIndices": [
+      0
+    ],
+    "cause": "冷链箱中途断电10分钟导致温度超标，仓库同期温度记录显示环境温度正常",
+    "suggestedAction": "评估影响范围后可放行，已补充仓库温度记录",
+    "attachmentSummary": "冷链箱断电记录.pdf、温度曲线截图.png、仓库环境温度记录.xlsx",
+    "createdBy": "pharmacist01",
+    "createdByName": "李药师",
+    "createdAt": "2026-06-13T02:03:32.495Z",
+    "updatedAt": "2026-06-13T02:03:32.606Z",
+    "submittedAt": "2026-06-13T02:03:32.577Z",
+    "approvedAt": "2026-06-13T02:03:32.606Z",
+    "approvedBy": "quality01",
+    "approvedByName": "王质管",
+    "finalDecision": "release",
+    "approvalReason": "超温时间短，影响有限，同意放行",
+    "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据",
+    "returnedAt": "2026-06-13T02:03:32.535Z",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "closedAt": "2026-06-13T02:03:32.606Z",
+    "version": 6
+  },
+  "DISP-20260613-2USD": {
+    "id": "DISP-20260613-2USD",
+    "batchNo": "DISP-1781316212243-02",
+    "status": "closed",
+    "deviationLevel": "major",
+    "overTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "overTempRangeIndices": [
+      0
+    ],
+    "cause": "冷链运输全程温度超标超过2小时",
+    "suggestedAction": "拒收",
+    "attachmentSummary": "全程温度超标报告.pdf",
+    "createdBy": "pharmacist01",
+    "createdByName": "李药师",
+    "createdAt": "2026-06-13T02:03:32.647Z",
+    "updatedAt": "2026-06-13T02:03:32.664Z",
+    "submittedAt": "2026-06-13T02:03:32.657Z",
+    "approvedAt": "2026-06-13T02:03:32.664Z",
+    "approvedBy": "quality01",
+    "approvedByName": "王质管",
+    "finalDecision": "reject",
+    "approvalReason": "全程超标，药品质量无法保证，予以拒收",
+    "returnReason": null,
+    "returnedAt": null,
+    "returnedBy": null,
+    "returnedByName": null,
+    "closedAt": "2026-06-13T02:03:32.664Z",
+    "version": 3
+  },
+  "DISP-20260613-PTYY": {
+    "id": "DISP-20260613-PTYY",
+    "batchNo": "RVW-A02-20260613101106",
+    "status": "returned_for_supplement",
+    "deviationLevel": "moderate",
+    "overTempRanges": [
+      {
+        "start": "2026-01-01T00:05:00.000Z",
+        "end": "2026-01-01T00:05:00.000Z",
+        "minTemp": 9.8,
+        "maxTemp": 9.8
+      }
+    ],
+    "overTempRangeIndices": [
+      0
+    ],
+    "cause": "review over temperature",
+    "suggestedAction": "supplement then release",
+    "attachmentSummary": "initial.pdf",
+    "createdBy": "pharmacist01",
+    "createdByName": "李药师",
+    "createdAt": "2026-06-13T02:11:07.066Z",
+    "updatedAt": "2026-06-13T02:11:07.121Z",
+    "submittedAt": "2026-06-13T02:11:07.093Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "approvedByName": null,
+    "finalDecision": null,
+    "approvalReason": null,
+    "returnReason": "need warehouse temperature evidence",
+    "returnedAt": "2026-06-13T02:11:07.121Z",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "closedAt": null,
+    "version": 3
+  },
+  "DISP-20260613-LMDK": {
+    "id": "DISP-20260613-LMDK",
+    "batchNo": "RVW-NODE-1781316768733",
+    "status": "closed",
+    "deviationLevel": "moderate",
+    "overTempRanges": [
+      {
+        "start": "2026-01-01T00:05:00.000Z",
+        "end": "2026-01-01T00:05:00.000Z",
+        "minTemp": 9.8,
+        "maxTemp": 9.8
+      }
+    ],
+    "overTempRangeIndices": [
+      0
+    ],
+    "cause": "review over temperature",
+    "suggestedAction": "supplement then release",
+    "attachmentSummary": "initial.pdf",
+    "createdBy": "pharmacist01",
+    "createdByName": "李药师",
+    "createdAt": "2026-06-13T02:12:48.788Z",
+    "updatedAt": "2026-06-13T02:12:48.846Z",
+    "submittedAt": "2026-06-13T02:12:48.824Z",
+    "approvedAt": "2026-06-13T02:12:48.846Z",
+    "approvedBy": "quality01",
+    "approvedByName": "王质管",
+    "finalDecision": "release",
+    "approvalReason": "supplement accepted",
+    "returnReason": "need warehouse temperature evidence",
+    "returnedAt": "2026-06-13T02:12:48.801Z",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "closedAt": "2026-06-13T02:12:48.846Z",
+    "version": 5
   }
 }

@@ -490,6 +490,20 @@ function returnForSupplement(dispositionId, returnReason, operatorId, expectedVe
     return { success: false, error: `处置单 ${dispositionId} 不存在` };
   }
 
+  if (disposition.status === DISP_STATUS.RETURNED_FOR_SUPPLEMENT) {
+    const supplementService = require('./supplementService');
+    const existingPending = supplementService.getPendingSupplementForDisposition(dispositionId);
+    if (existingPending) {
+      return {
+        success: false,
+        error: `该处置单已有未完成的补证包: ${existingPending.id}，请先完成当前补证`,
+        conflict: true,
+        existingSupplementId: existingPending.id
+      };
+    }
+    return { success: false, error: `当前状态 ${disposition.status} 不允许退回，只有待审批状态可以操作` };
+  }
+
   if (disposition.status !== DISP_STATUS.PENDING_APPROVAL) {
     return { success: false, error: `当前状态 ${disposition.status} 不允许退回，只有待审批状态可以操作` };
   }

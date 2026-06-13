@@ -114,5 +114,170 @@
     "createdAt": "2026-06-13T01:30:40.609Z",
     "updatedAt": "2026-06-13T01:30:40.621Z",
     "version": 2
+  },
+  "SUPP-20260613-QXM4": {
+    "id": "SUPP-20260613-QXM4",
+    "dispositionId": "DISP-20260613-CZ1M",
+    "batchNo": "DISP-1781314978917-01",
+    "status": "submitted",
+    "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T01:42:59.232Z",
+    "supplementDescription": "已补充断电时间段的仓库环境温度记录，同批次其他箱子温度均在正常范围内",
+    "relatedTempRangeIndices": [
+      0
+    ],
+    "relatedTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "attachmentList": "仓库环境温度记录.xlsx、同批次其他箱子温度监测报告.pdf",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T01:42:59.274Z",
+    "createdAt": "2026-06-13T01:42:59.232Z",
+    "updatedAt": "2026-06-13T01:42:59.274Z",
+    "version": 2
+  },
+  "SUPP-20260613-ZR4H": {
+    "id": "SUPP-20260613-ZR4H",
+    "dispositionId": "DISP-20260613-4CJJ",
+    "batchNo": "SUPP-TEST-1781315741232",
+    "status": "submitted",
+    "returnReason": "请补充仓库环境温度记录",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T01:55:41.338Z",
+    "supplementDescription": "已补充仓库环境温度记录，同批次其他箱子温度正常",
+    "relatedTempRangeIndices": [
+      0
+    ],
+    "relatedTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "attachmentList": "仓库环境温度记录.xlsx、同批次温度监测报告.pdf",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T01:55:41.363Z",
+    "createdAt": "2026-06-13T01:55:41.338Z",
+    "updatedAt": "2026-06-13T01:55:41.363Z",
+    "version": 2
+  },
+  "SUPP-20260613-YYZU": {
+    "id": "SUPP-20260613-YYZU",
+    "dispositionId": "DISP-20260613-APOK",
+    "batchNo": "SUPP-TEST-1781316063307",
+    "status": "submitted",
+    "returnReason": "请补充仓库环境温度记录",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T02:01:03.449Z",
+    "supplementDescription": "已补充仓库环境温度记录，同批次其他箱子温度正常",
+    "relatedTempRangeIndices": [
+      0
+    ],
+    "relatedTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "attachmentList": "仓库环境温度记录.xlsx、同批次温度监测报告.pdf",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T02:01:03.485Z",
+    "createdAt": "2026-06-13T02:01:03.449Z",
+    "updatedAt": "2026-06-13T02:01:03.485Z",
+    "version": 2
+  },
+  "SUPP-20260613-99U3": {
+    "id": "SUPP-20260613-99U3",
+    "dispositionId": "DISP-20260613-3ZDS",
+    "batchNo": "DISP-1781316212243-01",
+    "status": "submitted",
+    "returnReason": "请补充断电时间段的仓库环境温度记录和同批次其他箱子温度数据",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T02:03:32.541Z",
+    "supplementDescription": "已补充断电时间段的仓库环境温度记录，同批次其他箱子温度均在正常范围内",
+    "relatedTempRangeIndices": [
+      0
+    ],
+    "relatedTempRanges": [
+      {
+        "start": "2024-06-01T08:10:00.000Z",
+        "end": "2024-06-01T08:15:00.000Z",
+        "minTemp": 9.5,
+        "maxTemp": 10.2
+      }
+    ],
+    "attachmentList": "仓库环境温度记录.xlsx、同批次其他箱子温度监测报告.pdf",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T02:03:32.577Z",
+    "createdAt": "2026-06-13T02:03:32.541Z",
+    "updatedAt": "2026-06-13T02:03:32.577Z",
+    "version": 2
+  },
+  "SUPP-20260613-64X8": {
+    "id": "SUPP-20260613-64X8",
+    "dispositionId": "DISP-20260613-PTYY",
+    "batchNo": "RVW-A02-20260613101106",
+    "status": "pending",
+    "returnReason": "need warehouse temperature evidence",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T02:11:07.127Z",
+    "supplementDescription": null,
+    "relatedTempRangeIndices": null,
+    "relatedTempRanges": null,
+    "attachmentList": null,
+    "submittedBy": null,
+    "submittedByName": null,
+    "submittedAt": null,
+    "createdAt": "2026-06-13T02:11:07.127Z",
+    "updatedAt": "2026-06-13T02:11:07.127Z",
+    "version": 1
+  },
+  "SUPP-20260613-890N": {
+    "id": "SUPP-20260613-890N",
+    "dispositionId": "DISP-20260613-LMDK",
+    "batchNo": "RVW-NODE-1781316768733",
+    "status": "submitted",
+    "returnReason": "need warehouse temperature evidence",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T02:12:48.808Z",
+    "supplementDescription": "reviewer supplied warehouse temperature evidence",
+    "relatedTempRangeIndices": [
+      0
+    ],
+    "relatedTempRanges": [
+      {
+        "start": "2026-01-01T00:05:00.000Z",
+        "end": "2026-01-01T00:05:00.000Z",
+        "minTemp": 9.8,
+        "maxTemp": 9.8
+      }
+    ],
+    "attachmentList": "warehouse-temp-review.xlsx",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T02:12:48.824Z",
+    "createdAt": "2026-06-13T02:12:48.808Z",
+    "updatedAt": "2026-06-13T02:12:48.824Z",
+    "version": 2
   }
 }
