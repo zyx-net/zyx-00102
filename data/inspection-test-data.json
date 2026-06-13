@@ -1,0 +1,10 @@
+{
+  "timestamp": 1781329887801,
+  "batchNo": "BATCH-INS-1781329887801",
+  "batchNo2": "BATCH-INS2-1781329887801",
+  "inspectionId": "INS-20260613-2PAU",
+  "inspection2Id": "INS-20260613-IRSL",
+  "finalVersion": 5,
+  "finalStatus": "approved",
+  "auditLogCount": 5
+}

@@ -1,0 +1,262 @@
+{
+  "INS-20260613-E1Q6": {
+    "id": "INS-20260613-E1Q6",
+    "batchNo": "BATCH-INS-1781329708022",
+    "drugName": "测试药品",
+    "inspectionItems": [
+      {
+        "name": "外观性状",
+        "criteria": "应为白色粉末",
+        "method": "目视检查",
+        "result": "白色粉末，无异味",
+        "passed": true,
+        "remark": "符合规定"
+      },
+      {
+        "name": "装量差异",
+        "criteria": "±5%以内",
+        "method": "称重法",
+        "result": "平均差异+2.3%",
+        "passed": true,
+        "remark": ""
+      },
+      {
+        "name": "含量测定",
+        "criteria": "95.0%~105.0%",
+        "method": "HPLC",
+        "result": "99.2%",
+        "passed": true,
+        "remark": ""
+      }
+    ],
+    "sampleQuantity": 20,
+    "sampleUnit": "盒",
+    "deadline": "2026-06-20T05:48:28.078Z",
+    "status": "approved",
+    "createdBy": "quality01",
+    "createdByName": "王质管",
+    "createdAt": "2026-06-13T05:48:28.079Z",
+    "updatedAt": "2026-06-13T05:48:28.103Z",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T05:48:28.100Z",
+    "approvedBy": "quality01",
+    "approvedByName": "王质管",
+    "approvedAt": "2026-06-13T05:48:28.103Z",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T05:48:28.098Z",
+    "returnReason": "含量测定数据不完整，请补充原始色谱图",
+    "overallPassed": true,
+    "conclusion": "抽检合格，准予放行",
+    "version": 5
+  },
+  "INS-20260613-X88K": {
+    "id": "INS-20260613-X88K",
+    "batchNo": "BATCH-INS2-1781329708022",
+    "drugName": "测试药品",
+    "inspectionItems": [
+      {
+        "name": "外观性状",
+        "criteria": "应为白色粉末",
+        "method": "目视检查",
+        "result": "白色粉末，无异味",
+        "passed": true,
+        "remark": "符合规定"
+      },
+      {
+        "name": "装量差异",
+        "criteria": "±5%以内",
+        "method": "称重法",
+        "result": "平均差异+2.3%",
+        "passed": true,
+        "remark": ""
+      },
+      {
+        "name": "含量测定",
+        "criteria": "95.0%~105.0%",
+        "method": "HPLC",
+        "result": "99.2%",
+        "passed": true,
+        "remark": ""
+      }
+    ],
+    "sampleQuantity": 20,
+    "sampleUnit": "盒",
+    "deadline": "2026-06-20T05:48:28.109Z",
+    "status": "returned",
+    "createdBy": "quality01",
+    "createdByName": "王质管",
+    "createdAt": "2026-06-13T05:48:28.110Z",
+    "updatedAt": "2026-06-13T05:48:28.117Z",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T05:48:28.114Z",
+    "approvedBy": null,
+    "approvedByName": null,
+    "approvedAt": null,
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T05:48:28.117Z",
+    "returnReason": "含量测定数据不完整，请补充原始色谱图",
+    "overallPassed": true,
+    "conclusion": "全部项目合格",
+    "version": 3
+  },
+  "INS-20260613-2PAU": {
+    "id": "INS-20260613-2PAU",
+    "batchNo": "BATCH-INS-1781329887801",
+    "drugName": "测试药品",
+    "inspectionItems": [
+      {
+        "name": "外观性状",
+        "criteria": "应为白色粉末",
+        "method": "目视检查",
+        "result": "白色粉末，无异味",
+        "passed": true,
+        "remark": "符合规定"
+      },
+      {
+        "name": "装量差异",
+        "criteria": "±5%以内",
+        "method": "称重法",
+        "result": "平均差异+2.3%",
+        "passed": true,
+        "remark": ""
+      },
+      {
+        "name": "含量测定",
+        "criteria": "95.0%~105.0%",
+        "method": "HPLC",
+        "result": "99.2%",
+        "passed": true,
+        "remark": ""
+      }
+    ],
+    "sampleQuantity": 20,
+    "sampleUnit": "盒",
+    "deadline": "2026-06-20T05:51:27.842Z",
+    "status": "approved",
+    "createdBy": "quality01",
+    "createdByName": "王质管",
+    "createdAt": "2026-06-13T05:51:27.843Z",
+    "updatedAt": "2026-06-13T05:51:27.866Z",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T05:51:27.863Z",
+    "approvedBy": "quality01",
+    "approvedByName": "王质管",
+    "approvedAt": "2026-06-13T05:51:27.866Z",
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T05:51:27.860Z",
+    "returnReason": "含量测定数据不完整，请补充原始色谱图",
+    "overallPassed": true,
+    "conclusion": "抽检合格，准予放行",
+    "version": 5
+  },
+  "INS-20260613-IRSL": {
+    "id": "INS-20260613-IRSL",
+    "batchNo": "BATCH-INS2-1781329887801",
+    "drugName": "测试药品",
+    "inspectionItems": [
+      {
+        "name": "外观性状",
+        "criteria": "应为白色粉末",
+        "method": "目视检查",
+        "result": "白色粉末，无异味",
+        "passed": true,
+        "remark": "符合规定"
+      },
+      {
+        "name": "装量差异",
+        "criteria": "±5%以内",
+        "method": "称重法",
+        "result": "平均差异+2.3%",
+        "passed": true,
+        "remark": ""
+      },
+      {
+        "name": "含量测定",
+        "criteria": "95.0%~105.0%",
+        "method": "HPLC",
+        "result": "99.2%",
+        "passed": true,
+        "remark": ""
+      }
+    ],
+    "sampleQuantity": 20,
+    "sampleUnit": "盒",
+    "deadline": "2026-06-20T05:51:27.871Z",
+    "status": "returned",
+    "createdBy": "quality01",
+    "createdByName": "王质管",
+    "createdAt": "2026-06-13T05:51:27.872Z",
+    "updatedAt": "2026-06-13T05:51:27.880Z",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T05:51:27.877Z",
+    "approvedBy": null,
+    "approvedByName": null,
+    "approvedAt": null,
+    "returnedBy": "quality01",
+    "returnedByName": "王质管",
+    "returnedAt": "2026-06-13T05:51:27.880Z",
+    "returnReason": "含量测定数据不完整，请补充原始色谱图",
+    "overallPassed": true,
+    "conclusion": "全部项目合格",
+    "version": 3
+  },
+  "INS-20260613-C401": {
+    "id": "INS-20260613-C401",
+    "batchNo": "BATCH-INS3-1781329887801",
+    "drugName": "测试药品",
+    "inspectionItems": [
+      {
+        "name": "外观性状",
+        "criteria": "应为白色粉末",
+        "method": "目视检查",
+        "result": "白色粉末，无异味",
+        "passed": true,
+        "remark": "符合规定"
+      },
+      {
+        "name": "装量差异",
+        "criteria": "±5%以内",
+        "method": "称重法",
+        "result": "平均差异+2.3%",
+        "passed": true,
+        "remark": ""
+      },
+      {
+        "name": "含量测定",
+        "criteria": "95.0%~105.0%",
+        "method": "HPLC",
+        "result": "99.2%",
+        "passed": true,
+        "remark": ""
+      }
+    ],
+    "sampleQuantity": 20,
+    "sampleUnit": "盒",
+    "deadline": "2026-06-20T05:51:27.882Z",
+    "status": "submitted",
+    "createdBy": "quality01",
+    "createdByName": "王质管",
+    "createdAt": "2026-06-13T05:51:27.884Z",
+    "updatedAt": "2026-06-13T05:51:27.887Z",
+    "submittedBy": "pharmacist01",
+    "submittedByName": "李药师",
+    "submittedAt": "2026-06-13T05:51:27.887Z",
+    "approvedBy": null,
+    "approvedByName": null,
+    "approvedAt": null,
+    "returnedBy": null,
+    "returnedByName": null,
+    "returnedAt": null,
+    "returnReason": "",
+    "overallPassed": true,
+    "conclusion": "全部项目合格",
+    "version": 2
+  }
+}

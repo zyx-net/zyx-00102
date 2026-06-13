@@ -1,1 +1,86 @@
-{}
+{
+  "BATCH-INS-1781329411878": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T05:43:31.904Z"
+    }
+  ],
+  "BATCH-INS2-1781329411878": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T05:43:31.910Z"
+    }
+  ],
+  "BATCH-INS-1781329708022": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T05:48:28.062Z"
+    }
+  ],
+  "BATCH-INS2-1781329708022": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T05:48:28.072Z"
+    }
+  ],
+  "BATCH-INS-1781329887801": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T05:51:27.828Z"
+    }
+  ],
+  "BATCH-INS2-1781329887801": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T05:51:27.835Z"
+    }
+  ],
+  "BATCH-INS3-1781329887801": [
+    {
+      "action": "import",
+      "fromStatus": null,
+      "toStatus": "pending_review",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "收货员导入到货记录",
+      "timestamp": "2026-06-13T05:51:27.838Z"
+    }
+  ]
+}

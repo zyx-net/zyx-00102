@@ -1,0 +1,319 @@
+{
+  "INS-20260613-E1Q6": [
+    {
+      "action": "inspection_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建抽检任务",
+      "timestamp": "2026-06-13T05:48:28.079Z",
+      "detail": {
+        "batchNo": "BATCH-INS-1781329708022",
+        "sampleQuantity": 20,
+        "deadline": "2026-06-20T05:48:28.078Z",
+        "itemCount": 3,
+        "version": 1
+      }
+    },
+    {
+      "action": "inspection_submit",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "提交检测结果",
+      "timestamp": "2026-06-13T05:48:28.092Z",
+      "detail": {
+        "fromStatus": "pending",
+        "toStatus": "submitted",
+        "overallPassed": true,
+        "version": 2,
+        "before": {
+          "status": "pending",
+          "version": 1
+        },
+        "after": {
+          "status": "submitted",
+          "version": 2
+        }
+      }
+    },
+    {
+      "action": "inspection_return",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "含量测定数据不完整，请补充原始色谱图",
+      "timestamp": "2026-06-13T05:48:28.098Z",
+      "detail": {
+        "fromStatus": "submitted",
+        "toStatus": "returned",
+        "version": 3
+      }
+    },
+    {
+      "action": "inspection_submit",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "提交检测结果",
+      "timestamp": "2026-06-13T05:48:28.100Z",
+      "detail": {
+        "fromStatus": "returned",
+        "toStatus": "submitted",
+        "overallPassed": true,
+        "version": 4,
+        "before": {
+          "status": "returned",
+          "version": 3
+        },
+        "after": {
+          "status": "submitted",
+          "version": 4
+        }
+      }
+    },
+    {
+      "action": "inspection_approve",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "检测结果符合标准，同意通过",
+      "timestamp": "2026-06-13T05:48:28.103Z",
+      "detail": {
+        "fromStatus": "submitted",
+        "toStatus": "approved",
+        "version": 5
+      }
+    }
+  ],
+  "INS-20260613-X88K": [
+    {
+      "action": "inspection_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建抽检任务",
+      "timestamp": "2026-06-13T05:48:28.110Z",
+      "detail": {
+        "batchNo": "BATCH-INS2-1781329708022",
+        "sampleQuantity": 20,
+        "deadline": "2026-06-20T05:48:28.109Z",
+        "itemCount": 3,
+        "version": 1
+      }
+    },
+    {
+      "action": "inspection_submit",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "提交检测结果",
+      "timestamp": "2026-06-13T05:48:28.114Z",
+      "detail": {
+        "fromStatus": "pending",
+        "toStatus": "submitted",
+        "overallPassed": true,
+        "version": 2,
+        "before": {
+          "status": "pending",
+          "version": 1
+        },
+        "after": {
+          "status": "submitted",
+          "version": 2
+        }
+      }
+    },
+    {
+      "action": "inspection_return",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "含量测定数据不完整，请补充原始色谱图",
+      "timestamp": "2026-06-13T05:48:28.117Z",
+      "detail": {
+        "fromStatus": "submitted",
+        "toStatus": "returned",
+        "version": 3
+      }
+    }
+  ],
+  "INS-20260613-2PAU": [
+    {
+      "action": "inspection_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建抽检任务",
+      "timestamp": "2026-06-13T05:51:27.843Z",
+      "detail": {
+        "batchNo": "BATCH-INS-1781329887801",
+        "sampleQuantity": 20,
+        "deadline": "2026-06-20T05:51:27.842Z",
+        "itemCount": 3,
+        "version": 1
+      }
+    },
+    {
+      "action": "inspection_submit",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "提交检测结果",
+      "timestamp": "2026-06-13T05:51:27.855Z",
+      "detail": {
+        "fromStatus": "pending",
+        "toStatus": "submitted",
+        "overallPassed": true,
+        "version": 2,
+        "before": {
+          "status": "pending",
+          "version": 1
+        },
+        "after": {
+          "status": "submitted",
+          "version": 2
+        }
+      }
+    },
+    {
+      "action": "inspection_return",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "含量测定数据不完整，请补充原始色谱图",
+      "timestamp": "2026-06-13T05:51:27.860Z",
+      "detail": {
+        "fromStatus": "submitted",
+        "toStatus": "returned",
+        "version": 3
+      }
+    },
+    {
+      "action": "inspection_submit",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "提交检测结果",
+      "timestamp": "2026-06-13T05:51:27.863Z",
+      "detail": {
+        "fromStatus": "returned",
+        "toStatus": "submitted",
+        "overallPassed": true,
+        "version": 4,
+        "before": {
+          "status": "returned",
+          "version": 3
+        },
+        "after": {
+          "status": "submitted",
+          "version": 4
+        }
+      }
+    },
+    {
+      "action": "inspection_approve",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "检测结果符合标准，同意通过",
+      "timestamp": "2026-06-13T05:51:27.866Z",
+      "detail": {
+        "fromStatus": "submitted",
+        "toStatus": "approved",
+        "version": 5
+      }
+    }
+  ],
+  "INS-20260613-IRSL": [
+    {
+      "action": "inspection_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建抽检任务",
+      "timestamp": "2026-06-13T05:51:27.872Z",
+      "detail": {
+        "batchNo": "BATCH-INS2-1781329887801",
+        "sampleQuantity": 20,
+        "deadline": "2026-06-20T05:51:27.871Z",
+        "itemCount": 3,
+        "version": 1
+      }
+    },
+    {
+      "action": "inspection_submit",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "提交检测结果",
+      "timestamp": "2026-06-13T05:51:27.877Z",
+      "detail": {
+        "fromStatus": "pending",
+        "toStatus": "submitted",
+        "overallPassed": true,
+        "version": 2,
+        "before": {
+          "status": "pending",
+          "version": 1
+        },
+        "after": {
+          "status": "submitted",
+          "version": 2
+        }
+      }
+    },
+    {
+      "action": "inspection_return",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "含量测定数据不完整，请补充原始色谱图",
+      "timestamp": "2026-06-13T05:51:27.880Z",
+      "detail": {
+        "fromStatus": "submitted",
+        "toStatus": "returned",
+        "version": 3
+      }
+    }
+  ],
+  "INS-20260613-C401": [
+    {
+      "action": "inspection_create",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "创建抽检任务",
+      "timestamp": "2026-06-13T05:51:27.884Z",
+      "detail": {
+        "batchNo": "BATCH-INS3-1781329887801",
+        "sampleQuantity": 20,
+        "deadline": "2026-06-20T05:51:27.882Z",
+        "itemCount": 3,
+        "version": 1
+      }
+    },
+    {
+      "action": "inspection_submit",
+      "operatorId": "pharmacist01",
+      "operatorName": "李药师",
+      "operatorRole": "pharmacist",
+      "reason": "提交检测结果",
+      "timestamp": "2026-06-13T05:51:27.887Z",
+      "detail": {
+        "fromStatus": "pending",
+        "toStatus": "submitted",
+        "overallPassed": true,
+        "version": 2,
+        "before": {
+          "status": "pending",
+          "version": 1
+        },
+        "after": {
+          "status": "submitted",
+          "version": 2
+        }
+      }
+    }
+  ]
+}

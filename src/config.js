@@ -55,6 +55,17 @@ module.exports = {
     PHARMACIST: ['view', 'reference'],
     QUALITY_MANAGER: ['view', 'reference', 'create', 'update', 'void', 'change_expiry']
   },
+  inspectionStatus: {
+    PENDING: 'pending',
+    SUBMITTED: 'submitted',
+    APPROVED: 'approved',
+    RETURNED: 'returned'
+  },
+  inspectionPermissions: {
+    RECEIVER: ['view'],
+    PHARMACIST: ['view', 'submit_result'],
+    QUALITY_MANAGER: ['view', 'create', 'approve', 'return']
+  },
   users: [
     { id: 'receiver01', name: '张收货', role: 'receiver' },
     { id: 'pharmacist01', name: '李药师', role: 'pharmacist' },

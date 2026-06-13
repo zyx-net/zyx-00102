@@ -2,6 +2,7 @@ const express = require('express');
 const config = require('./src/config');
 const batchesRouter = require('./src/routes/batches');
 const calibrationRouter = require('./src/routes/calibration');
+const inspectionRouter = require('./src/routes/inspection');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.get('/users', (req, res) => {
 
 app.use('/api/batches', batchesRouter);
 app.use('/api/calibrations', calibrationRouter);
+app.use('/api/inspections', inspectionRouter);
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Not Found', path: req.path });

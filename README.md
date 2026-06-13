@@ -12,6 +12,7 @@
 - 完整审计历史：记录每次判定依据和操作者
 - 数据持久化：JSON 文件存储，服务重启后数据一致
 - 支持 CSV/JSON 格式导入导出
+- 到货抽检任务：质管创建 → 药师录入结果 → 质管确认/退回，带版本号和审计
 
 ## 快速开始
 
@@ -500,6 +501,8 @@ curl -X POST http://localhost:3000/api/batches/BATCH-2024-001/temperature/import
 | `supplements.json` | 补证包（含提交人、提交时间、关联温度区间、附件清单） |
 | `calibrations.json` | 校准记录（含设备编号、证书编号、有效期） |
 | `calibration-audit-logs.json` | 校准记录审计日志 |
+| `inspections.json` | 到货抽检任务（含抽检项目、检测结果、版本号） |
+| `inspection-audit-logs.json` | 抽检任务审计日志 |
 
 服务重启后数据保持一致。
 
@@ -694,6 +697,208 @@ curl http://localhost:3000/api/calibrations/CAL-XXXXXXXX-XXXX/audit \
 
 **批次 CSV 导出**：新增 `# 关联设备` 段，列出该批次温度日志引用的设备编号。
 
+## 14. 到货抽检任务
+
+质管负责人为已导入的批次创建抽检任务，药师录入检测结果并提交，质管再确认通过或退回重填。支持版本号、审计记录和 JSON/CSV 导出。
+
+### 抽检任务状态流转
+
+```
+待检测 (pending)
+    ↓ 药师提交结果
+已提交 (submitted)
+    ↓              ↓ 质管退回
+ 已通过          已退回 (returned)
+(approved)          ↓ 药师重新提交结果
+    ↑              已提交 (submitted)
+    └─────────────────┘
+```
+
+### 抽检任务权限
+
+| 操作 | 收货员 | 药师 | 质管负责人 |
+|------|--------|------|-----------|
+| 查看抽检任务 | ✓ | ✓ | ✓ |
+| 创建抽检任务 | ✗ | ✗ | ✓ |
+| 提交检测结果 | ✗ | ✓ | ✗ |
+| 确认通过抽检 | ✗ | ✗ | ✓ |
+| 退回重填 | ✗ | ✗ | ✓ |
+| 导出抽检任务 | ✓ | ✓ | ✓ |
+
+### 创建抽检任务（质管）
+
+```bash
+curl -X POST http://localhost:3000/api/inspections \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{
+    "batchNo": "BATCH-TEST-001",
+    "inspectionItems": [
+      { "name": "外观性状", "criteria": "应为白色或类白色粉末", "method": "目视检查" },
+      { "name": "装量差异", "criteria": "±5%以内", "method": "称重法" },
+      { "name": "含量测定", "criteria": "95.0%~105.0%", "method": "HPLC" }
+    ],
+    "sampleQuantity": 20,
+    "sampleUnit": "盒",
+    "deadline": "2026-06-20T18:00:00.000Z"
+  }'
+```
+
+**注意**：同一批次不允许存在多个未完成（pending/submitted/returned）的抽检任务，重复创建返回 **409 Conflict**。
+
+### 查看抽检任务
+
+```bash
+# 全部抽检任务
+curl http://localhost:3000/api/inspections \
+  -H "X-Operator-Id: receiver01"
+
+# 按批次查询
+curl "http://localhost:3000/api/inspections/batch/BATCH-TEST-001" \
+  -H "X-Operator-Id: pharmacist01"
+
+# 按状态过滤
+curl "http://localhost:3000/api/inspections?status=pending" \
+  -H "X-Operator-Id: quality01"
+
+# 单条详情（含审计日志）
+curl http://localhost:3000/api/inspections/INS-XXXXXXXX-XXXX \
+  -H "X-Operator-Id: receiver01"
+```
+
+### 药师提交检测结果
+
+```bash
+curl -X PUT http://localhost:3000/api/inspections/INS-XXXXXXXX-XXXX/submit \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: pharmacist01" \
+  -d '{
+    "items": [
+      { "name": "外观性状", "result": "白色粉末，无异味", "passed": true, "remark": "符合规定" },
+      { "name": "装量差异", "result": "平均差异+2.3%", "passed": true },
+      { "name": "含量测定", "result": "99.2%", "passed": true }
+    ],
+    "conclusion": "全部项目合格",
+    "expectedVersion": 1
+  }'
+```
+
+**说明**：
+- 提交后状态从 `pending` 变为 `submitted`
+- 如果状态是 `returned`，提交后也变为 `submitted`
+- 状态不允许时提交返回错误（invalidStatus）
+- 可携带 `expectedVersion` 进行乐观并发控制
+
+### 质管确认通过
+
+```bash
+curl -X POST http://localhost:3000/api/inspections/INS-XXXXXXXX-XXXX/approve \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{
+    "reason": "检测结果符合标准，同意通过",
+    "conclusion": "抽检合格，准予放行",
+    "expectedVersion": 2
+  }'
+```
+
+确认后状态从 `submitted` 变为 `approved`。
+
+### 质管退回重填
+
+```bash
+curl -X POST http://localhost:3000/api/inspections/INS-XXXXXXXX-XXXX/return \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{
+    "reason": "含量测定数据不完整，请补充原始色谱图",
+    "expectedVersion": 2
+  }'
+```
+
+退回后状态从 `submitted` 变为 `returned`，药师可重新提交结果。
+
+### 导出抽检任务
+
+```bash
+# 全部抽检任务 - JSON 格式
+curl http://localhost:3000/api/inspections/export/all?format=json \
+  -H "X-Operator-Id: quality01"
+
+# 全部抽检任务 - CSV 格式
+curl http://localhost:3000/api/inspections/export/all?format=csv \
+  -H "X-Operator-Id: quality01"
+
+# 单条抽检详情 - JSON 格式
+curl http://localhost:3000/api/inspections/export/INS-XXXXXXXX-XXXX?format=json \
+  -H "X-Operator-Id: quality01"
+
+# 单条抽检详情 - CSV 格式（含基本信息、项目明细、审计记录）
+curl http://localhost:3000/api/inspections/export/INS-XXXXXXXX-XXXX?format=csv \
+  -H "X-Operator-Id: quality01"
+```
+
+### 冲突和错误处理
+
+| 场景 | HTTP 状态 | 错误标识 | 说明 |
+|------|-----------|---------|------|
+| 同一批次重复创建未完成任务 | 409 | conflict | 返回 conflictId 指向已存在的任务 |
+| 越权操作（如收货员创建任务） | 400/403 | - | 返回权限不足错误 |
+| 状态不允许流转（如已 approved 再提交） | 400 | invalidStatus | 返回当前状态和不允许操作的原因 |
+| expectedVersion 与当前版本不一致 | 409 | conflict | 返回 currentVersion 供前端刷新后重试 |
+| 批次不存在 | 400 | - | 创建任务时校验批次是否已导入 |
+| 退回未填写原因 | 400 | - | 退回操作必须提供 reason |
+
+### 抽检任务字段示例
+
+```json
+{
+  "id": "INS-20260613-A1B2",
+  "batchNo": "BATCH-TEST-001",
+  "drugName": "测试药品",
+  "inspectionItems": [
+    {
+      "name": "外观性状",
+      "criteria": "应为白色或类白色粉末",
+      "method": "目视检查",
+      "result": "白色粉末",
+      "passed": true,
+      "remark": ""
+    }
+  ],
+  "sampleQuantity": 20,
+  "sampleUnit": "盒",
+  "deadline": "2026-06-20T18:00:00.000Z",
+  "status": "submitted",
+  "createdBy": "quality01",
+  "createdByName": "王质管",
+  "createdAt": "2026-06-13T08:00:00.000Z",
+  "updatedAt": "2026-06-13T10:00:00.000Z",
+  "submittedBy": "pharmacist01",
+  "submittedByName": "李药师",
+  "submittedAt": "2026-06-13T10:00:00.000Z",
+  "approvedBy": null,
+  "approvedByName": null,
+  "approvedAt": null,
+  "returnedBy": null,
+  "returnedByName": null,
+  "returnedAt": null,
+  "returnReason": "",
+  "overallPassed": true,
+  "conclusion": "全部项目合格",
+  "version": 2
+}
+```
+
+### 抽检任务审计动作
+
+| 动作 | 触发时机 |
+|------|---------|
+| `inspection_create` | 质管创建抽检任务 |
+| `inspection_submit` | 药师提交检测结果 |
+| `inspection_approve` | 质管确认通过抽检 |
+| `inspection_return` | 质管退回抽检任务 |
+
 ## 配置说明
 
 配置文件位于 `src/config.js`，可配置：
@@ -715,6 +920,8 @@ curl http://localhost:3000/api/calibrations/CAL-XXXXXXXX-XXXX/audit \
 ├── supplement-test.js     # 退回补证包专项测试
 ├── calibration-test.js    # 校准记录回归测试
 ├── calibration-test-verify.js  # 校准记录跨重启验证
+├── inspection-test.js     # 到货抽检任务回归测试
+├── inspection-test-verify.js  # 抽检任务跨重启验证
 ├── src/
 │   ├── config.js          # 配置
 │   ├── storage.js         # 数据持久化
@@ -724,10 +931,12 @@ curl http://localhost:3000/api/calibrations/CAL-XXXXXXXX-XXXX/audit \
 │   │   ├── dispositionService.js # 处置单业务逻辑
 │   │   ├── supplementService.js  # 补证包业务逻辑
 │   │   ├── calibrationService.js # 校准记录业务逻辑
+│   │   ├── inspectionService.js  # 抽检任务业务逻辑
 │   │   └── importExportService.js # 导入导出
 │   └── routes/
 │       ├── batches.js     # 批次路由
-│       └── calibration.js # 校准记录路由
+│       ├── calibration.js # 校准记录路由
+│       └── inspection.js  # 抽检任务路由
 ├── samples/               # 样例数据
 └── data/                  # 数据存储（运行时生成）
 ```

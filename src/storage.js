@@ -9,7 +9,9 @@ const dataFiles = {
   dispositions: 'dispositions.json',
   supplements: 'supplements.json',
   calibrations: 'calibrations.json',
-  calibrationAuditLogs: 'calibration-audit-logs.json'
+  calibrationAuditLogs: 'calibration-audit-logs.json',
+  inspections: 'inspections.json',
+  inspectionAuditLogs: 'inspection-audit-logs.json'
 };
 
 function ensureDataDir() {
@@ -219,6 +221,55 @@ function addCalibrationAuditLog(calibrationId, entry) {
   writeDataAtomic(dataFiles.calibrationAuditLogs, allLogs);
 }
 
+function getInspections() {
+  return readData(dataFiles.inspections, {});
+}
+
+function saveInspections(inspections) {
+  writeDataAtomic(dataFiles.inspections, inspections);
+}
+
+function getInspection(inspectionId) {
+  const inspections = getInspections();
+  return inspections[inspectionId] || null;
+}
+
+function saveInspection(inspection) {
+  const inspections = getInspections();
+  inspections[inspection.id] = inspection;
+  saveInspections(inspections);
+}
+
+function listInspections() {
+  const inspections = getInspections();
+  return Object.values(inspections).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+function getInspectionsByBatch(batchNo) {
+  return listInspections().filter(i => i.batchNo === batchNo);
+}
+
+function getActiveInspectionForBatch(batchNo) {
+  const config = require('./config');
+  const openStatuses = [config.inspectionStatus.PENDING, config.inspectionStatus.SUBMITTED, config.inspectionStatus.RETURNED];
+  const batchInspections = getInspectionsByBatch(batchNo);
+  return batchInspections.find(i => openStatuses.includes(i.status)) || null;
+}
+
+function getInspectionAuditLogs(inspectionId) {
+  const allLogs = readData(dataFiles.inspectionAuditLogs, {});
+  return (allLogs[inspectionId] || []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+}
+
+function addInspectionAuditLog(inspectionId, entry) {
+  const allLogs = readData(dataFiles.inspectionAuditLogs, {});
+  if (!allLogs[inspectionId]) {
+    allLogs[inspectionId] = [];
+  }
+  allLogs[inspectionId].push(entry);
+  writeDataAtomic(dataFiles.inspectionAuditLogs, allLogs);
+}
+
 module.exports = {
   getBatches,
   saveBatches,
@@ -250,5 +301,14 @@ module.exports = {
   getCalibrationsByDevice,
   getActiveCalibrationForDevice,
   getCalibrationAuditLogs,
-  addCalibrationAuditLog
+  addCalibrationAuditLog,
+  getInspections,
+  saveInspections,
+  getInspection,
+  saveInspection,
+  listInspections,
+  getInspectionsByBatch,
+  getActiveInspectionForBatch,
+  getInspectionAuditLogs,
+  addInspectionAuditLog
 };

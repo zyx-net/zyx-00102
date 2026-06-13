@@ -182,6 +182,82 @@ function exportCalibrationsToCSV(calibrations) {
   return toCSV(rows, ['id', 'deviceNo', 'deviceType', 'certificateNo', 'calibratedAt', 'validUntil', 'calibrationUnit', 'remark', 'status', 'createdBy', 'createdAt']);
 }
 
+function exportInspectionsToCSV(inspections) {
+  const rows = inspections.map(i => ({
+    id: i.id,
+    batchNo: i.batchNo,
+    drugName: i.drugName || '',
+    status: i.status,
+    sampleQuantity: i.sampleQuantity,
+    sampleUnit: i.sampleUnit || '',
+    deadline: i.deadline,
+    itemCount: (i.inspectionItems || []).length,
+    overallPassed: i.overallPassed !== null ? (i.overallPassed ? '是' : '否') : '',
+    conclusion: i.conclusion || '',
+    createdBy: i.createdByName || i.createdBy || '',
+    createdAt: i.createdAt || '',
+    submittedBy: i.submittedByName || i.submittedBy || '',
+    submittedAt: i.submittedAt || '',
+    approvedBy: i.approvedByName || i.approvedBy || '',
+    approvedAt: i.approvedAt || '',
+    returnedBy: i.returnedByName || i.returnedBy || '',
+    returnedAt: i.returnedAt || '',
+    version: i.version
+  }));
+  return toCSV(rows, ['id', 'batchNo', 'drugName', 'status', 'sampleQuantity', 'sampleUnit', 'deadline', 'itemCount', 'overallPassed', 'conclusion', 'createdBy', 'createdAt', 'submittedBy', 'submittedAt', 'approvedBy', 'approvedAt', 'returnedBy', 'returnedAt', 'version']);
+}
+
+function exportInspectionDetailToCSV(detail) {
+  const inspection = detail.inspection;
+  const auditLogs = detail.auditLogs || [];
+  const items = inspection.inspectionItems || [];
+
+  const mainCSV = toCSV([{
+    id: inspection.id,
+    batchNo: inspection.batchNo,
+    drugName: inspection.drugName || '',
+    status: inspection.status,
+    sampleQuantity: inspection.sampleQuantity,
+    sampleUnit: inspection.sampleUnit || '',
+    deadline: inspection.deadline,
+    overallPassed: inspection.overallPassed !== null ? (inspection.overallPassed ? '是' : '否') : '',
+    conclusion: inspection.conclusion || '',
+    returnReason: inspection.returnReason || '',
+    createdBy: inspection.createdByName || inspection.createdBy || '',
+    createdAt: inspection.createdAt || '',
+    submittedBy: inspection.submittedByName || inspection.submittedBy || '',
+    submittedAt: inspection.submittedAt || '',
+    approvedBy: inspection.approvedByName || inspection.approvedBy || '',
+    approvedAt: inspection.approvedAt || '',
+    returnedBy: inspection.returnedByName || inspection.returnedBy || '',
+    returnedAt: inspection.returnedAt || '',
+    version: inspection.version
+  }], ['id', 'batchNo', 'drugName', 'status', 'sampleQuantity', 'sampleUnit', 'deadline', 'overallPassed', 'conclusion', 'returnReason', 'createdBy', 'createdAt', 'submittedBy', 'submittedAt', 'approvedBy', 'approvedAt', 'returnedBy', 'returnedAt', 'version']);
+
+  const itemRows = items.map((item, idx) => ({
+    index: idx + 1,
+    name: item.name,
+    criteria: item.criteria,
+    method: item.method || '',
+    result: item.result || '',
+    passed: item.passed !== null ? (item.passed ? '合格' : '不合格') : '',
+    remark: item.remark || ''
+  }));
+  const itemsCSV = toCSV(itemRows, ['index', 'name', 'criteria', 'method', 'result', 'passed', 'remark']);
+
+  const auditRows = auditLogs.map(log => ({
+    action: log.action,
+    operatorId: log.operatorId,
+    operatorName: log.operatorName,
+    operatorRole: log.operatorRole,
+    reason: log.reason || '',
+    timestamp: log.timestamp
+  }));
+  const auditCSV = toCSV(auditRows, ['action', 'operatorId', 'operatorName', 'operatorRole', 'reason', 'timestamp']);
+
+  return `# 抽检任务基本信息\n${mainCSV}\n\n# 抽检项目明细\n${itemsCSV}\n\n# 审计记录\n${auditCSV}`;
+}
+
 module.exports = {
   parseCSV,
   toCSV,
@@ -189,5 +265,7 @@ module.exports = {
   parseTemperatureImport,
   exportBatchToJSON,
   exportBatchToCSV,
-  exportCalibrationsToCSV
+  exportCalibrationsToCSV,
+  exportInspectionsToCSV,
+  exportInspectionDetailToCSV
 };
