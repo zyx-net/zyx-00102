@@ -1,8 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  port: process.env.PORT || 3000,
-  dataDir: path.join(__dirname, '..', 'data'),
+  port: parseInt(process.env.PORT) || 3000,
+  dataDir: process.env.DATA_DIR || path.join(__dirname, '..', 'data'),
   temperature: {
     min: 2.0,
     max: 8.0,
