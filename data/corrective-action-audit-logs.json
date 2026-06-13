@@ -1,0 +1,72 @@
+{
+  "CA-MQCCEM1V-IQ7L": [
+    {
+      "action": "create",
+      "fromStatus": null,
+      "toStatus": "draft",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "创建整改单",
+      "timestamp": "2026-06-13T12:39:42.113Z"
+    },
+    {
+      "action": "submit_for_assign",
+      "fromStatus": "draft",
+      "toStatus": "pending_assign",
+      "operatorId": "receiver01",
+      "operatorName": "张收货",
+      "operatorRole": "receiver",
+      "reason": "提交整改单等待分派",
+      "timestamp": "2026-06-13T12:39:42.130Z"
+    },
+    {
+      "action": "assign",
+      "fromStatus": "pending_assign",
+      "toStatus": "assigned",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "分派给 赵供应",
+      "timestamp": "2026-06-13T12:39:42.133Z",
+      "detail": {
+        "assigneeId": "supplier01",
+        "assigneeName": "赵供应"
+      }
+    },
+    {
+      "action": "submit_response",
+      "fromStatus": "assigned",
+      "toStatus": "pending_verification",
+      "operatorId": "supplier01",
+      "operatorName": "赵供应",
+      "operatorRole": "supplier_contact",
+      "reason": "提交整改说明和证据",
+      "timestamp": "2026-06-13T12:39:42.136Z",
+      "detail": {
+        "responseLength": 21,
+        "hasEvidence": true
+      }
+    },
+    {
+      "action": "approve",
+      "fromStatus": "pending_verification",
+      "toStatus": "approved",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "整改措施有效，验收通过",
+      "timestamp": "2026-06-13T12:39:42.141Z"
+    },
+    {
+      "action": "close",
+      "fromStatus": "approved",
+      "toStatus": "closed",
+      "operatorId": "quality01",
+      "operatorName": "王质管",
+      "operatorRole": "quality_manager",
+      "reason": "整改完成，关闭整改单",
+      "timestamp": "2026-06-13T12:39:42.145Z"
+    }
+  ]
+}

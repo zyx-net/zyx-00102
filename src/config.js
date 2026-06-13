@@ -11,7 +11,8 @@ module.exports = {
   roles: {
     RECEIVER: 'receiver',
     PHARMACIST: 'pharmacist',
-    QUALITY_MANAGER: 'quality_manager'
+    QUALITY_MANAGER: 'quality_manager',
+    SUPPLIER_CONTACT: 'supplier_contact'
   },
   status: {
     PENDING_REVIEW: 'pending_review',
@@ -66,9 +67,36 @@ module.exports = {
     PHARMACIST: ['view', 'submit_result'],
     QUALITY_MANAGER: ['view', 'create', 'approve', 'return']
   },
+  correctiveActionStatus: {
+    DRAFT: 'draft',
+    PENDING_ASSIGN: 'pending_assign',
+    ASSIGNED: 'assigned',
+    PENDING_VERIFICATION: 'pending_verification',
+    APPROVED: 'approved',
+    RETURNED: 'returned',
+    CLOSED: 'closed'
+  },
+  correctiveActionSource: {
+    BATCH_REVIEW: 'batch_review',
+    TEMP_DEVIATION: 'temp_deviation',
+    INSPECTION_RETURN: 'inspection_return'
+  },
+  correctiveActionSeverity: {
+    MINOR: 'minor',
+    MODERATE: 'moderate',
+    MAJOR: 'major',
+    CRITICAL: 'critical'
+  },
+  correctiveActionPermissions: {
+    RECEIVER: ['create', 'view'],
+    PHARMACIST: ['create', 'view'],
+    QUALITY_MANAGER: ['create', 'view', 'assign', 'approve', 'return', 'close'],
+    SUPPLIER_CONTACT: ['view', 'submit_response']
+  },
   users: [
     { id: 'receiver01', name: '张收货', role: 'receiver' },
     { id: 'pharmacist01', name: '李药师', role: 'pharmacist' },
-    { id: 'quality01', name: '王质管', role: 'quality_manager' }
+    { id: 'quality01', name: '王质管', role: 'quality_manager' },
+    { id: 'supplier01', name: '赵供应', role: 'supplier_contact', supplierId: 'SUP001' }
   ]
 };

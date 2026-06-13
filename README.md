@@ -899,6 +899,278 @@ curl http://localhost:3000/api/inspections/export/INS-XXXXXXXX-XXXX?format=csv \
 | `inspection_approve` | 质管确认通过抽检 |
 | `inspection_return` | 质管退回抽检任务 |
 
+## 15. 供应商到货异常整改
+
+收货员或药师可将批次复核、温控偏差、抽检退回中发现的问题登记成整改单，质管负责分派给供应商、验收关闭或退回重改，供应商联系人只能提交整改说明和证据。整改单支持版本号、审计记录、JSON/CSV 导出，服务重启后数据保持一致。
+
+### 整改单状态流转
+
+```
+草稿 (draft)
+    ↓ 提交
+待分派 (pending_assign)
+    ↓ 质管分派
+已分派 (assigned)
+    ↓ 供应商提交整改说明
+待验收 (pending_verification)
+    ↓              ↓ 质管退回
+验收通过         已退回 (returned)
+(approved)         ↓ 供应商重新提交
+    ↓              待验收 (pending_verification)
+关闭 (closed)      ↑
+    │              │
+    └──────────────┘
+```
+
+### 整改单角色说明
+
+| 用户 ID | 姓名 | 角色 | 权限 |
+|---------|------|------|------|
+| receiver01 | 张收货 | 收货员 | 创建、查看整改单 |
+| pharmacist01 | 李药师 | 药师 | 创建、查看整改单 |
+| quality01 | 王质管 | 质管负责人 | 创建、查看、分派、验收、退回、关闭整改单 |
+| supplier01 | 赵供应 | 供应商联系人 | 查看、提交整改说明（仅分派给自己的） |
+
+### 整改单权限
+
+| 操作 | 收货员 | 药师 | 质管负责人 | 供应商联系人 |
+|------|--------|------|-----------|-------------|
+| 创建整改单 | ✓ | ✓ | ✓ | ✗ |
+| 查看整改单 | ✓ | ✓ | ✓ | ✓ |
+| 提交整改单（进入待分派） | ✓ | ✓ | ✓ | ✗ |
+| 分派整改单给供应商 | ✗ | ✗ | ✓ | ✗ |
+| 提交整改说明 | ✗ | ✗ | ✓ | ✓（仅自己的） |
+| 验收通过 | ✗ | ✗ | ✓ | ✗ |
+| 退回重改 | ✗ | ✗ | ✓ | ✗ |
+| 关闭整改单 | ✗ | ✗ | ✓ | ✗ |
+| 导出整改单 | ✓ | ✓ | ✓ | ✓ |
+
+### 创建整改单（收货员/药师/质管）
+
+```bash
+curl -X POST http://localhost:3000/api/corrective-actions \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: receiver01" \
+  -d '{
+    "batchNo": "BATCH-2024-001",
+    "source": "batch_review",
+    "severity": "moderate",
+    "supplierId": "SUP001",
+    "supplierName": "某制药有限公司",
+    "description": "批次复核发现外包装破损",
+    "attachmentSummary": "照片3张",
+    "dueDate": "2026-06-20"
+  }'
+```
+
+**问题来源（source）：**
+- `batch_review`：批次复核发现
+- `temp_deviation`：温控偏差
+- `inspection_return`：抽检退回
+
+**严重级别（severity）：**
+- `minor`：轻微
+- `moderate`：一般
+- `major`：严重
+- `critical`：重大
+
+### 查看整改单列表
+
+```bash
+# 全部整改单
+curl http://localhost:3000/api/corrective-actions \
+  -H "X-Operator-Id: quality01"
+
+# 按批次查询
+curl http://localhost:3000/api/corrective-actions/batch/BATCH-2024-001 \
+  -H "X-Operator-Id: pharmacist01"
+
+# 按供应商查询
+curl http://localhost:3000/api/corrective-actions/supplier/SUP001 \
+  -H "X-Operator-Id: quality01"
+
+# 按状态过滤
+curl "http://localhost:3000/api/corrective-actions?status=pending_assign" \
+  -H "X-Operator-Id: quality01"
+
+# 单条详情（含审计日志）
+curl http://localhost:3000/api/corrective-actions/CA-XXXXXXXX-XXXX \
+  -H "X-Operator-Id: receiver01"
+
+# 查看审计日志
+curl http://localhost:3000/api/corrective-actions/CA-XXXXXXXX-XXXX/audit \
+  -H "X-Operator-Id: quality01"
+```
+
+### 提交整改单等待分派
+
+```bash
+curl -X POST http://localhost:3000/api/corrective-actions/CA-XXXXXXXX-XXXX/submit \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: receiver01" \
+  -d '{"expectedVersion": 1}'
+```
+
+### 质管分派整改单给供应商
+
+```bash
+curl -X POST http://localhost:3000/api/corrective-actions/CA-XXXXXXXX-XXXX/assign \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{
+    "assigneeId": "supplier01",
+    "expectedVersion": 2
+  }'
+```
+
+### 供应商提交整改说明
+
+```bash
+curl -X POST http://localhost:3000/api/corrective-actions/CA-XXXXXXXX-XXXX/response \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: supplier01" \
+  -d '{
+    "response": "已重新更换外包装，确保运输过程中的保护措施",
+    "responseEvidence": "整改前后对比照片、运输加固方案说明",
+    "expectedVersion": 3
+  }'
+```
+
+### 质管验收通过
+
+```bash
+curl -X POST http://localhost:3000/api/corrective-actions/CA-XXXXXXXX-XXXX/approve \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{
+    "note": "整改措施有效，验收通过",
+    "expectedVersion": 4
+  }'
+```
+
+### 质管退回重改
+
+```bash
+curl -X POST http://localhost:3000/api/corrective-actions/CA-XXXXXXXX-XXXX/return \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{
+    "reason": "请补充整改后的实物照片和运输加固后的装箱单",
+    "expectedVersion": 4
+  }'
+```
+
+### 质管关闭整改单
+
+```bash
+curl -X POST http://localhost:3000/api/corrective-actions/CA-XXXXXXXX-XXXX/close \
+  -H "Content-Type: application/json" \
+  -H "X-Operator-Id: quality01" \
+  -d '{
+    "note": "整改完成，关闭整改单",
+    "expectedVersion": 5
+  }'
+```
+
+### 导出整改单
+
+```bash
+# 全部整改单 - JSON 格式
+curl http://localhost:3000/api/corrective-actions/export/all?format=json \
+  -H "X-Operator-Id: quality01"
+
+# 全部整改单 - CSV 格式
+curl http://localhost:3000/api/corrective-actions/export/all?format=csv \
+  -H "X-Operator-Id: quality01"
+
+# 按批次导出
+curl "http://localhost:3000/api/corrective-actions/export/all?format=csv&batchNo=BATCH-2024-001" \
+  -H "X-Operator-Id: quality01"
+
+# 单条整改单详情 - JSON 格式
+curl http://localhost:3000/api/corrective-actions/export/CA-XXXXXXXX-XXXX?format=json \
+  -H "X-Operator-Id: quality01"
+
+# 单条整改单详情 - CSV 格式（含基本信息、审计记录）
+curl http://localhost:3000/api/corrective-actions/export/CA-XXXXXXXX-XXXX?format=csv \
+  -H "X-Operator-Id: quality01"
+```
+
+### 冲突和错误处理
+
+| 场景 | HTTP 状态 | 说明 |
+|------|-----------|------|
+| 同一批次存在未关闭的整改单，重复创建 | 409 | 返回 conflict 标识 |
+| 越权操作（如供应商创建整改单） | 400 | 返回权限不足错误 |
+| 状态不允许流转（如已关闭再退回） | 400 | 返回当前状态和允许的操作 |
+| expectedVersion 与当前版本不一致 | 409 | 返回 currentVersion 供前端刷新后重试 |
+| 供应商提交非分派给自己的整改单 | 400 | 返回权限不足错误 |
+| 关闭后撤回限制 | 400 | 已关闭的整改单不允许任何修改操作 |
+
+### 整改单字段示例
+
+```json
+{
+  "id": "CA-20260613-A1B2",
+  "batchNo": "BATCH-2024-001",
+  "source": "batch_review",
+  "severity": "moderate",
+  "supplierId": "SUP001",
+  "supplierName": "某制药有限公司",
+  "description": "批次复核发现外包装破损",
+  "attachmentSummary": "照片3张",
+  "dueDate": "2026-06-20",
+  "status": "approved",
+  "version": 5,
+  "createdAt": "2026-06-13T08:00:00.000Z",
+  "createdBy": "receiver01",
+  "createdByName": "张收货",
+  "assignedTo": "supplier01",
+  "assignedByName": "赵供应",
+  "assignedAt": "2026-06-13T09:00:00.000Z",
+  "response": "已重新更换外包装",
+  "responseEvidence": "整改前后对比照片",
+  "responseSubmittedBy": "supplier01",
+  "responseSubmittedByName": "赵供应",
+  "responseSubmittedAt": "2026-06-14T10:00:00.000Z",
+  "approvedBy": "quality01",
+  "approvedByName": "王质管",
+  "approvedAt": "2026-06-14T14:00:00.000Z",
+  "approvedNote": "整改措施有效",
+  "closedBy": null,
+  "closedByName": null,
+  "closedAt": null,
+  "closedNote": null,
+  "returnedBy": null,
+  "returnedByName": null,
+  "returnedAt": null,
+  "returnedReason": null
+}
+```
+
+### 整改单审计动作
+
+| 动作 | 触发时机 |
+|------|---------|
+| `create` | 创建整改单 |
+| `submit_for_assign` | 提交整改单等待分派 |
+| `assign` | 质管分派整改单给供应商 |
+| `submit_response` | 供应商提交整改说明 |
+| `approve` | 质管验收通过 |
+| `return` | 质管退回重改 |
+| `close` | 质管关闭整改单 |
+
+### 整改单数据存储
+
+整改单数据存储在 `data/` 目录下：
+
+| 文件 | 内容 |
+|------|------|
+| `corrective-actions.json` | 整改单基本信息（含版本号、状态、关联批次和供应商） |
+| `corrective-action-audit-logs.json` | 整改单审计日志 |
+
+服务重启后状态、版本号、关联批次和审计记录均保持不变。
+
 ## 配置说明
 
 配置文件位于 `src/config.js`，可配置：
@@ -907,7 +1179,7 @@ curl http://localhost:3000/api/inspections/export/INS-XXXXXXXX-XXXX?format=csv \
 - 数据存储目录
 - 温度范围（默认 2-8℃）
 - 最大温度记录间隔（默认 30 分钟）
-- 用户和角色
+- 用户和角色（含供应商联系人角色）
 
 ## 目录结构
 
@@ -922,21 +1194,24 @@ curl http://localhost:3000/api/inspections/export/INS-XXXXXXXX-XXXX?format=csv \
 ├── calibration-test-verify.js  # 校准记录跨重启验证
 ├── inspection-test.js     # 到货抽检任务回归测试
 ├── inspection-test-verify.js  # 抽检任务跨重启验证
+├── corrective-action-test.js  # 供应商整改单回归测试
 ├── src/
 │   ├── config.js          # 配置
 │   ├── storage.js         # 数据持久化
 │   ├── services/
-│   │   ├── batchService.js       # 批次业务逻辑
-│   │   ├── temperatureService.js # 温度校验
-│   │   ├── dispositionService.js # 处置单业务逻辑
-│   │   ├── supplementService.js  # 补证包业务逻辑
-│   │   ├── calibrationService.js # 校准记录业务逻辑
-│   │   ├── inspectionService.js  # 抽检任务业务逻辑
-│   │   └── importExportService.js # 导入导出
+│   │   ├── batchService.js            # 批次业务逻辑
+│   │   ├── temperatureService.js      # 温度校验
+│   │   ├── dispositionService.js      # 处置单业务逻辑
+│   │   ├── supplementService.js       # 补证包业务逻辑
+│   │   ├── calibrationService.js      # 校准记录业务逻辑
+│   │   ├── inspectionService.js       # 抽检任务业务逻辑
+│   │   ├── correctiveActionService.js # 整改单业务逻辑
+│   │   └── importExportService.js     # 导入导出
 │   └── routes/
-│       ├── batches.js     # 批次路由
-│       ├── calibration.js # 校准记录路由
-│       └── inspection.js  # 抽检任务路由
+│       ├── batches.js           # 批次路由
+│       ├── calibration.js       # 校准记录路由
+│       ├── inspection.js        # 抽检任务路由
+│       └── correctiveAction.js  # 整改单路由
 ├── samples/               # 样例数据
 └── data/                  # 数据存储（运行时生成）
 ```

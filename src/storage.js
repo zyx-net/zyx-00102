@@ -11,7 +11,9 @@ const dataFiles = {
   calibrations: 'calibrations.json',
   calibrationAuditLogs: 'calibration-audit-logs.json',
   inspections: 'inspections.json',
-  inspectionAuditLogs: 'inspection-audit-logs.json'
+  inspectionAuditLogs: 'inspection-audit-logs.json',
+  correctiveActions: 'corrective-actions.json',
+  correctiveActionAuditLogs: 'corrective-action-audit-logs.json'
 };
 
 function ensureDataDir() {
@@ -270,6 +272,58 @@ function addInspectionAuditLog(inspectionId, entry) {
   writeDataAtomic(dataFiles.inspectionAuditLogs, allLogs);
 }
 
+function getCorrectiveActions() {
+  return readData(dataFiles.correctiveActions, {});
+}
+
+function saveCorrectiveActions(actions) {
+  writeDataAtomic(dataFiles.correctiveActions, actions);
+}
+
+function getCorrectiveAction(actionId) {
+  const actions = getCorrectiveActions();
+  return actions[actionId] || null;
+}
+
+function saveCorrectiveAction(action) {
+  const actions = getCorrectiveActions();
+  actions[action.id] = action;
+  saveCorrectiveActions(actions);
+}
+
+function listCorrectiveActions() {
+  const actions = getCorrectiveActions();
+  return Object.values(actions).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+function getCorrectiveActionsByBatch(batchNo) {
+  return listCorrectiveActions().filter(a => a.batchNo === batchNo);
+}
+
+function getCorrectiveActionsBySupplier(supplierId) {
+  return listCorrectiveActions().filter(a => a.supplierId === supplierId);
+}
+
+function getActiveCorrectiveActionsByBatch(batchNo) {
+  const config = require('./config');
+  const closedStatuses = [config.correctiveActionStatus.CLOSED];
+  return getCorrectiveActionsByBatch(batchNo).filter(a => !closedStatuses.includes(a.status));
+}
+
+function getCorrectiveActionAuditLogs(actionId) {
+  const allLogs = readData(dataFiles.correctiveActionAuditLogs, {});
+  return (allLogs[actionId] || []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+}
+
+function addCorrectiveActionAuditLog(actionId, entry) {
+  const allLogs = readData(dataFiles.correctiveActionAuditLogs, {});
+  if (!allLogs[actionId]) {
+    allLogs[actionId] = [];
+  }
+  allLogs[actionId].push(entry);
+  writeDataAtomic(dataFiles.correctiveActionAuditLogs, allLogs);
+}
+
 module.exports = {
   getBatches,
   saveBatches,
@@ -310,5 +364,15 @@ module.exports = {
   getInspectionsByBatch,
   getActiveInspectionForBatch,
   getInspectionAuditLogs,
-  addInspectionAuditLog
+  addInspectionAuditLog,
+  getCorrectiveActions,
+  saveCorrectiveActions,
+  getCorrectiveAction,
+  saveCorrectiveAction,
+  listCorrectiveActions,
+  getCorrectiveActionsByBatch,
+  getCorrectiveActionsBySupplier,
+  getActiveCorrectiveActionsByBatch,
+  getCorrectiveActionAuditLogs,
+  addCorrectiveActionAuditLog
 };

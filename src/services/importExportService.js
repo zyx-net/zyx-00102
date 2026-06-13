@@ -258,6 +258,87 @@ function exportInspectionDetailToCSV(detail) {
   return `# 抽检任务基本信息\n${mainCSV}\n\n# 抽检项目明细\n${itemsCSV}\n\n# 审计记录\n${auditCSV}`;
 }
 
+function exportCorrectiveActionsToCSV(actions) {
+  const rows = actions.map(a => ({
+    id: a.id,
+    batchNo: a.batchNo,
+    source: a.source,
+    severity: a.severity,
+    supplierId: a.supplierId,
+    supplierName: a.supplierName || '',
+    description: a.description || '',
+    attachmentSummary: a.attachmentSummary || '',
+    dueDate: a.dueDate || '',
+    status: a.status,
+    version: a.version,
+    createdAt: a.createdAt || '',
+    createdBy: a.createdByName || a.createdBy || '',
+    assignedTo: a.assignedByName || a.assignedTo || '',
+    assignedAt: a.assignedAt || '',
+    responseSubmittedBy: a.responseSubmittedByName || a.responseSubmittedBy || '',
+    responseSubmittedAt: a.responseSubmittedAt || '',
+    approvedBy: a.approvedByName || a.approvedBy || '',
+    approvedAt: a.approvedAt || '',
+    closedBy: a.closedByName || a.closedBy || '',
+    closedAt: a.closedAt || '',
+    returnedBy: a.returnedByName || a.returnedBy || '',
+    returnedAt: a.returnedAt || '',
+    returnedReason: a.returnedReason || ''
+  }));
+  return toCSV(rows, ['id', 'batchNo', 'source', 'severity', 'supplierId', 'supplierName', 'description', 'attachmentSummary', 'dueDate', 'status', 'version', 'createdAt', 'createdBy', 'assignedTo', 'assignedAt', 'responseSubmittedBy', 'responseSubmittedAt', 'approvedBy', 'approvedAt', 'closedBy', 'closedAt', 'returnedBy', 'returnedAt', 'returnedReason']);
+}
+
+function exportCorrectiveActionDetailToCSV(detail) {
+  const action = detail;
+  const auditLogs = detail.auditLogs || [];
+
+  const mainCSV = toCSV([{
+    id: action.id,
+    batchNo: action.batchNo,
+    source: action.source,
+    severity: action.severity,
+    supplierId: action.supplierId,
+    supplierName: action.supplierName || '',
+    description: action.description || '',
+    attachmentSummary: action.attachmentSummary || '',
+    dueDate: action.dueDate || '',
+    status: action.status,
+    version: action.version,
+    createdAt: action.createdAt || '',
+    createdBy: action.createdByName || action.createdBy || '',
+    assignedTo: action.assignedByName || action.assignedTo || '',
+    assignedAt: action.assignedAt || '',
+    response: action.response || '',
+    responseEvidence: action.responseEvidence || '',
+    responseSubmittedBy: action.responseSubmittedByName || action.responseSubmittedBy || '',
+    responseSubmittedAt: action.responseSubmittedAt || '',
+    approvedBy: action.approvedByName || action.approvedBy || '',
+    approvedAt: action.approvedAt || '',
+    approvedNote: action.approvedNote || '',
+    closedBy: action.closedByName || action.closedBy || '',
+    closedAt: action.closedAt || '',
+    closedNote: action.closedNote || '',
+    returnedBy: action.returnedByName || action.returnedBy || '',
+    returnedAt: action.returnedAt || '',
+    returnedReason: action.returnedReason || ''
+  }], ['id', 'batchNo', 'source', 'severity', 'supplierId', 'supplierName', 'description', 'attachmentSummary', 'dueDate', 'status', 'version', 'createdAt', 'createdBy', 'assignedTo', 'assignedAt', 'response', 'responseEvidence', 'responseSubmittedBy', 'responseSubmittedAt', 'approvedBy', 'approvedAt', 'approvedNote', 'closedBy', 'closedAt', 'closedNote', 'returnedBy', 'returnedAt', 'returnedReason']);
+
+  const auditRows = auditLogs.map(log => ({
+    action: log.action,
+    fromStatus: log.fromStatus || '',
+    toStatus: log.toStatus || '',
+    operatorId: log.operatorId,
+    operatorName: log.operatorName,
+    operatorRole: log.operatorRole,
+    reason: log.reason || '',
+    timestamp: log.timestamp,
+    detail: JSON.stringify(log.detail || {})
+  }));
+  const auditCSV = toCSV(auditRows, ['action', 'fromStatus', 'toStatus', 'operatorId', 'operatorName', 'operatorRole', 'reason', 'timestamp', 'detail']);
+
+  return `# 整改单基本信息\n${mainCSV}\n\n# 审计记录\n${auditCSV}`;
+}
+
 module.exports = {
   parseCSV,
   toCSV,
@@ -267,5 +348,7 @@ module.exports = {
   exportBatchToCSV,
   exportCalibrationsToCSV,
   exportInspectionsToCSV,
-  exportInspectionDetailToCSV
+  exportInspectionDetailToCSV,
+  exportCorrectiveActionsToCSV,
+  exportCorrectiveActionDetailToCSV
 };
