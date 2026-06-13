@@ -16,7 +16,7 @@ const STATUS_TRANSITIONS = {
 const ROLE_PERMISSIONS = {
   [ROLES.RECEIVER]: ['import', 'view'],
   [ROLES.PHARMACIST]: ['review', 'quarantine', 'view'],
-  [ROLES.QUALITY_MANAGER]: ['release', 'reject', 'void', 'view']
+  [ROLES.QUALITY_MANAGER]: ['release', 'reject', 'void', 'view', 'quality_remark']
 };
 
 function hasPermission(userRole, action) {
@@ -341,6 +341,71 @@ function finalizeBatch(batchNo, operatorId, decision, reason) {
   return { success: true, batch };
 }
 
+function setQualityRemark(batchNo, operatorId, remarkContent, expectedVersion) {
+  const operator = findUser(operatorId);
+  if (!operator) {
+    return { success: false, error: '操作员不存在' };
+  }
+  if (!hasPermission(operator.role, 'quality_remark')) {
+    return { success: false, error: '无权限编辑质管导出备注' };
+  }
+
+  const batch = storage.getBatch(batchNo);
+  if (!batch) {
+    return { success: false, error: `批号 ${batchNo} 不存在` };
+  }
+
+  if (batch.status !== STATUS.RELEASED && batch.status !== STATUS.REJECTED) {
+    return { success: false, error: `只有已放行或已拒收的批次才能添加质管备注，当前状态: ${batch.status}` };
+  }
+
+  const currentRemark = batch.qualityRemark || null;
+  const currentVersion = currentRemark ? currentRemark.version : 0;
+
+  if (expectedVersion !== undefined && currentVersion !== expectedVersion) {
+    return {
+      success: false,
+      error: `版本冲突，当前备注版本: ${currentVersion}，预期版本: ${expectedVersion}`,
+      conflict: true,
+      currentVersion
+    };
+  }
+
+  if (!remarkContent || typeof remarkContent !== 'string' || remarkContent.trim() === '') {
+    return { success: false, error: '备注内容不能为空' };
+  }
+
+  const now = new Date().toISOString();
+  const newVersion = currentVersion + 1;
+  const newRemark = {
+    content: remarkContent.trim(),
+    updatedBy: operatorId,
+    updatedByName: operator.name,
+    updatedAt: now,
+    version: newVersion
+  };
+
+  batch.qualityRemark = newRemark;
+  storage.saveBatch(batch);
+
+  storage.addAuditLog(batchNo, {
+    action: currentRemark ? 'quality_remark_update' : 'quality_remark_create',
+    fromStatus: batch.status,
+    toStatus: batch.status,
+    operatorId,
+    operatorName: operator.name,
+    operatorRole: operator.role,
+    reason: currentRemark ? '更新质管导出备注' : '新增质管导出备注',
+    timestamp: now,
+    detail: {
+      remarkVersion: newVersion,
+      remarkContent: newRemark.content
+    }
+  });
+
+  return { success: true, batch, qualityRemark: newRemark };
+}
+
 function getBatchDetail(batchNo) {
   const batch = storage.getBatch(batchNo);
   if (!batch) {
@@ -370,6 +435,7 @@ module.exports = {
   importTemperatureLogs,
   reviewBatch,
   finalizeBatch,
+  setQualityRemark,
   getBatchDetail,
   listAllBatches,
   hasPermission,

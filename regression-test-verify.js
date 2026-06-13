@@ -267,7 +267,86 @@ async function main() {
     allPass &= printTest('[拒收] 审计含 reject 动作', rejectAudit.some(l => l.action === 'reject'));
   }
 
-  console.log('\n--- 10. 处置单列表与查询接口 ---\n');
+  console.log('\n--- 10. 质管导出备注重启后一致性 ---\n');
+
+  if (preState.remarkBatchNo) {
+    const remarkDetail = await getBatchDetail(preState.remarkBatchNo);
+    allPass &= printTest('[放行备注] 批次状态一致',
+      remarkDetail.batch.status === 'released',
+      `实际: ${remarkDetail.batch.status}`);
+    allPass &= printTest('[放行备注] qualityRemark 字段存在',
+      !!remarkDetail.batch.qualityRemark,
+      remarkDetail.batch.qualityRemark ? '存在' : '不存在');
+
+    if (remarkDetail.batch.qualityRemark) {
+      const preContent = preState.remarkContent || '';
+      const curContent = remarkDetail.batch.qualityRemark.content || '';
+      allPass &= printTest('[放行备注] 备注内容一致',
+        curContent === preContent,
+        '重启前: ' + preContent.substring(0, 20) + '..., 重启后: ' + curContent.substring(0, 20) + '...');
+      allPass &= printTest('[放行备注] 备注版本一致',
+        remarkDetail.batch.qualityRemark.version === preState.remarkVersion,
+        '重启前: ' + preState.remarkVersion + ', 重启后: ' + remarkDetail.batch.qualityRemark.version);
+      allPass &= printTest('[放行备注] 备注填写人一致',
+        remarkDetail.batch.qualityRemark.updatedByName === preState.remarkUpdatedBy);
+      allPass &= printTest('[放行备注] 备注填写时间一致',
+        remarkDetail.batch.qualityRemark.updatedAt === preState.remarkUpdatedAt);
+    }
+
+    const remarkAudit = remarkDetail.auditLogs || [];
+    allPass &= printTest('[放行备注] 审计含 quality_remark_create',
+      remarkAudit.some(l => l.action === 'quality_remark_create'));
+    allPass &= printTest('[放行备注] 审计含 quality_remark_update',
+      remarkAudit.some(l => l.action === 'quality_remark_update'));
+
+    const remarkExportJson = await getExportJson(preState.remarkBatchNo);
+    allPass &= printTest('[放行备注] JSON 导出含 qualityRemark 字段',
+      !!remarkExportJson.batch.qualityRemark);
+    if (remarkExportJson.batch.qualityRemark) {
+      allPass &= printTest('[放行备注] JSON 导出备注内容一致',
+      remarkExportJson.batch.qualityRemark.content === preState.remarkContent);
+      allPass &= printTest('[放行备注] JSON 导出备注版本一致',
+      remarkExportJson.batch.qualityRemark.version === preState.remarkVersion);
+      allPass &= printTest('[放行备注] JSON 导出备注填写人正确',
+      remarkExportJson.batch.qualityRemark.updatedByName === preState.remarkUpdatedBy);
+    }
+
+    const remarkExportCsv = await getExportCsv(preState.remarkBatchNo);
+    const remarkCsvStr = typeof remarkExportCsv === 'string' ? remarkExportCsv : JSON.stringify(remarkExportCsv);
+    allPass &= printTest('[放行备注] CSV 导出含 qualityRemarkContent 列',
+      remarkCsvStr.includes('qualityRemarkContent'));
+    allPass &= printTest('[放行备注] CSV 导出含 qualityRemarkBy 列',
+      remarkCsvStr.includes('qualityRemarkBy'));
+    allPass &= printTest('[放行备注] CSV 导出含 qualityRemarkAt 列',
+      remarkCsvStr.includes('qualityRemarkAt'));
+    allPass &= printTest('[放行备注] CSV 导出含 qualityRemarkVersion 列',
+      remarkCsvStr.includes('qualityRemarkVersion'));
+    allPass &= printTest('[放行备注] CSV 导出备注内容正确',
+      remarkCsvStr.includes(preState.remarkContent?.substring(0, 20)));
+
+    const batchesFile = JSON.parse(fs.readFileSync(path.join(dataDir, 'batches.json'), 'utf-8'));
+    const fileRemarkBatch = batchesFile[preState.remarkBatchNo];
+    allPass &= printTest('[放行备注] 文件中备注与 API 一致',
+      fileRemarkBatch.qualityRemark?.content === remarkDetail.batch.qualityRemark?.content);
+    allPass &= printTest('[放行备注] 文件中备注版本与 API 一致',
+      fileRemarkBatch.qualityRemark?.version === remarkDetail.batch.qualityRemark?.version);
+  }
+
+  if (preState.remarkRejectBatchNo) {
+    const rejectRemarkDetail = await getBatchDetail(preState.remarkRejectBatchNo);
+    allPass &= printTest('[拒收备注] 批次状态一致',
+      rejectRemarkDetail.batch.status === 'rejected');
+    allPass &= printTest('[拒收备注] qualityRemark 字段存在',
+      !!rejectRemarkDetail.batch.qualityRemark);
+    if (rejectRemarkDetail.batch.qualityRemark) {
+      allPass &= printTest('[拒收备注] 备注内容一致',
+        rejectRemarkDetail.batch.qualityRemark.content === preState.remarkRejectContent);
+      allPass &= printTest('[拒收备注] 备注版本一致',
+        rejectRemarkDetail.batch.qualityRemark.version === preState.remarkRejectVersion);
+    }
+  }
+
+  console.log('\n--- 11. 处置单列表与查询接口 ---\n');
 
   if (preState.dispDispositionId) {
     const dispListRes = await request({
@@ -301,6 +380,7 @@ async function main() {
     console.log('✓ 服务重启后所有数据保持一致');
     console.log('✓ 查询接口、JSON/CSV 导出、文件存储三者一致');
     console.log('✓ 温控偏差处置单（放行/拒收）数据完整持久化');
+    console.log('✓ 质管导出备注（放行/拒收批次）数据完整持久化');
   } else {
     console.log('✗ 部分验证失败！');
   }

@@ -187,6 +187,21 @@ router.post('/:batchNo/finalize', requireOperator, (req, res) => {
   res.json({ success: true, batch: result.batch });
 });
 
+router.post('/:batchNo/quality-remark', requireOperator, (req, res) => {
+  const { content, expectedVersion } = req.body;
+  const result = batchService.setQualityRemark(
+    req.params.batchNo,
+    req.operator.id,
+    content,
+    expectedVersion
+  );
+  if (!result.success) {
+    const status = result.conflict ? 409 : 400;
+    return res.status(status).json({ success: false, error: result.error, ...result });
+  }
+  res.json({ success: true, batch: result.batch, qualityRemark: result.qualityRemark });
+});
+
 router.get('/:batchNo/export', requireOperator, (req, res) => {
   const format = req.query.format || 'json';
   const detail = batchService.getBatchDetail(req.params.batchNo);

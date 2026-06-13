@@ -102,8 +102,12 @@ function exportBatchToCSV(batchDetail) {
     overTempCount: (batch.overTempRanges || []).length,
     dispositionId: batch.dispositionId || '',
     dispositionDecision: batch.dispositionDecision || '',
-    finalReason: batch.finalReason || ''
-  }], ['batchNo', 'drugName', 'manufacturer', 'quantity', 'unit', 'productionDate', 'expiryDate', 'arrivalDate', 'status', 'temperatureValid', 'overTempCount', 'dispositionId', 'dispositionDecision', 'finalReason']);
+    finalReason: batch.finalReason || '',
+    qualityRemarkContent: batch.qualityRemark?.content || '',
+    qualityRemarkBy: batch.qualityRemark?.updatedByName || batch.qualityRemark?.updatedBy || '',
+    qualityRemarkAt: batch.qualityRemark?.updatedAt || '',
+    qualityRemarkVersion: batch.qualityRemark?.version || ''
+  }], ['batchNo', 'drugName', 'manufacturer', 'quantity', 'unit', 'productionDate', 'expiryDate', 'arrivalDate', 'status', 'temperatureValid', 'overTempCount', 'dispositionId', 'dispositionDecision', 'finalReason', 'qualityRemarkContent', 'qualityRemarkBy', 'qualityRemarkAt', 'qualityRemarkVersion']);
 
   const tempCSV = toCSV(logs, ['batchNo', 'timestamp', 'temperature']);
   const auditCSV = toCSV(audits, ['action', 'fromStatus', 'toStatus', 'operatorId', 'operatorName', 'operatorRole', 'reason', 'timestamp']);

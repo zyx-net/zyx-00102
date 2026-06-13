@@ -700,7 +700,204 @@ async function main() {
   allPass &= printTest('按批次查询处置单数量正确',
     (batchDispListRes.body.dispositions || []).length >= 1);
 
-  console.log('\n--- 测试组 10: 保存重启前状态 ---\n');
+  console.log('\n--- 测试组 10: 质管导出备注 ---\n');
+
+  const remarkBatchNo = `RMK-${timestamp}-01`;
+  await request({
+    ...baseOptions,
+    path: '/api/batches/import',
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'receiver01' }
+  }, [{
+    batchNo: remarkBatchNo,
+    drugName: '备注测试药',
+    manufacturer: '测试药厂',
+    quantity: 120
+  }]);
+
+  const remarkNoPermPharmacist = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'pharmacist01' }
+  }, { content: '药师越权测试' });
+  allPass &= printTest('药师越权添加备注被拒', remarkNoPermPharmacist.statusCode === 400,
+    `实际: ${remarkNoPermPharmacist.statusCode}, 错误: ${remarkNoPermPharmacist.body?.error}`);
+
+  const remarkNoPermReceiver = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'receiver01' }
+  }, { content: '收货员越权测试' });
+  allPass &= printTest('收货员越权添加备注被拒', remarkNoPermReceiver.statusCode === 400,
+    `实际: ${remarkNoPermReceiver.statusCode}, 错误: ${remarkNoPermReceiver.body?.error}`);
+
+  const remarkBeforeFinalize = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, { content: '未终态测试' });
+  allPass &= printTest('未终态批次不能添加备注', remarkBeforeFinalize.statusCode === 400,
+    `实际: ${remarkBeforeFinalize.statusCode}, 错误: ${remarkBeforeFinalize.body?.error}`);
+
+  await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/review`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'pharmacist01' }
+  }, { decision: 'pass', reason: '复核通过' });
+
+  await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/finalize`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, { decision: 'release', reason: '正常放行' });
+
+  const detailAfterRelease = await getBatchDetail(remarkBatchNo, 'quality01');
+  allPass &= printTest('批次已放行', detailAfterRelease.batch.status === 'released');
+
+  const remarkEmpty = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, { content: '' });
+  allPass &= printTest('空备注被拒', remarkEmpty.statusCode === 400);
+
+  const remarkEmpty2 = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, { content: '   ' });
+  allPass &= printTest('纯空白备注被拒', remarkEmpty2.statusCode === 400);
+
+  const remarkCreate = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, { content: '风险说明：该批次超温时间短，供应商已提供环境温度证明，后续抽检安排：下一批到货加严抽检。' });
+  allPass &= printTest('质管新增备注成功', remarkCreate.statusCode === 200,
+    `实际: ${remarkCreate.statusCode}, 错误: ${remarkCreate.body?.error}`);
+  allPass &= printTest('新增备注版本为 1', remarkCreate.body.qualityRemark?.version === 1);
+  allPass &= printTest('新增备注填写人正确', remarkCreate.body.qualityRemark?.updatedByName === '王质管');
+  allPass &= printTest('新增备注有填写时间', !!remarkCreate.body.qualityRemark?.updatedAt);
+  allPass &= printTest('新增备注内容正确',
+    remarkCreate.body.qualityRemark?.content?.includes('风险说明'));
+
+  const detailAfterRemark = await getBatchDetail(remarkBatchNo, 'pharmacist01');
+  allPass &= printTest('药师可查看备注（只读）', detailAfterRemark.batch.qualityRemark?.version === 1);
+  allPass &= printTest('收货员也能查看备注',
+    (await getBatchDetail(remarkBatchNo, 'receiver01')).batch.qualityRemark?.version === 1);
+
+  const remarkUpdateNoExpected = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, { content: '更新备注：供应商沟通结果良好，已签署整改协议。' });
+  allPass &= printTest('不指定 expectedVersion 时静默更新成功', remarkUpdateNoExpected.statusCode === 200);
+  allPass &= printTest('更新后版本递增为 2', remarkUpdateNoExpected.body.qualityRemark?.version === 2);
+
+  const remarkUpdateConflict = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, { content: '旧版本冲突测试', expectedVersion: 1 });
+  allPass &= printTest('指定旧版本更新返回 409 冲突', remarkUpdateConflict.statusCode === 409);
+  allPass &= printTest('冲突响应包含 currentVersion', remarkUpdateConflict.body?.currentVersion === 2);
+  allPass &= printTest('冲突响应包含 conflict 标记', remarkUpdateConflict.body?.conflict === true);
+
+  const remarkUpdateWithCorrectVersion = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, {
+    content: '更新备注 v3：风险说明：超温时间短影响有限；供应商沟通：已签署质量协议；后续抽检：连续3批加严。',
+    expectedVersion: 2
+  });
+  allPass &= printTest('指定正确版本更新成功', remarkUpdateWithCorrectVersion.statusCode === 200);
+  allPass &= printTest('更新后版本递增为 3', remarkUpdateWithCorrectVersion.body.qualityRemark?.version === 3);
+
+  const detailFinalRemark = await getBatchDetail(remarkBatchNo, 'quality01');
+  const remarkAuditLogs = detailFinalRemark.auditLogs || [];
+  allPass &= printTest('审计日志包含 quality_remark_create',
+    remarkAuditLogs.some(l => l.action === 'quality_remark_create'));
+  allPass &= printTest('审计日志包含 quality_remark_update',
+    remarkAuditLogs.some(l => l.action === 'quality_remark_update'));
+
+  const exportJsonRemark = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/export?format=json`,
+    method: 'GET',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  });
+  const exportJsonRmk = exportJsonRemark.body;
+  allPass &= printTest('JSON 导出包含 qualityRemark 字段', !!exportJsonRmk.batch.qualityRemark);
+  allPass &= printTest('JSON 导出备注内容正确',
+    exportJsonRmk.batch.qualityRemark?.content?.includes('连续3批加严'));
+  allPass &= printTest('JSON 导出备注填写人正确',
+    exportJsonRmk.batch.qualityRemark?.updatedByName === '王质管');
+  allPass &= printTest('JSON 导出备注有填写时间',
+    !!exportJsonRmk.batch.qualityRemark?.updatedAt);
+  allPass &= printTest('JSON 导出备注版本正确',
+    exportJsonRmk.batch.qualityRemark?.version === 3);
+
+  const exportCsvRemark = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkBatchNo}/export?format=csv`,
+    method: 'GET',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01', 'Accept': 'text/csv' }
+  });
+  const csvStrRmk = typeof exportCsvRemark.body === 'string' ? exportCsvRemark.body : JSON.stringify(exportCsvRemark.body);
+  allPass &= printTest('CSV 导出包含 qualityRemarkContent 列', csvStrRmk.includes('qualityRemarkContent'));
+  allPass &= printTest('CSV 导出包含 qualityRemarkBy 列', csvStrRmk.includes('qualityRemarkBy'));
+  allPass &= printTest('CSV 导出包含 qualityRemarkAt 列', csvStrRmk.includes('qualityRemarkAt'));
+  allPass &= printTest('CSV 导出包含 qualityRemarkVersion 列', csvStrRmk.includes('qualityRemarkVersion'));
+  allPass &= printTest('CSV 导出备注内容正确', csvStrRmk.includes('连续3批加严'));
+  allPass &= printTest('CSV 导出备注填写人正确', csvStrRmk.includes('王质管'));
+
+  const remarkRejectBatchNo = `RMK-${timestamp}-02`;
+  await request({
+    ...baseOptions,
+    path: '/api/batches/import',
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'receiver01' }
+  }, [{
+    batchNo: remarkRejectBatchNo,
+    drugName: '拒收备注测试药',
+    manufacturer: '测试药厂',
+    quantity: 60
+  }]);
+  await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkRejectBatchNo}/review`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'pharmacist01' }
+  }, { decision: 'pass', reason: '复核通过' });
+  await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkRejectBatchNo}/finalize`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, { decision: 'reject', reason: '质量不合格' });
+
+  const remarkReject = await request({
+    ...baseOptions,
+    path: `/api/batches/${remarkRejectBatchNo}/quality-remark`,
+    method: 'POST',
+    headers: { ...baseOptions.headers, 'X-Operator-Id': 'quality01' }
+  }, { content: '拒收原因：供应商冷链运输不达标，已纳入重点监控名单，下批到货前需提供整改报告。' });
+  allPass &= printTest('拒收批次也能添加备注', remarkReject.statusCode === 200);
+  allPass &= printTest('拒收批次备注版本为 1', remarkReject.body.qualityRemark?.version === 1);
+
+  console.log('\n--- 测试组 11: 保存重启前状态 ---\n');
 
   const stateToVerify = {
     overTempBatchNo,
@@ -722,7 +919,15 @@ async function main() {
     rejectBatchNo,
     rejectDispositionId,
     rejectBatchStatus: approveRejectRes.body.batch.status,
-    rejectFinalDecision: 'reject'
+    rejectFinalDecision: 'reject',
+    remarkBatchNo,
+    remarkContent: remarkUpdateWithCorrectVersion.body.qualityRemark.content,
+    remarkVersion: remarkUpdateWithCorrectVersion.body.qualityRemark.version,
+    remarkUpdatedBy: remarkUpdateWithCorrectVersion.body.qualityRemark.updatedByName,
+    remarkUpdatedAt: remarkUpdateWithCorrectVersion.body.qualityRemark.updatedAt,
+    remarkRejectBatchNo,
+    remarkRejectContent: remarkReject.body.qualityRemark.content,
+    remarkRejectVersion: remarkReject.body.qualityRemark.version
   };
 
   fs.writeFileSync(
@@ -737,6 +942,8 @@ async function main() {
   console.log(`  ${failBatchNo}: ${stateToVerify.failStatus}, 温度日志: ${stateToVerify.failTempCount}`);
   console.log(`  [放行处置单] ${dispBatchNo}: 处置单=${dispositionId}, 批次状态=${stateToVerify.dispBatchStatus}, 结论=${stateToVerify.dispFinalDecision}`);
   console.log(`  [拒收处置单] ${rejectBatchNo}: 处置单=${rejectDispositionId}, 批次状态=${stateToVerify.rejectBatchStatus}, 结论=${stateToVerify.rejectFinalDecision}`);
+  console.log(`  [放行备注] ${remarkBatchNo}: 备注版本=${stateToVerify.remarkVersion}, 填写人=${stateToVerify.remarkUpdatedBy}`);
+  console.log(`  [拒收备注] ${remarkRejectBatchNo}: 备注版本=${stateToVerify.remarkRejectVersion}`);
 
   console.log('\n========================================');
   console.log(allPass ? '全部回归测试通过！' : '部分测试失败！');
